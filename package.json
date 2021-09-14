@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@cig-platform/ui": "^0.1.3",
+    "@cig-platform/ui": "^0.1.4",
     "i18next": "^20.6.1",
     "next": "11.0.1",
     "react": "17.0.2",
