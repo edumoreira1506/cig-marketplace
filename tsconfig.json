@@ -21,6 +21,12 @@
     "paths": {
       "@Styles/*": [
         "./styles/*"
+      ],
+      "@Configs/*": [
+        "./configs/*"
+      ],
+      "@Static/*": [
+        "./static/*"
       ]
     }
   },
