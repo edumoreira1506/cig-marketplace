@@ -27,6 +27,9 @@
       ],
       "@Static/*": [
         "./static/*"
+      ],
+      "@Containers/*": [
+        "./containers/*"
       ]
     }
   },
