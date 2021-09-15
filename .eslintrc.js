@@ -23,6 +23,7 @@ module.exports = {
   'rules': {
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     'indent': [
       'error',
       2
