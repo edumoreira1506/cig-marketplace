@@ -1,7 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { useContextSelector } from 'use-context-selector';
 
-import { RegisterState } from '@Contexts/RegisterContext/registerReducer';
 import RegisterContext from '@Contexts/RegisterContext/RegisterContext';
 import { selectUser } from '@Contexts/RegisterContext/registerSelectors';
 
@@ -15,7 +14,7 @@ import { StyledForm } from './RegisterUserForm.styles';
 import RegisterUserFormSubmitButton from './RegisterUserFormSubmitButton';
 
 export interface RegisterUserFormProps {
-  onSubmit: (registerData: RegisterState['user']) => void;
+  onSubmit: () => void;
   title: string;
 }
 
@@ -34,7 +33,7 @@ export default function RegisterUserForm({ onSubmit, title }: RegisterUserFormPr
 
     if (!isValidUser) return;
 
-    onSubmit(user);
+    onSubmit();
   }, [isValidUser]);
 
   return (
