@@ -3,6 +3,8 @@
   "common.poultry": "Criatório",
   "common.user": "Usuário",
   "common.next": "Próximo",
+  "common.register": "Cadastrar",
+  "common.select-the-province": "Selecione o estado...",
   "user.fields.email": "E-mail",
   "user.fields.password": "Senha",
   "user.fields.confirm-password": "Confirmação de senha",

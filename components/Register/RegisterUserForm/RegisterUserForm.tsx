@@ -10,7 +10,6 @@ import RegisterUserFormPassword from './RegisterUserFormPassword';
 import RegisterUserFormConfirmPassword from './RegisterUserFormConfirmPassword';
 import RegisterUserFormRegister from './RegisterUserFormRegister';
 import RegisterUserFormBirthDate from './RegisterUserFormBirthDate';
-import { StyledForm } from './RegisterUserForm.styles';
 import RegisterUserFormSubmitButton from './RegisterUserFormSubmitButton';
 
 export interface RegisterUserFormProps {
@@ -37,7 +36,7 @@ export default function RegisterUserForm({ onSubmit, title }: RegisterUserFormPr
   }, [isValidUser]);
 
   return (
-    <StyledForm onSubmit={handleSubmitUserForm} title={title}>
+    <form onSubmit={handleSubmitUserForm} title={title}>
       <RegisterUserFormName />
       <RegisterUserFormEmail />
       <RegisterUserFormPassword />
@@ -45,6 +44,6 @@ export default function RegisterUserForm({ onSubmit, title }: RegisterUserFormPr
       <RegisterUserFormRegister />
       <RegisterUserFormBirthDate />
       <RegisterUserFormSubmitButton disabled={!isValidUser} onSubmit={handleSubmitUserForm} />
-    </StyledForm>
+    </form>
   );
 }

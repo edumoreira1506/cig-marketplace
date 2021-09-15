@@ -58,7 +58,20 @@ export default function registerReducer(
 ): RegisterState {
   switch (action.type) {
   case 'SET_USER_FIELD':
-    return { ...state, user: { ...state.user, [action.payload.key]: action.payload.value} };
+    return { ...state, user: { ...state.user, [action.payload.key]: action.payload.value } };
+  case 'SET_POULTRY_FIELD':
+    return { ...state, poultry: { ...state.poultry,  [action.payload.key]: action.payload.value } };
+  case 'SET_POULTRY_ADDRESS_FIELD':
+    return {
+      ...state,
+      poultry: {
+        ...state.poultry,
+        address: {
+          ...state.poultry.address,
+          [action.payload.key]: action.payload.value
+        }
+      }
+    };
   default:
     return state;
   }
