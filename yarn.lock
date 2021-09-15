@@ -1397,10 +1397,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cig-platform/ui@^0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.6.tgz#0e80e8a9ea7bd2a6624fb95206170c7a9e80f0cc"
-  integrity sha512-4A2zQ+HiWpchrN8OslxV3FJbhCWlia2AUklrSgx5OzV2DgidztbeZR3RUPqHJROjiigeYaswNOe+w86W17Iy8g==
+"@cig-platform/ui@^0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.7.tgz#bf27107fd26a3eb34cb76898de2cfd3a995801bc"
+  integrity sha512-hdQ1J4nZOslWMzH6QBgsSr8zqkdSI5/Z7TOPzuzWQEASbv9aVZv8AfWGAbKshT1xYat3Fgo4R0HAzdVts9i8Yg==
   dependencies:
     "@testing-library/jest-dom" "^5.11.4"
     "@testing-library/react" "^11.1.0"
