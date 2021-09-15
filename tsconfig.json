@@ -30,6 +30,15 @@
       ],
       "@Containers/*": [
         "./containers/*"
+      ],
+      "@Types/*": [
+        "./@types/*"
+      ],
+      "@Contexts/*": [
+        "./contexts/*"
+      ],
+      "@Components/*": [
+        "./components/*"
       ]
     }
   },
