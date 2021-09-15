@@ -27,6 +27,7 @@ export default function RegisterUserFormPassword() {
         onChange={handleChangePassword}
         required
         placeholder="********"
+        autoComplete="new-password"
       />
     </FormField>
   );

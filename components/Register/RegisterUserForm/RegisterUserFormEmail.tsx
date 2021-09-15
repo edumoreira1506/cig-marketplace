@@ -27,6 +27,7 @@ export default function RegisterUserFormEmail() {
         onChange={handleChangeEmail}
         required
         placeholder="exemplo@email.com"
+        autoComplete="username"
       />
     </FormField>
   );
