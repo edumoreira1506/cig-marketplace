@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import RegisterContainer from '@Containers/RegisterContainer/RegisterContainer';
 
-import { StyledRegisterSection, StyledPage } from './index.styles';
+import { StyledRegisterSection, StyledPage, StyledTitleWrapper } from './index.styles';
 
 export default function RegisterPage() {
   const { t } = useTranslation();
@@ -11,7 +11,9 @@ export default function RegisterPage() {
   return (
     <StyledPage>
       <StyledRegisterSection>
-        <Title text={t('pages.register')} />
+        <StyledTitleWrapper>
+          <Title text={t('pages.register')} />
+        </StyledTitleWrapper>
         <RegisterContainer />
       </StyledRegisterSection>
     </StyledPage>
