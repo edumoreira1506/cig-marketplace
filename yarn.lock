@@ -1397,10 +1397,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cig-platform/auth-bff-client@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@cig-platform/auth-bff-client/-/auth-bff-client-0.0.1.tgz#09ab4bb85f9e379b7abca696d4218e87d7a13146"
-  integrity sha512-1Mk2QdeaDt+aSkSDWbe87GEIppV9cFduX+uUYk9cl+OHSpQ/FWT6wJKi6mREz6WvE2k8FaTn6zZUCglzgSD2Bg==
+"@cig-platform/auth-bff-client@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@cig-platform/auth-bff-client/-/auth-bff-client-0.0.2.tgz#8bae9769d9079d72d5b2721621ef6c8e9f846d78"
+  integrity sha512-UK4kH1LqRHk+8PjcXu4mVsmqlQjpXlbhqLc9me7nwsv90mAvGQOiWl52oAx9ORU3SIKYcAgMXTEzIXIh2kqKAA==
   dependencies:
     "@cig-platform/core" "^0.2.36"
     axios "^0.21.4"

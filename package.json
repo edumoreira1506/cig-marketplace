@@ -10,8 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@cig-platform/auth-bff-client": "^0.0.1",
-    "@cig-platform/core": "^0.2.36",
+    "@cig-platform/auth-bff-client": "^0.0.2",
     "@cig-platform/ui": "^0.1.12",
     "i18next": "^20.6.1",
     "next": "11.0.1",
