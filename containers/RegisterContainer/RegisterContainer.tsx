@@ -2,8 +2,6 @@ import { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Tabs } from '@cig-platform/ui';
 
-import RegisterProvider from '@Contexts/RegisterContext/RegisterProvider';
-
 import RegisterUserForm from '@Components/Register/RegisterUserForm/RegisterUserForm';
 import RegisterPoultryForm from '@Components/Register/RegisterPoultryForm/RegisterPoultryForm';
 import { RegisterState } from '@Contexts/RegisterContext/registerReducer';
@@ -22,11 +20,9 @@ export default function RegisterContainer() {
   }, []);
 
   return (
-    <RegisterProvider>
-      <Tabs tab={tab} setTab={setTab}>
-        <RegisterUserForm title={t('common.user')} onSubmit={handleSubmitUserForm} />
-        <RegisterPoultryForm title={t('common.poultry')} onSubmit={handleSubmitRegisterForm} />
-      </Tabs>
-    </RegisterProvider>
+    <Tabs tab={tab} setTab={setTab}>
+      <RegisterUserForm title={t('common.user')} onSubmit={handleSubmitUserForm} />
+      <RegisterPoultryForm title={t('common.poultry')} onSubmit={handleSubmitRegisterForm} />
+    </Tabs>
   );
 }
