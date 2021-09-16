@@ -48,6 +48,9 @@
       ],
       "@Hooks/*": [
         "./hooks/*"
+      ],
+      "@Services/*": [
+        "./services/*"
       ]
     }
   },
