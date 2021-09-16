@@ -4,7 +4,8 @@ import { Tabs } from '@cig-platform/ui';
 
 import RegisterUserForm from '@Components/Register/RegisterUserForm/RegisterUserForm';
 import RegisterPoultryForm from '@Components/Register/RegisterPoultryForm/RegisterPoultryForm';
-import { RegisterState } from '@Contexts/RegisterContext/registerReducer';
+import useSubmitRegister from '@Hooks/useSubmitRegister';
+import { error, success } from '@Utils/alert';
 
 export default function RegisterContainer() {
   const [tab, setTab] = useState(0);
@@ -15,14 +16,16 @@ export default function RegisterContainer() {
     setTab(1);
   }, []);
 
-  const handleSubmitRegisterForm = useCallback(({ poultry, user }: { poultry: RegisterState['poultry']; user: RegisterState['user'] }) => {
-    console.log({ poultry, user });
-  }, []);
+  const handleErrorForm = useCallback((errorMessage: string) => error(errorMessage, t), [t]);
+
+  const handleSuccessForm = useCallback(() => success(t('common.success-registered'), t), [t]);
+
+  const handleSubmitRegister = useSubmitRegister({ onError: handleErrorForm, onSuccess: handleSuccessForm });
 
   return (
     <Tabs tab={tab} setTab={setTab}>
       <RegisterUserForm title={t('common.user')} onSubmit={handleSubmitUserForm} />
-      <RegisterPoultryForm title={t('common.poultry')} onSubmit={handleSubmitRegisterForm} />
+      <RegisterPoultryForm title={t('common.poultry')} onSubmit={handleSubmitRegister} />
     </Tabs>
   );
 }
