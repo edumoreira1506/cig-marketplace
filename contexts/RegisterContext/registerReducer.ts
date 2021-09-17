@@ -1,12 +1,13 @@
-import * as actions from './registerActions';
+
+import { ApiError } from '@cig-platform/core';
 
 import { ActionType } from '@Types/context';
 
+import * as actions from './registerActions';
+
 export interface RegisterState {
   isLoading: boolean;
-  errors: null | {
-    message: string;
-  };
+  error: null | ApiError;
   user: {
     email: string;
     password: string;
@@ -30,7 +31,7 @@ export interface RegisterState {
 
 export const INITIAL_STATE: RegisterState = {
   isLoading: false,
-  errors: null,
+  error: null,
   user: {
     email: '',
     password: '',
@@ -57,6 +58,8 @@ export default function registerReducer(
   action: ActionType<typeof actions>
 ): RegisterState {
   switch (action.type) {
+  case 'SET_ERROR':
+    return { ...state, error: action.payload.error };
   case 'SET_IS_LOADING':
     return { ...state, isLoading: action.payload.isLoading };
   case 'SET_USER_FIELD':

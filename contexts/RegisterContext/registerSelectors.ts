@@ -33,3 +33,5 @@ export const selectPoultryAddressZipcode = (state: RegisterState) => selectPoult
 export const selectPoultryAddressNumber = (state: RegisterState) => selectPoultryAddress(state).number;
 
 export const selectIsLoading = (state: RegisterState) => state.isLoading;
+
+export const selectError = (state: RegisterState) => state.error;

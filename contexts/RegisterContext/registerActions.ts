@@ -1,4 +1,11 @@
+import { ApiError } from '@cig-platform/core';
+
 import { RegisterState } from './registerReducer';
+
+export const setError = (error: ApiError | any) => ({
+  type: 'SET_ERROR',
+  payload: { error }
+} as const );
 
 export const setIsLoading = (isLoading: boolean) => ({
   type: 'SET_IS_LOADING',

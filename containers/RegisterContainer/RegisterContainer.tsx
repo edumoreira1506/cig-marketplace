@@ -1,14 +1,19 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useContextSelector } from 'use-context-selector';
 import { Tabs } from '@cig-platform/ui';
 
 import RegisterUserForm from '@Components/Register/RegisterUserForm/RegisterUserForm';
 import RegisterPoultryForm from '@Components/Register/RegisterPoultryForm/RegisterPoultryForm';
 import useSubmitRegister from '@Hooks/useSubmitRegister';
-import { error, success } from '@Utils/alert';
+import { error as showError, success } from '@Utils/alert';
+import RegisterContext from '@Contexts/RegisterContext/RegisterContext';
+import { selectError } from '@Contexts/RegisterContext/registerSelectors';
 
 export default function RegisterContainer() {
   const [tab, setTab] = useState(0);
+
+  const error = useContextSelector(RegisterContext, selectError);
 
   const { t } = useTranslation();
 
@@ -16,11 +21,15 @@ export default function RegisterContainer() {
     setTab(1);
   }, []);
 
-  const handleErrorForm = useCallback((errorMessage: string) => error(errorMessage, t), [t]);
-
   const handleSuccessForm = useCallback(() => success(t('common.success-registered'), t), [t]);
 
-  const handleSubmitRegister = useSubmitRegister({ onError: handleErrorForm, onSuccess: handleSuccessForm });
+  const handleSubmitRegister = useSubmitRegister({ onSuccess: handleSuccessForm });
+
+  useEffect(() => {
+    if (error) {
+      showError(error?.message ?? t('common.something-wrong'), t);
+    }
+  }, [error]);
 
   return (
     <Tabs tab={tab} setTab={setTab}>
