@@ -19,6 +19,8 @@ export default function LoginField({ label, value, onChange, type }: LoginFieldP
 
   const placeholder = useMemo(() => type === 'email' ? t('user.fields.email.placeholder'): '********', [type, t]);
 
+  const autoComplete = useMemo(() => type === 'email' ? 'username' : 'current-password', [type]);
+
   return (
     <StyledContainer>
       <StyledLabel>{label}</StyledLabel>
@@ -29,6 +31,7 @@ export default function LoginField({ label, value, onChange, type }: LoginFieldP
           onChange={handleChange}
           required
           type={type}
+          autoComplete={autoComplete}
         />
       </StyledInputWrapper>
     </StyledContainer>
