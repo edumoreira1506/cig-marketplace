@@ -32,6 +32,7 @@ export default function RegisterPoultryFormAddressProvince() {
         value={province}
         onChange={handleChangeAdressProvince}
         showEmptyOption
+        inputTestId="register-form-poultry-address-province"
         emptyOptionText={t('common.select-the-province')}
       />
     </FormField>

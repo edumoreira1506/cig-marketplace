@@ -22,7 +22,6 @@ export interface RegisterState {
     address: {
       city: string;
       zipcode: string;
-      number: string;
       province: string;
       street: string;
     }
@@ -48,7 +47,6 @@ export const INITIAL_STATE: RegisterState = {
       province: '',
       street: '',
       zipcode: '',
-      number: ''
     }
   }
 };
