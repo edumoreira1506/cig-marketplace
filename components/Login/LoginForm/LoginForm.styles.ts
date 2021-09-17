@@ -2,7 +2,6 @@ import { Colors, DEFAULT_BORDER_RADIUS, MAIN_FONT } from '@cig-platform/ui';
 import styled from 'styled-components';
 
 export const StyledForm = styled.form`
-  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;

@@ -25,4 +25,8 @@ export const StyledContainer = styled.div`
 export const StyledFormWrapper = styled.div`
   width: 80%;
   height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
 `;
