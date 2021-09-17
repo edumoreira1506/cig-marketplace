@@ -21,6 +21,14 @@ export const StyledRegisterSection = styled.section`
     display: flex;
     flex-direction: column;
   `)}
+
+  .loading {
+    left: 26%;
+
+    ${createMinWidthMediaQuery(`
+      left: 40%;
+    `)}
+  }
 `;
 
 export const StyledTitleWrapper = styled.div`

@@ -1,5 +1,10 @@
 import { RegisterState } from './registerReducer';
 
+export const setIsLoading = (isLoading: boolean) => ({
+  type: 'SET_IS_LOADING',
+  payload: { isLoading }
+} as const );
+
 export const setUserField = (key: keyof RegisterState['user'], value: string) => ({
   type: 'SET_USER_FIELD',
   payload: { key, value },

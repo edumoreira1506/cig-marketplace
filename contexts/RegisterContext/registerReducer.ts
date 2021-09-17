@@ -57,6 +57,8 @@ export default function registerReducer(
   action: ActionType<typeof actions>
 ): RegisterState {
   switch (action.type) {
+  case 'SET_IS_LOADING':
+    return { ...state, isLoading: action.payload.isLoading };
   case 'SET_USER_FIELD':
     return { ...state, user: { ...state.user, [action.payload.key]: action.payload.value } };
   case 'SET_POULTRY_FIELD':
