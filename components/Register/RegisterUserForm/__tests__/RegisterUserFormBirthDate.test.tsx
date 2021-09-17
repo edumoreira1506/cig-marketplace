@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import i18next from 'i18next';
 
 import { INITIAL_STATE } from '@Contexts/RegisterContext/registerReducer';
-import createRegisterContextRenderer from '@Utils/tests/createRegisterContextRenderer';
+import { createRegisterContextRenderer } from '@Utils/tests/registerContextRenderer';
 
 import RegisterUserFormBirthDate from '../RegisterUserFormBirthDate';
 

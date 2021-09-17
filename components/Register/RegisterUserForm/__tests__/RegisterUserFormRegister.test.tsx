@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import i18next from 'i18next';
 
 import { INITIAL_STATE } from '@Contexts/RegisterContext/registerReducer';
-import createRegisterContextRenderer from '@Utils/tests/createRegisterContextRenderer';
+import { createRegisterContextRenderer } from '@Utils/tests/registerContextRenderer';
 import * as registerActions from '@Contexts/RegisterContext/registerActions';
 
 import RegisterUserFormRegister from '../RegisterUserFormRegister';
