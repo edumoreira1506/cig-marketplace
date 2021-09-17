@@ -21,6 +21,36 @@
     "paths": {
       "@Styles/*": [
         "./styles/*"
+      ],
+      "@Configs/*": [
+        "./configs/*"
+      ],
+      "@Static/*": [
+        "./static/*"
+      ],
+      "@Containers/*": [
+        "./containers/*"
+      ],
+      "@Types/*": [
+        "./@types/*"
+      ],
+      "@Contexts/*": [
+        "./contexts/*"
+      ],
+      "@Components/*": [
+        "./components/*"
+      ],
+      "@Constants/*": [
+        "./constants/*"
+      ],
+      "@Utils/*": [
+        "./utils/*"
+      ],
+      "@Hooks/*": [
+        "./hooks/*"
+      ],
+      "@Services/*": [
+        "./services/*"
       ]
     }
   },
@@ -32,6 +62,7 @@
   "exclude": [
     "node_modules",
     "**/**.test.ts",
-    "**/**.test.js"
+    "**/**.test.js",
+    "utils/tests"
   ]
 }
