@@ -17,6 +17,7 @@ export const StyledSubmitButton = styled.button`
   border: none;
   font-weight: bold;
   font-family: ${MAIN_FONT};
+  cursor: pointer;
 
   &:focus {
     outline: none;

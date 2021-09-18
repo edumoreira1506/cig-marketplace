@@ -1,7 +1,8 @@
 import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { AiOutlineUser, AiFillLock } from 'react-icons/ai';
 
-import { StyledContainer, StyledInput, StyledInputWrapper, StyledLabel } from './LoginField.styles';
+import { StyledContainer, StyledInput, StyledInputWrapper, StyledLabel, StyledIcon } from './LoginField.styles';
 
 export interface LoginFieldProps {
   label: string;
@@ -17,14 +18,25 @@ export default function LoginField({ label, value, onChange, type }: LoginFieldP
     onChange(e.target.value);
   }, [onChange]);
 
-  const placeholder = useMemo(() => type === 'email' ? t('user.fields.email.placeholder'): '********', [type, t]);
-
-  const autoComplete = useMemo(() => type === 'email' ? 'username' : 'current-password', [type]);
+  const { placeholder, autoComplete, icon: Icon } = useMemo(() => type === 'email'
+    ? ({
+      placeholder: t('user.fields.email.placeholder'),
+      autoComplete: 'username',
+      icon: AiOutlineUser
+    })
+    : ({
+      placeholder: '********',
+      autoComplete: 'current-password',
+      icon: AiFillLock
+    }), [type, t]);
 
   return (
     <StyledContainer>
       <StyledLabel>{label}</StyledLabel>
       <StyledInputWrapper>
+        <StyledIcon>
+          <Icon />
+        </StyledIcon>
         <StyledInput
           placeholder={placeholder}
           value={value}
