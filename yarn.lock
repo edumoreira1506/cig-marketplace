@@ -1417,10 +1417,10 @@
     joi "^17.4.1"
     typeorm "^0.2.34"
 
-"@cig-platform/ui@^0.1.17":
-  version "0.1.17"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.17.tgz#3385f2aa57e3a562c3ea21f9c9ddeafb0b78b2e8"
-  integrity sha512-136UT01kLAxtLslzobgTSqx1Cm+LpkkuhR2CwC8v6ptkdBbwjAcZMNz4BJpECnddL0B2y5xnxZxYdO2WlKWMEQ==
+"@cig-platform/ui@^0.1.18":
+  version "0.1.18"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.18.tgz#cab25c6260069bb15da00397adf1aab4687c3ee4"
+  integrity sha512-iJFFR0zFkVyqKxknyF8+C5uQvGbkURhC/zHsxLQvMGaKxi157k46lgLUq5SLVg3iDKd+205nLBi1VW6Q2f6NOg==
   dependencies:
     "@testing-library/jest-dom" "^5.11.4"
     "@testing-library/react" "^11.1.0"
