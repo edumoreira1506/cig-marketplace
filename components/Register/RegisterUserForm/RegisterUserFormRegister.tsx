@@ -22,10 +22,11 @@ export default function RegisterUserFormRegister() {
     <FormField>
       <Input
         label={t('user.fields.register')}
-        type="text"
+        type="number"
         value={register}
         onChange={handleChangeRegister}
         placeholder="977.566.300-84"
+        mask="###.###.###-##"
       />
     </FormField>
   );

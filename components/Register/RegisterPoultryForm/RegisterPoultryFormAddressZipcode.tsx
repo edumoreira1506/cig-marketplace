@@ -44,7 +44,8 @@ export default function RegisterPoultryFormAddressZipcode() {
     <FormField>
       <Input
         label={t('poultry.fields.address.zipcode')}
-        type="text"
+        type="number"
+        mask="#####-###"
         value={zipcode}
         onChange={handleChangeAdressZipcode}
         placeholder="00000-000"
