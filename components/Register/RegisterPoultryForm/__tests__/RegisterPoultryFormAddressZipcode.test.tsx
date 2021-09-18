@@ -11,6 +11,23 @@ import RegisterPoultryFormAddressZipcode from '../RegisterPoultryFormAddressZipc
 
 jest.useFakeTimers();
 
+jest.mock('next/dynamic', () => () => {
+  const DynamicComponent = ({ label, onChange, placeholder, value }: {
+    label: string;
+    onChange: (newValue: string) => void;
+    placeholder: string;
+    value: string;
+  }) => (
+    <>
+      <label>{label}</label>
+      <input value={value} type="text" onChange={(e) => onChange(e.target.value)} placeholder={placeholder} />
+    </>
+  );
+  DynamicComponent.displayName = 'DynamicComponent';
+  DynamicComponent.preload = jest.fn();
+  return DynamicComponent;
+});
+
 describe('RegisterPoultryFormAddressZipcode', () => {
   it('renders correctly', () => {
     const render = createRegisterContextRenderer();
