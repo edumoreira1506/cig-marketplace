@@ -1417,10 +1417,10 @@
     joi "^17.4.1"
     typeorm "^0.2.34"
 
-"@cig-platform/ui@^0.1.18":
-  version "0.1.18"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.18.tgz#cab25c6260069bb15da00397adf1aab4687c3ee4"
-  integrity sha512-iJFFR0zFkVyqKxknyF8+C5uQvGbkURhC/zHsxLQvMGaKxi157k46lgLUq5SLVg3iDKd+205nLBi1VW6Q2f6NOg==
+"@cig-platform/ui@^0.1.26":
+  version "0.1.26"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.26.tgz#29f4f0babd66fbbbcd56e2e9c03d90a192b74e9f"
+  integrity sha512-0mYtO1WM4F8NC4KYaVY70Vm96T03ocwyzfCUNqMs9fX9S/UIwilC7mGZCch2W+qT7hct169GL2bJwKxaaBoiYg==
   dependencies:
     "@testing-library/jest-dom" "^5.11.4"
     "@testing-library/react" "^11.1.0"
@@ -1431,6 +1431,7 @@
     "@types/react-dom" "^17.0.0"
     react "^17.0.2"
     react-dom "^17.0.2"
+    react-number-format "^4.7.3"
     react-scripts "4.0.3"
     styled-components "^5.3.1"
     web-vitals "^1.0.1"
@@ -11026,6 +11027,13 @@ react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-number-format@^4.7.3:
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-4.7.3.tgz#e1706204a23c40fa17365a19f5059aabfca1886f"
+  integrity sha512-4EvcANjstypQ5anhanmdEioGc49qbnErfS+yqbhatC0vzQ1okplkWNb0DIY7ABu4RhaxzttEz6pypEy8KsqgBQ==
+  dependencies:
+    prop-types "^15.7.2"
 
 react-refresh@0.8.3, react-refresh@^0.8.3:
   version "0.8.3"
