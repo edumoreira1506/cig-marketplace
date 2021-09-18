@@ -8,8 +8,9 @@ import LoginContext from '@Contexts/LoginContext/LoginContext';
 import { selectError } from '@Contexts/LoginContext/loginSelectors';
 import useLogin from '@Hooks/useLogin';
 import LoginForm from '@Components/Login/LoginForm/LoginForm';
-import { StyledLink } from './LoginContainer.styles';
 import { Routes } from '@Constants/routes';
+
+import { StyledLink } from './LoginContainer.styles';
 
 export default function LoginContainer() {
   const error = useContextSelector(LoginContext, selectError);

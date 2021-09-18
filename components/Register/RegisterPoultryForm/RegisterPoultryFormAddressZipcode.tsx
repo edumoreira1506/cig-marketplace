@@ -1,13 +1,16 @@
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useContextSelector } from 'use-context-selector';
-import { FormField, Input } from '@cig-platform/ui';
+import dynamic from 'next/dynamic';
+import { FormField } from '@cig-platform/ui';
 
 import RegisterContext, { useRegisterDispach } from '@Contexts/RegisterContext/RegisterContext';
 import { selectPoultryAddressZipcode } from '@Contexts/RegisterContext/registerSelectors';
 import { setPoultryAddressField } from '@Contexts/RegisterContext/registerActions';
 import useDebouncedEffect from '@Hooks/useDebouncedEffect';
 import CepService from '@Services/CepService';
+
+const Input: any = dynamic(() => import('@cig-platform/ui').then(mod => mod.Input) as any, { ssr: false });
 
 export default function RegisterPoultryFormAddressZipcode() {
   const [isLoading, setIsLoading] = useState(false);
@@ -44,11 +47,12 @@ export default function RegisterPoultryFormAddressZipcode() {
     <FormField>
       <Input
         label={t('poultry.fields.address.zipcode')}
-        type="text"
+        type="number"
         value={zipcode}
         onChange={handleChangeAdressZipcode}
         placeholder="00000-000"
         isLoading={isLoading}
+        mask="#####-###"
       />
     </FormField>
   );
