@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useContextSelector } from 'use-context-selector';
 import { FormField, Input } from '@cig-platform/ui';
@@ -10,6 +10,8 @@ import useDebouncedEffect from '@Hooks/useDebouncedEffect';
 import CepService from '@Services/CepService';
 
 export default function RegisterPoultryFormAddressZipcode() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const zipcode = useContextSelector(RegisterContext, selectPoultryAddressZipcode);
 
   const dispatch = useRegisterDispach();
@@ -24,7 +26,11 @@ export default function RegisterPoultryFormAddressZipcode() {
     (async () => {
       if (!zipcode) return;
 
+      setIsLoading(true);
+
       const addressInfo = await CepService.getInfo(zipcode);
+
+      setIsLoading(false);
 
       if (!addressInfo) return;
 
@@ -42,6 +48,7 @@ export default function RegisterPoultryFormAddressZipcode() {
         value={zipcode}
         onChange={handleChangeAdressZipcode}
         placeholder="00000-000"
+        isLoading={isLoading}
       />
     </FormField>
   );

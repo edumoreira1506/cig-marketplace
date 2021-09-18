@@ -12,6 +12,8 @@ import RegisterPoultryFormAddressStreet from './RegisterPoultryFormAddressStreet
 import RegisterPoultryFormAddressZipcode from './RegisterPoultryFormAddressZipcode';
 import RegisterPoultryFormSubmitButton from './RegisterPoultryFormSubmitButton';
 
+import { StyledForm } from './RegisterPoultryForm.styles';
+
 export interface RegisterPoultryFormProps {
   onSubmit: ({ user, poultry }: { user: RegisterState['user']; poultry: RegisterState['poultry'] }) => void;
   title: string;
@@ -21,7 +23,7 @@ export default function RegisterPoultryForm({ onSubmit, title }: RegisterPoultry
   const { t } = useTranslation();
   
   return (
-    <form onSubmit={preventDefaultHandler} title={title}>
+    <StyledForm onSubmit={preventDefaultHandler} title={title}>
       <RegisterPoultryFormName />
       <RegisterPoultryFormDescription />
       <Subtitle text={t('poultry.fields.address')} />
@@ -30,6 +32,6 @@ export default function RegisterPoultryForm({ onSubmit, title }: RegisterPoultry
       <RegisterPoultryFormAddressProvince />
       <RegisterPoultryFormAddressStreet />
       <RegisterPoultryFormSubmitButton onSubmit={onSubmit} />
-    </form>
+    </StyledForm>
   );
 }
