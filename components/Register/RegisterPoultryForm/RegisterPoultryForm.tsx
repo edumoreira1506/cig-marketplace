@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Subtitle } from '@cig-platform/ui';
 
 import { RegisterState } from '@Contexts/RegisterContext/registerReducer';
+import { preventDefaultHandler } from '@Utils/dom';
 
 import RegisterPoultryFormName from './RegisterPoultryFormName';
 import RegisterPoultryFormDescription from './RegisterPoultryFormDescription';
@@ -10,7 +11,8 @@ import RegisterPoultryFormAddressProvince from './RegisterPoultryFormAddressProv
 import RegisterPoultryFormAddressStreet from './RegisterPoultryFormAddressStreet';
 import RegisterPoultryFormAddressZipcode from './RegisterPoultryFormAddressZipcode';
 import RegisterPoultryFormSubmitButton from './RegisterPoultryFormSubmitButton';
-import { preventDefaultHandler } from '@Utils/dom';
+
+import { StyledForm } from './RegisterPoultryForm.styles';
 
 export interface RegisterPoultryFormProps {
   onSubmit: ({ user, poultry }: { user: RegisterState['user']; poultry: RegisterState['poultry'] }) => void;
@@ -21,15 +23,15 @@ export default function RegisterPoultryForm({ onSubmit, title }: RegisterPoultry
   const { t } = useTranslation();
   
   return (
-    <form onSubmit={preventDefaultHandler} title={title}>
+    <StyledForm onSubmit={preventDefaultHandler} title={title}>
       <RegisterPoultryFormName />
       <RegisterPoultryFormDescription />
       <Subtitle text={t('poultry.fields.address')} />
+      <RegisterPoultryFormAddressZipcode />
       <RegisterPoultryFormAddressCity />
       <RegisterPoultryFormAddressProvince />
       <RegisterPoultryFormAddressStreet />
-      <RegisterPoultryFormAddressZipcode />
       <RegisterPoultryFormSubmitButton onSubmit={onSubmit} />
-    </form>
+    </StyledForm>
   );
 }
