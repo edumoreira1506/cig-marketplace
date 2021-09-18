@@ -1417,10 +1417,10 @@
     joi "^17.4.1"
     typeorm "^0.2.34"
 
-"@cig-platform/ui@^0.1.13":
-  version "0.1.13"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.13.tgz#fab1f6f363b3edce8a9527ee617a963069a70224"
-  integrity sha512-sXGRkPNvBow37tFsOUldUyEY6Br9zeD6+2zrswTsRwwULk5TCnXmXJmJvKYeP472YDy0B+r3DLc9Vm98PLYxrw==
+"@cig-platform/ui@^0.1.16":
+  version "0.1.16"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.16.tgz#5fa5dcd5b98929f8df2b5126eaf05f9b2863ede2"
+  integrity sha512-3IAg3xlQN1vQqCMWH3FgRLUzgH/Y89UP1OirRiQaGohFwdBMLIU7noOaSu721+2cTCLPvHc7k+L7H0+u4+GkBg==
   dependencies:
     "@testing-library/jest-dom" "^5.11.4"
     "@testing-library/react" "^11.1.0"
@@ -11011,6 +11011,11 @@ react-i18next@^11.12.0:
   dependencies:
     "@babel/runtime" "^7.14.5"
     html-parse-stringify "^3.0.1"
+
+react-icons@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.2.0.tgz#6dda80c8a8f338ff96a1851424d63083282630d0"
+  integrity sha512-rmzEDFt+AVXRzD7zDE21gcxyBizD/3NqjbX6cmViAgdqfJ2UiLer8927/QhhrXQV7dEj/1EGuOTPp7JnLYVJKQ==
 
 react-is@17.0.2, "react-is@^16.12.0 || ^17.0.0", react-is@^17.0.1, react-is@^17.0.2:
   version "17.0.2"
