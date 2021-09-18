@@ -4,7 +4,7 @@ import { StyledLoading } from './LoginLoading.styles';
 
 export default function LoginLoading() {
   return (
-    <StyledLoading>
+    <StyledLoading data-testid="login-loading">
       <Loading color={Colors.DarkGreyBlue} />
     </StyledLoading>
   );
