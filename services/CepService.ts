@@ -2,12 +2,6 @@ import axios from 'axios';
 
 const ViaCepClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_VIA_CEP_URL,
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH',
-  }
 });
 
 interface ICepInfo {
