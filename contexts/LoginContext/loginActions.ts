@@ -1,6 +1,6 @@
-import { ApiError } from '@cig-platform/core';
+import { ApiErrorType } from '@cig-platform/types';
 
-export const setError = (error: ApiError | any) => ({
+export const setError = (error: ApiErrorType | any) => ({
   type: 'SET_ERROR',
   payload: { error }
 } as const );

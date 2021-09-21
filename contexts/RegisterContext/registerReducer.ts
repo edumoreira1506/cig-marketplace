@@ -1,5 +1,5 @@
 
-import { ApiError } from '@cig-platform/core';
+import { ApiErrorType } from '@cig-platform/types';
 
 import { ActionType } from '@Types/context';
 
@@ -7,7 +7,7 @@ import * as actions from './registerActions';
 
 export interface RegisterState {
   isLoading: boolean;
-  error: null | ApiError;
+  error: null | ApiErrorType;
   user: {
     email: string;
     password: string;
