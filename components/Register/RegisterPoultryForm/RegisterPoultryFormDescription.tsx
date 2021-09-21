@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useContextSelector } from 'use-context-selector';
-import { FormField, Input } from '@cig-platform/ui';
+import { FormField, TextField } from '@cig-platform/ui';
 
 import RegisterContext, { useRegisterDispach } from '@Contexts/RegisterContext/RegisterContext';
 import { selectPoultryDescription } from '@Contexts/RegisterContext/registerSelectors';
@@ -20,9 +20,8 @@ export default function RegisterPoultryFormDescription() {
 
   return (
     <FormField>
-      <Input
+      <TextField
         label={t('poultry.fields.description')}
-        type="text"
         value={description}
         onChange={handleChangeDescription}
         placeholder="Aves de alto nível"
