@@ -24,6 +24,7 @@ export interface RegisterState {
       zipcode: string;
       province: string;
       street: string;
+      number: number | undefined;
     }
   }
 }
@@ -47,6 +48,7 @@ export const INITIAL_STATE: RegisterState = {
       province: '',
       street: '',
       zipcode: '',
+      number: undefined
     }
   }
 };

@@ -24,5 +24,6 @@
   "poultry.fields.address.province": "Estado",
   "poultry.fields.address.street": "Rua",
   "poultry.fields.address.zipcode": "CEP",
+  "poultry.fields.address.number": "Número",
   "poultry.fields.description": "Descrição"
 }
