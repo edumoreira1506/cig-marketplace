@@ -28,6 +28,8 @@ export const selectPoultryAddressProvince = (state: RegisterState) => selectPoul
 
 export const selectPoultryAddressStreet = (state: RegisterState) => selectPoultryAddress(state).street;
 
+export const selectPoultryAddressNumber = (state: RegisterState) => selectPoultryAddress(state).number;
+
 export const selectPoultryAddressZipcode = (state: RegisterState) => selectPoultryAddress(state).zipcode;
 
 export const selectIsLoading = (state: RegisterState) => state.isLoading;

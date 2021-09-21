@@ -22,7 +22,7 @@ export const setPoultryField = (key: keyof RegisterState['poultry'], value: stri
   payload: { key, value }
 } as const);
 
-export const setPoultryAddressField = (key: keyof RegisterState['poultry']['address'], value: string) => ({
+export const setPoultryAddressField = (key: keyof RegisterState['poultry']['address'], value: string | number) => ({
   type: 'SET_POULTRY_ADDRESS_FIELD',
   payload: { key, value }
 } as const );

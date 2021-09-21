@@ -11,6 +11,7 @@ import RegisterPoultryFormAddressProvince from './RegisterPoultryFormAddressProv
 import RegisterPoultryFormAddressStreet from './RegisterPoultryFormAddressStreet';
 import RegisterPoultryFormAddressZipcode from './RegisterPoultryFormAddressZipcode';
 import RegisterPoultryFormSubmitButton from './RegisterPoultryFormSubmitButton';
+import RegisterPoultryFormAddressNumber from './RegisterPoultryFormAddressNumber';
 
 import { StyledForm } from './RegisterPoultryForm.styles';
 
@@ -31,6 +32,7 @@ export default function RegisterPoultryForm({ onSubmit, title }: RegisterPoultry
       <RegisterPoultryFormAddressCity />
       <RegisterPoultryFormAddressProvince />
       <RegisterPoultryFormAddressStreet />
+      <RegisterPoultryFormAddressNumber />
       <RegisterPoultryFormSubmitButton onSubmit={onSubmit} />
     </StyledForm>
   );
