@@ -1422,10 +1422,10 @@
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.1.tgz#ed29e55233953d7d34cb3d8e5802d36446e5ea6a"
   integrity sha512-+io2LFFjwImlyeskXSn/nS/pMqxHHt15TK90cU8fEnGEXmDd/PXytqIgZvyrsNM0tpSUXoV9+9tFyxVIz8jlTg==
 
-"@cig-platform/ui@^0.1.26":
-  version "0.1.26"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.26.tgz#29f4f0babd66fbbbcd56e2e9c03d90a192b74e9f"
-  integrity sha512-0mYtO1WM4F8NC4KYaVY70Vm96T03ocwyzfCUNqMs9fX9S/UIwilC7mGZCch2W+qT7hct169GL2bJwKxaaBoiYg==
+"@cig-platform/ui@^0.1.30":
+  version "0.1.30"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.30.tgz#509f67bd904b2af441882c7ed0288779b7738a2c"
+  integrity sha512-0q4n9bvoOMcRY3udkV6rUuUvbDnQu0GAPTmRB6ifrfxbbcUV96D7ElhMDQ/Kwl0eIrpD3maqoN3Ttz4LIOLnsw==
   dependencies:
     "@testing-library/jest-dom" "^5.11.4"
     "@testing-library/react" "^11.1.0"
@@ -1436,6 +1436,7 @@
     "@types/react-dom" "^17.0.0"
     react "^17.0.2"
     react-dom "^17.0.2"
+    react-icons "^4.2.0"
     react-number-format "^4.7.3"
     react-scripts "4.0.3"
     styled-components "^5.3.1"
