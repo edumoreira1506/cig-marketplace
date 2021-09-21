@@ -27,6 +27,7 @@ export default function RegisterUserFormPassword() {
         onChange={handleChangePassword}
         required
         placeholder="********"
+        requiredMessage={t('common.required-field', { field: t('user.fields.password') })}
         autoComplete="new-password"
       />
     </FormField>
