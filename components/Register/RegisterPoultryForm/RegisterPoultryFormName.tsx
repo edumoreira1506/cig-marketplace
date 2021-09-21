@@ -26,6 +26,7 @@ export default function RegisterPoultryFormName() {
         value={name}
         onChange={handleChangeName}
         required
+        requiredMessage={t('common.required-field', { field: t('poultry.fields.name') })}
         placeholder="Criatório Silva"
       />
     </FormField>

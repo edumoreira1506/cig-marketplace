@@ -26,6 +26,7 @@ export default function RegisterUserFormEmail() {
         value={email}
         onChange={handleChangeEmail}
         required
+        requiredMessage={t('common.required-field', { field: t('user.fields.email') })}
         placeholder="exemplo@email.com"
         autoComplete="username"
       />
