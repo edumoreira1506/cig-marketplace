@@ -1417,6 +1417,11 @@
     joi "^17.4.1"
     typeorm "^0.2.34"
 
+"@cig-platform/types@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.1.tgz#ed29e55233953d7d34cb3d8e5802d36446e5ea6a"
+  integrity sha512-+io2LFFjwImlyeskXSn/nS/pMqxHHt15TK90cU8fEnGEXmDd/PXytqIgZvyrsNM0tpSUXoV9+9tFyxVIz8jlTg==
+
 "@cig-platform/ui@^0.1.26":
   version "0.1.26"
   resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.26.tgz#29f4f0babd66fbbbcd56e2e9c03d90a192b74e9f"
