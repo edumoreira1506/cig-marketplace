@@ -41,7 +41,8 @@ describe('RegisterPoultryForm', () => {
           city: 'city',
           province: 'SP',
           zipcode: '123',
-          street: 'street'
+          street: 'street',
+          number: 10
         }
       }
     };
@@ -56,6 +57,7 @@ describe('RegisterPoultryForm', () => {
     expect(screen.getByDisplayValue(mockStore.poultry.address.province)).toBeInTheDocument();
     expect(screen.getByDisplayValue(mockStore.poultry.address.zipcode)).toBeInTheDocument();
     expect(screen.getByDisplayValue(mockStore.poultry.address.street)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(mockStore.poultry.address.number)).toBeInTheDocument();
   });
 
   it('calls onSubmit', () => {

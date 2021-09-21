@@ -62,6 +62,7 @@ describe('RegisterContainer', () => {
     expect(screen.getByText(String(i18next.t('poultry.fields.address.province')))).toBeInTheDocument();
     expect(screen.getByText(String(i18next.t('poultry.fields.address.state')))).toBeInTheDocument();
     expect(screen.getByText(String(i18next.t('poultry.fields.address.zipcode')))).toBeInTheDocument();
+    expect(screen.getByText(String(i18next.t('poultry.fields.address.number')))).toBeInTheDocument();
   });
 
   it('does not change to poultry tab when the user address is valid', () => {
@@ -77,6 +78,7 @@ describe('RegisterContainer', () => {
     expect(screen.queryByText(String(i18next.t('poultry.fields.address.province')))).not.toBeInTheDocument();
     expect(screen.queryByText(String(i18next.t('poultry.fields.address.state')))).not.toBeInTheDocument();
     expect(screen.queryByText(String(i18next.t('poultry.fields.address.zipcode')))).not.toBeInTheDocument();
+    expect(screen.queryByText(String(i18next.t('poultry.fields.address.number')))).not.toBeInTheDocument();
   });
 
   it('shows the error when get an error', () => {
