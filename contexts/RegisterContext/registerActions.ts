@@ -17,12 +17,12 @@ export const setUserField = (key: keyof RegisterState['user'], value: string) =>
   payload: { key, value },
 } as const);
 
-export const setPoultryField = (key: keyof RegisterState['poultry'], value: string) => ({
-  type: 'SET_POULTRY_FIELD',
+export const setBreederField = (key: keyof RegisterState['breeder'], value: string) => ({
+  type: 'SET_BREEDER_FIELD',
   payload: { key, value }
 } as const);
 
-export const setPoultryAddressField = (key: keyof RegisterState['poultry']['address'], value: string | number) => ({
-  type: 'SET_POULTRY_ADDRESS_FIELD',
+export const setBreederAddressField = (key: keyof RegisterState['breeder']['address'], value: string | number) => ({
+  type: 'SET_BREEDER_ADDRESS_FIELD',
   payload: { key, value }
 } as const );

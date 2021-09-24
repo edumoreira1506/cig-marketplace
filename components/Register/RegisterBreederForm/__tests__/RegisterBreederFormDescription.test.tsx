@@ -6,45 +6,45 @@ import { INITIAL_STATE } from '@Contexts/RegisterContext/registerReducer';
 import { createRegisterContextRenderer } from '@Utils/tests/registerContextRenderer';
 import * as registerActions from '@Contexts/RegisterContext/registerActions';
 
-import RegisterPoultryFormDescription from '../RegisterPoultryFormDescription';
+import RegisterBreederFormDescription from '../RegisterBreederFormDescription';
 
-describe('RegisterPoultryFormDescription', () => {
+describe('RegisterBreederFormDescription', () => {
   it('renders correctly', () => {
     const render = createRegisterContextRenderer();
 
-    render(<RegisterPoultryFormDescription />);
+    render(<RegisterBreederFormDescription />);
 
-    expect(screen.getByText(String(i18next.t('poultry.fields.description')))).toBeInTheDocument();
+    expect(screen.getByText(String(i18next.t('breeder.fields.description')))).toBeInTheDocument();
   });
 
   it('renders the description value', () => {
     const mockStore = {
       ...INITIAL_STATE,
-      poultry: {
-        ...INITIAL_STATE.poultry,
+      breeder: {
+        ...INITIAL_STATE.breeder,
         description: 'description'
       }
     };
 
     const render = createRegisterContextRenderer(mockStore);
 
-    render(<RegisterPoultryFormDescription />);
+    render(<RegisterBreederFormDescription />);
 
-    expect(screen.getByDisplayValue(mockStore.poultry.description)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(mockStore.breeder.description)).toBeInTheDocument();
   });
 
-  it('calls setPoultryField when input value changes', () => {
+  it('calls setBreederField when input value changes', () => {
     const description = '1';
-    const mockSetPoultryField = jest.fn();
+    const mockSetBreederField = jest.fn();
 
-    jest.spyOn(registerActions, 'setPoultryField').mockImplementation(mockSetPoultryField);
+    jest.spyOn(registerActions, 'setBreederField').mockImplementation(mockSetBreederField);
 
     const render = createRegisterContextRenderer();
 
-    render(<RegisterPoultryFormDescription />);
+    render(<RegisterBreederFormDescription />);
 
     userEvent.type(screen.getByDisplayValue(''), description);
 
-    expect(mockSetPoultryField).toHaveBeenCalledWith('description', description);
+    expect(mockSetBreederField).toHaveBeenCalledWith('description', description);
   });
 });

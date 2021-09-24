@@ -4,24 +4,24 @@ import { useContextSelector } from 'use-context-selector';
 import { FormField, Input } from '@cig-platform/ui';
 
 import RegisterContext, { useRegisterDispach } from '@Contexts/RegisterContext/RegisterContext';
-import { selectPoultryAddressNumber } from '@Contexts/RegisterContext/registerSelectors';
-import { setPoultryAddressField } from '@Contexts/RegisterContext/registerActions';
+import { selectBreederAddressNumber } from '@Contexts/RegisterContext/registerSelectors';
+import { setBreederAddressField } from '@Contexts/RegisterContext/registerActions';
 
-export default function RegisterPoultryFormAddressNumber() {
-  const number = useContextSelector(RegisterContext, selectPoultryAddressNumber);
+export default function RegisterBreederFormAddressNumber() {
+  const number = useContextSelector(RegisterContext, selectBreederAddressNumber);
 
   const dispatch = useRegisterDispach();
 
   const { t } = useTranslation();
 
   const handleChangeAdressNumber = useCallback((number: string | number) => {
-    dispatch(setPoultryAddressField('number', Number(number)));
+    dispatch(setBreederAddressField('number', Number(number)));
   }, []);
 
   return (
     <FormField>
       <Input
-        label={t('poultry.fields.address.number')}
+        label={t('breeder.fields.address.number')}
         type="number"
         value={number ?? ''}
         onChange={handleChangeAdressNumber}

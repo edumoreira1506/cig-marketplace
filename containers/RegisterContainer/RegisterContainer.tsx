@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { Tabs } from '@cig-platform/ui';
 
 import RegisterUserForm from '@Components/Register/RegisterUserForm/RegisterUserForm';
-import RegisterPoultryForm from '@Components/Register/RegisterPoultryForm/RegisterPoultryForm';
+import RegisterBreederForm from '@Components/Register/RegisterBreederForm/RegisterBreederForm';
 import useSubmitRegister from '@Hooks/useSubmitRegister';
 import { error as showError, success } from '@Utils/alert';
 import RegisterContext from '@Contexts/RegisterContext/RegisterContext';
@@ -43,7 +43,7 @@ export default function RegisterContainer() {
   return (
     <Tabs tab={tab} setTab={setTab}>
       <RegisterUserForm title={t('common.user')} onSubmit={handleSubmitUserForm} />
-      <RegisterPoultryForm title={t('common.poultry')} onSubmit={handleSubmitRegister} />
+      <RegisterBreederForm title={t('common.breeder')} onSubmit={handleSubmitRegister} />
     </Tabs>
   );
 }

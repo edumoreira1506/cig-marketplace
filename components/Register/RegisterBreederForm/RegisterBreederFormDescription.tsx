@@ -4,24 +4,24 @@ import { useContextSelector } from 'use-context-selector';
 import { FormField, TextField } from '@cig-platform/ui';
 
 import RegisterContext, { useRegisterDispach } from '@Contexts/RegisterContext/RegisterContext';
-import { selectPoultryDescription } from '@Contexts/RegisterContext/registerSelectors';
-import { setPoultryField } from '@Contexts/RegisterContext/registerActions';
+import { selectBreederDescription } from '@Contexts/RegisterContext/registerSelectors';
+import { setBreederField } from '@Contexts/RegisterContext/registerActions';
 
-export default function RegisterPoultryFormDescription() {
-  const description = useContextSelector(RegisterContext, selectPoultryDescription);
+export default function RegisterBreederFormDescription() {
+  const description = useContextSelector(RegisterContext, selectBreederDescription);
 
   const dispatch = useRegisterDispach();
 
   const { t } = useTranslation();
 
   const handleChangeDescription = useCallback((newDescription: string | number) => {
-    dispatch(setPoultryField('description', String(newDescription)));
+    dispatch(setBreederField('description', String(newDescription)));
   }, []);
 
   return (
     <FormField>
       <TextField
-        label={t('poultry.fields.description')}
+        label={t('breeder.fields.description')}
         value={description}
         onChange={handleChangeDescription}
         placeholder="Aves de alto nível"

@@ -7,7 +7,7 @@ import { createRegisterContextRenderer } from '@Utils/tests/registerContextRende
 import * as registerActions from '@Contexts/RegisterContext/registerActions';
 import CepService from '@Services/CepService';
 
-import RegisterPoultryFormAddressZipcode from '../RegisterPoultryFormAddressZipcode';
+import RegisterBreederFormAddressZipcode from '../RegisterBreederFormAddressZipcode';
 
 jest.useFakeTimers();
 
@@ -28,22 +28,22 @@ jest.mock('next/dynamic', () => () => {
   return DynamicComponent;
 });
 
-describe('RegisterPoultryFormAddressZipcode', () => {
+describe('RegisterBreederFormAddressZipcode', () => {
   it('renders correctly', () => {
     const render = createRegisterContextRenderer();
 
-    render(<RegisterPoultryFormAddressZipcode />);
+    render(<RegisterBreederFormAddressZipcode />);
 
-    expect(screen.getByText(String(i18next.t('poultry.fields.address.zipcode')))).toBeInTheDocument();
+    expect(screen.getByText(String(i18next.t('breeder.fields.address.zipcode')))).toBeInTheDocument();
   });
 
   it('renders the address.zipcode value', () => {
     const mockStore = {
       ...INITIAL_STATE,
-      poultry: {
-        ...INITIAL_STATE.poultry,
+      breeder: {
+        ...INITIAL_STATE.breeder,
         address: {
-          ...INITIAL_STATE.poultry.address,
+          ...INITIAL_STATE.breeder.address,
           zipcode: '123'
         }
       }
@@ -51,27 +51,27 @@ describe('RegisterPoultryFormAddressZipcode', () => {
 
     const render = createRegisterContextRenderer(mockStore);
 
-    render(<RegisterPoultryFormAddressZipcode />);
+    render(<RegisterBreederFormAddressZipcode />);
 
-    expect(screen.getByDisplayValue(mockStore.poultry.address.zipcode)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(mockStore.breeder.address.zipcode)).toBeInTheDocument();
   });
 
-  it('calls setPoultryAddressField when input value changes', () => {
+  it('calls setBreederAddressField when input value changes', () => {
     const zipcode = '1';
-    const mockSetPoultryAddressField = jest.fn();
+    const mockSetBreederAddressField = jest.fn();
 
-    jest.spyOn(registerActions, 'setPoultryAddressField').mockImplementation(mockSetPoultryAddressField);
+    jest.spyOn(registerActions, 'setBreederAddressField').mockImplementation(mockSetBreederAddressField);
 
     const render = createRegisterContextRenderer();
 
-    render(<RegisterPoultryFormAddressZipcode />);
+    render(<RegisterBreederFormAddressZipcode />);
 
     userEvent.type(screen.getByDisplayValue(''), zipcode);
 
-    expect(mockSetPoultryAddressField).toHaveBeenCalledWith('zipcode', zipcode);
+    expect(mockSetBreederAddressField).toHaveBeenCalledWith('zipcode', zipcode);
   });
 
-  it('calls setPoultryAddressField three times when gets a valid response from viacep', async () => {
+  it('calls setBreederAddressField three times when gets a valid response from viacep', async () => {
     const mockViaCepResponse =  {
       cep: '01001-000',
       logradouro: 'Praça da Sé',
@@ -84,50 +84,50 @@ describe('RegisterPoultryFormAddressZipcode', () => {
       ddd: '11',
       siafi: '7107'
     };
-    const mockSetPoultryAddressField = jest.fn();
+    const mockSetBreederAddressField = jest.fn();
     const mockCepServiceGetInfo = jest.fn().mockResolvedValue(mockViaCepResponse);
     const mockStore = {
       ...INITIAL_STATE,
-      poultry: {
-        ...INITIAL_STATE.poultry,
+      breeder: {
+        ...INITIAL_STATE.breeder,
         address: {
-          ...INITIAL_STATE.poultry.address,
+          ...INITIAL_STATE.breeder.address,
           zipcode: mockViaCepResponse.cep
         }
       }
     };
 
     jest.spyOn(CepService, 'getInfo').mockImplementation(mockCepServiceGetInfo);
-    jest.spyOn(registerActions, 'setPoultryAddressField').mockImplementation(mockSetPoultryAddressField);
+    jest.spyOn(registerActions, 'setBreederAddressField').mockImplementation(mockSetBreederAddressField);
 
     const render = createRegisterContextRenderer(mockStore);
 
     await act(async () => {
-      await render(<RegisterPoultryFormAddressZipcode />);
+      await render(<RegisterBreederFormAddressZipcode />);
 
       jest.runAllTimers();
     });
 
-    expect(mockSetPoultryAddressField).toHaveBeenCalledWith('city', mockViaCepResponse.localidade);
-    expect(mockSetPoultryAddressField).toHaveBeenCalledWith('province', mockViaCepResponse.uf);
-    expect(mockSetPoultryAddressField).toHaveBeenCalledWith('street', mockViaCepResponse.logradouro);
+    expect(mockSetBreederAddressField).toHaveBeenCalledWith('city', mockViaCepResponse.localidade);
+    expect(mockSetBreederAddressField).toHaveBeenCalledWith('province', mockViaCepResponse.uf);
+    expect(mockSetBreederAddressField).toHaveBeenCalledWith('street', mockViaCepResponse.logradouro);
   });
 
-  it('does not call setPoultryAddressField when gets a invalid response from viacep', async () => {
-    const mockSetPoultryAddressField = jest.fn();
+  it('does not call setBreederAddressField when gets a invalid response from viacep', async () => {
+    const mockSetBreederAddressField = jest.fn();
     const mockCepServiceGetInfo = jest.fn().mockResolvedValue({});
 
     jest.spyOn(CepService, 'getInfo').mockImplementation(mockCepServiceGetInfo);
-    jest.spyOn(registerActions, 'setPoultryAddressField').mockImplementation(mockSetPoultryAddressField);
+    jest.spyOn(registerActions, 'setBreederAddressField').mockImplementation(mockSetBreederAddressField);
 
     const render = createRegisterContextRenderer();
 
     await act(async () => {
-      await render(<RegisterPoultryFormAddressZipcode />);
+      await render(<RegisterBreederFormAddressZipcode />);
 
       jest.runAllTimers();
     });
 
-    expect(mockSetPoultryAddressField).not.toHaveBeenCalled();
+    expect(mockSetBreederAddressField).not.toHaveBeenCalled();
   });
 });

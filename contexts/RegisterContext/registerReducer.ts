@@ -16,7 +16,7 @@ export interface RegisterState {
     register: string;
     birthDate: string;
   },
-  poultry: {
+  breeder: {
     name: string;
     description: string;
     address: {
@@ -40,7 +40,7 @@ export const INITIAL_STATE: RegisterState = {
     register: '',
     birthDate: '',
   },
-  poultry: {
+  breeder: {
     name: '',
     description: '',
     address: {
@@ -64,15 +64,15 @@ export default function registerReducer(
     return { ...state, isLoading: action.payload.isLoading };
   case 'SET_USER_FIELD':
     return { ...state, user: { ...state.user, [action.payload.key]: action.payload.value } };
-  case 'SET_POULTRY_FIELD':
-    return { ...state, poultry: { ...state.poultry,  [action.payload.key]: action.payload.value } };
-  case 'SET_POULTRY_ADDRESS_FIELD':
+  case 'SET_BREEDER_FIELD':
+    return { ...state, breeder: { ...state.breeder,  [action.payload.key]: action.payload.value } };
+  case 'SET_BREEDER_ADDRESS_FIELD':
     return {
       ...state,
-      poultry: {
-        ...state.poultry,
+      breeder: {
+        ...state.breeder,
         address: {
-          ...state.poultry.address,
+          ...state.breeder.address,
           [action.payload.key]: action.payload.value
         }
       }

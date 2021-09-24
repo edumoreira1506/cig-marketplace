@@ -32,10 +32,10 @@ describe('RegisterContainer', () => {
     render(<RegisterContainer />);
 
     expect(screen.getByText(String(i18next.t('common.user')))).toBeInTheDocument();
-    expect(screen.getByText(String(i18next.t('common.poultry')))).toBeInTheDocument();
+    expect(screen.getByText(String(i18next.t('common.breeder')))).toBeInTheDocument();
   });
 
-  it('changes to poultry tab when the user address is valid', () => {
+  it('changes to breeder tab when the user address is valid', () => {
     const mockStore = {
       ...INITIAL_STATE,
       user: {
@@ -55,30 +55,30 @@ describe('RegisterContainer', () => {
 
     userEvent.click(screen.getByText(String(i18next.t('common.next'))));
 
-    expect(screen.getByText(String(i18next.t('poultry.fields.address')))).toBeInTheDocument();
-    expect(screen.getByText(String(i18next.t('poultry.fields.name')))).toBeInTheDocument();
-    expect(screen.getByText(String(i18next.t('poultry.fields.description')))).toBeInTheDocument();
-    expect(screen.getByText(String(i18next.t('poultry.fields.address.city')))).toBeInTheDocument();
-    expect(screen.getByText(String(i18next.t('poultry.fields.address.province')))).toBeInTheDocument();
-    expect(screen.getByText(String(i18next.t('poultry.fields.address.state')))).toBeInTheDocument();
-    expect(screen.getByText(String(i18next.t('poultry.fields.address.zipcode')))).toBeInTheDocument();
-    expect(screen.getByText(String(i18next.t('poultry.fields.address.number')))).toBeInTheDocument();
+    expect(screen.getByText(String(i18next.t('breeder.fields.address')))).toBeInTheDocument();
+    expect(screen.getByText(String(i18next.t('breeder.fields.name')))).toBeInTheDocument();
+    expect(screen.getByText(String(i18next.t('breeder.fields.description')))).toBeInTheDocument();
+    expect(screen.getByText(String(i18next.t('breeder.fields.address.city')))).toBeInTheDocument();
+    expect(screen.getByText(String(i18next.t('breeder.fields.address.province')))).toBeInTheDocument();
+    expect(screen.getByText(String(i18next.t('breeder.fields.address.state')))).toBeInTheDocument();
+    expect(screen.getByText(String(i18next.t('breeder.fields.address.zipcode')))).toBeInTheDocument();
+    expect(screen.getByText(String(i18next.t('breeder.fields.address.number')))).toBeInTheDocument();
   });
 
-  it('does not change to poultry tab when the user address is valid', () => {
+  it('does not change to breeder tab when the user address is valid', () => {
     const render = createRegisterContextRenderer(INITIAL_STATE);
 
     render(<RegisterContainer />);
 
     userEvent.click(screen.getByText(String(i18next.t('common.next'))));
 
-    expect(screen.queryByText(String(i18next.t('poultry.fields.address')))).not.toBeInTheDocument();
-    expect(screen.queryByText(String(i18next.t('poultry.fields.description')))).not.toBeInTheDocument();
-    expect(screen.queryByText(String(i18next.t('poultry.fields.address.city')))).not.toBeInTheDocument();
-    expect(screen.queryByText(String(i18next.t('poultry.fields.address.province')))).not.toBeInTheDocument();
-    expect(screen.queryByText(String(i18next.t('poultry.fields.address.state')))).not.toBeInTheDocument();
-    expect(screen.queryByText(String(i18next.t('poultry.fields.address.zipcode')))).not.toBeInTheDocument();
-    expect(screen.queryByText(String(i18next.t('poultry.fields.address.number')))).not.toBeInTheDocument();
+    expect(screen.queryByText(String(i18next.t('breeder.fields.address')))).not.toBeInTheDocument();
+    expect(screen.queryByText(String(i18next.t('breeder.fields.description')))).not.toBeInTheDocument();
+    expect(screen.queryByText(String(i18next.t('breeder.fields.address.city')))).not.toBeInTheDocument();
+    expect(screen.queryByText(String(i18next.t('breeder.fields.address.province')))).not.toBeInTheDocument();
+    expect(screen.queryByText(String(i18next.t('breeder.fields.address.state')))).not.toBeInTheDocument();
+    expect(screen.queryByText(String(i18next.t('breeder.fields.address.zipcode')))).not.toBeInTheDocument();
+    expect(screen.queryByText(String(i18next.t('breeder.fields.address.number')))).not.toBeInTheDocument();
   });
 
   it('shows the error when get an error', () => {

@@ -4,29 +4,29 @@ import { useContextSelector } from 'use-context-selector';
 import { FormField, Input } from '@cig-platform/ui';
 
 import RegisterContext, { useRegisterDispach } from '@Contexts/RegisterContext/RegisterContext';
-import { selectPoultryName } from '@Contexts/RegisterContext/registerSelectors';
-import { setPoultryField } from '@Contexts/RegisterContext/registerActions';
+import { selectBreederName } from '@Contexts/RegisterContext/registerSelectors';
+import { setBreederField } from '@Contexts/RegisterContext/registerActions';
 
-export default function RegisterPoultryFormName() {
-  const name = useContextSelector(RegisterContext, selectPoultryName);
+export default function RegisterBreederFormName() {
+  const name = useContextSelector(RegisterContext, selectBreederName);
 
   const dispatch = useRegisterDispach();
 
   const { t } = useTranslation();
 
   const handleChangeName = useCallback((newName: string | number) => {
-    dispatch(setPoultryField('name', String(newName)));
+    dispatch(setBreederField('name', String(newName)));
   }, []);
 
   return (
     <FormField>
       <Input
-        label={t('poultry.fields.name')}
+        label={t('breeder.fields.name')}
         type="text"
         value={name}
         onChange={handleChangeName}
         required
-        requiredMessage={t('common.required-field', { field: t('poultry.fields.name') })}
+        requiredMessage={t('common.required-field', { field: t('breeder.fields.name') })}
         placeholder="Criatório Silva"
       />
     </FormField>

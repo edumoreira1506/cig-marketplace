@@ -5,7 +5,7 @@ import i18next from 'i18next';
 import { INITIAL_STATE } from '@Contexts/RegisterContext/registerReducer';
 import { createRegisterContextRenderer } from '@Utils/tests/registerContextRenderer';
 
-import RegisterPoultryForm from '../RegisterPoultryForm';
+import RegisterBreederForm from '../RegisterBreederForm';
 
 const DEFAULT_PROPS = {
   onSubmit: jest.fn(),
@@ -29,12 +29,12 @@ jest.mock('next/dynamic', () => () => {
   return DynamicComponent;
 });
 
-describe('RegisterPoultryForm', () => {
+describe('RegisterBreederForm', () => {
   it('renders correctly', () => {
     const mockStore = {
       ...INITIAL_STATE,
-      poultry: {
-        ...INITIAL_STATE.poultry,
+      breeder: {
+        ...INITIAL_STATE.breeder,
         name: 'name',
         description: 'description',
         address: {
@@ -48,23 +48,23 @@ describe('RegisterPoultryForm', () => {
     };
     const render = createRegisterContextRenderer(mockStore);
 
-    render(<RegisterPoultryForm {...DEFAULT_PROPS} />);
+    render(<RegisterBreederForm {...DEFAULT_PROPS} />);
 
-    expect(screen.getByText(String(i18next.t('poultry.fields.address')))).toBeInTheDocument();
-    expect(screen.getByDisplayValue(mockStore.poultry.name)).toBeInTheDocument();
-    expect(screen.getByDisplayValue(mockStore.poultry.description)).toBeInTheDocument();
-    expect(screen.getByDisplayValue(mockStore.poultry.address.city)).toBeInTheDocument();
-    expect(screen.getByDisplayValue(mockStore.poultry.address.province)).toBeInTheDocument();
-    expect(screen.getByDisplayValue(mockStore.poultry.address.zipcode)).toBeInTheDocument();
-    expect(screen.getByDisplayValue(mockStore.poultry.address.street)).toBeInTheDocument();
-    expect(screen.getByDisplayValue(mockStore.poultry.address.number)).toBeInTheDocument();
+    expect(screen.getByText(String(i18next.t('breeder.fields.address')))).toBeInTheDocument();
+    expect(screen.getByDisplayValue(mockStore.breeder.name)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(mockStore.breeder.description)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(mockStore.breeder.address.city)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(mockStore.breeder.address.province)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(mockStore.breeder.address.zipcode)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(mockStore.breeder.address.street)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(mockStore.breeder.address.number)).toBeInTheDocument();
   });
 
   it('calls onSubmit', () => {
     const mockStore = {
       ...INITIAL_STATE,
-      poultry: {
-        ...INITIAL_STATE.poultry,
+      breeder: {
+        ...INITIAL_STATE.breeder,
         name: 'Example name'
       },
       dispatch: jest.fn()
@@ -74,7 +74,7 @@ describe('RegisterPoultryForm', () => {
 
     const onSubmit = jest.fn();
 
-    render(<RegisterPoultryForm {...DEFAULT_PROPS} onSubmit={onSubmit} />);
+    render(<RegisterBreederForm {...DEFAULT_PROPS} onSubmit={onSubmit} />);
 
     userEvent.click(screen.getByText(String(i18next.t('common.register'))));
 

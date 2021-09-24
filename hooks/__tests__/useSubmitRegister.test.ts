@@ -10,7 +10,7 @@ describe('useSubmitRegister', () => {
     const mockStore = {
       ...INITIAL_STATE,
       user: {},
-      poultry: {}
+      breeder: {}
     };
     const mockSetIsLoading = jest.fn();
     const mockSetError = jest.fn();
@@ -24,11 +24,11 @@ describe('useSubmitRegister', () => {
 
     const { result } = renderHook(() => useSubmitRegister({ onSuccess }));
 
-    await (result.current as any)?.({ user: mockStore.user, poultry: mockStore.poultry });
+    await (result.current as any)?.({ user: mockStore.user, breeder: mockStore.breeder });
 
     expect(mockSetIsLoading).toHaveBeenCalledTimes(2);
     expect(mockSetError).not.toHaveBeenCalled();
-    expect(mockRegisterUser).toHaveBeenCalledWith({ user: mockStore.user, poultry: mockStore.poultry });
+    expect(mockRegisterUser).toHaveBeenCalledWith({ user: mockStore.user, breeder: mockStore.breeder });
     expect(onSuccess).toHaveBeenCalled();
   });
 
@@ -36,7 +36,7 @@ describe('useSubmitRegister', () => {
     const mockStore = {
       ...INITIAL_STATE,
       user: {},
-      poultry: {}
+      breeder: {}
     };
     const error = {};
     const mockSetIsLoading = jest.fn();
@@ -51,11 +51,11 @@ describe('useSubmitRegister', () => {
 
     const { result } = renderHook(() => useSubmitRegister({ onSuccess }));
 
-    await (result.current as any)?.({ user: mockStore.user, poultry: mockStore.poultry });
+    await (result.current as any)?.({ user: mockStore.user, breeder: mockStore.breeder });
 
     expect(mockSetIsLoading).toHaveBeenCalledTimes(2);
     expect(mockSetError).toHaveBeenCalledWith(error);
-    expect(mockRegisterUser).toHaveBeenCalledWith({ user: mockStore.user, poultry: mockStore.poultry });
+    expect(mockRegisterUser).toHaveBeenCalledWith({ user: mockStore.user, breeder: mockStore.breeder });
     expect(onSuccess).not.toHaveBeenCalled();
   });
 });

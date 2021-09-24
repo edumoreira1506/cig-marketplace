@@ -5,24 +5,24 @@ import dynamic from 'next/dynamic';
 import { FormField } from '@cig-platform/ui';
 
 import RegisterContext, { useRegisterDispach } from '@Contexts/RegisterContext/RegisterContext';
-import { selectPoultryAddressZipcode } from '@Contexts/RegisterContext/registerSelectors';
-import { setPoultryAddressField } from '@Contexts/RegisterContext/registerActions';
+import { selectBreederAddressZipcode } from '@Contexts/RegisterContext/registerSelectors';
+import { setBreederAddressField } from '@Contexts/RegisterContext/registerActions';
 import useDebouncedEffect from '@Hooks/useDebouncedEffect';
 import CepService from '@Services/CepService';
 
 const Input: any = dynamic(() => import('@cig-platform/ui').then(mod => mod.Input) as any, { ssr: false });
 
-export default function RegisterPoultryFormAddressZipcode() {
+export default function RegisterBreederFormAddressZipcode() {
   const [isLoading, setIsLoading] = useState(false);
 
-  const zipcode = useContextSelector(RegisterContext, selectPoultryAddressZipcode);
+  const zipcode = useContextSelector(RegisterContext, selectBreederAddressZipcode);
 
   const dispatch = useRegisterDispach();
 
   const { t } = useTranslation();
 
   const handleChangeAdressZipcode = useCallback((newZipcode: string | number) => {
-    dispatch(setPoultryAddressField('zipcode', String(newZipcode)));
+    dispatch(setBreederAddressField('zipcode', String(newZipcode)));
   }, []);
 
   useDebouncedEffect(() => {
@@ -37,16 +37,16 @@ export default function RegisterPoultryFormAddressZipcode() {
 
       if (!addressInfo) return;
 
-      dispatch(setPoultryAddressField('city', addressInfo.localidade));
-      dispatch(setPoultryAddressField('province', addressInfo.uf));
-      dispatch(setPoultryAddressField('street', addressInfo.logradouro));
+      dispatch(setBreederAddressField('city', addressInfo.localidade));
+      dispatch(setBreederAddressField('province', addressInfo.uf));
+      dispatch(setBreederAddressField('street', addressInfo.logradouro));
     })();
   }, 1000, [zipcode]);
 
   return (
     <FormField>
       <Input
-        label={t('poultry.fields.address.zipcode')}
+        label={t('breeder.fields.address.zipcode')}
         type="number"
         value={zipcode}
         onChange={handleChangeAdressZipcode}
