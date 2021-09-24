@@ -4,18 +4,18 @@ import userEvent from '@testing-library/user-event';
 
 import { createRegisterContextRenderer } from '@Utils/tests/registerContextRenderer';
 
-import RegisterPoultryFormSubmitButton from '../RegisterPoultryFormSubmitButton';
+import RegisterBreederFormSubmitButton from '../RegisterBreederFormSubmitButton';
 import { INITIAL_STATE } from '@Contexts/RegisterContext/registerReducer';
 
 const DEFAULT_PROPS = {
   onSubmit: jest.fn()
 };
 
-describe('RegisterPoultryFormSubmitButton', () => {
+describe('RegisterBreederFormSubmitButton', () => {
   it('renders correctly', () => {
     const render = createRegisterContextRenderer();
 
-    render(<RegisterPoultryFormSubmitButton {...DEFAULT_PROPS} />);
+    render(<RegisterBreederFormSubmitButton {...DEFAULT_PROPS} />);
 
     expect(screen.getByText(String(i18next.t('common.register')))).toBeInTheDocument();
   });
@@ -24,37 +24,37 @@ describe('RegisterPoultryFormSubmitButton', () => {
     const onSubmit = jest.fn();
     const mockStore = {
       ...INITIAL_STATE,
-      poultry: {
-        ...INITIAL_STATE.poultry,
-        name: 'Poultry name'
+      breeder: {
+        ...INITIAL_STATE.breeder,
+        name: 'Breeder name'
       }
     };
 
     const render = createRegisterContextRenderer(mockStore);
 
-    render(<RegisterPoultryFormSubmitButton {...DEFAULT_PROPS} onSubmit={onSubmit} />);
+    render(<RegisterBreederFormSubmitButton {...DEFAULT_PROPS} onSubmit={onSubmit} />);
 
     userEvent.click(screen.getByText(String(i18next.t('common.register'))));
 
-    expect(onSubmit).toHaveBeenCalledWith({ user: mockStore.user, poultry: mockStore.poultry });
+    expect(onSubmit).toHaveBeenCalledWith({ user: mockStore.user, breeder: mockStore.breeder });
   });
 
   it('does not call onSubmit', () => {
     const onSubmit = jest.fn();
     const mockStore = {
       ...INITIAL_STATE,
-      poultry: {
-        ...INITIAL_STATE.poultry,
+      breeder: {
+        ...INITIAL_STATE.breeder,
         name: ''
       }
     };
 
     const render = createRegisterContextRenderer(mockStore);
 
-    render(<RegisterPoultryFormSubmitButton {...DEFAULT_PROPS} onSubmit={onSubmit} />);
+    render(<RegisterBreederFormSubmitButton {...DEFAULT_PROPS} onSubmit={onSubmit} />);
 
     userEvent.click(screen.getByText(String(i18next.t('common.register'))));
 
-    expect(onSubmit).not.toHaveBeenCalledWith({ user: mockStore.user, poultry: mockStore.poultry });
+    expect(onSubmit).not.toHaveBeenCalledWith({ user: mockStore.user, breeder: mockStore.breeder });
   });
 });

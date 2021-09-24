@@ -6,45 +6,45 @@ import { INITIAL_STATE } from '@Contexts/RegisterContext/registerReducer';
 import { createRegisterContextRenderer } from '@Utils/tests/registerContextRenderer';
 import * as registerActions from '@Contexts/RegisterContext/registerActions';
 
-import RegisterPoultryFormName from '../RegisterPoultryFormName';
+import RegisterBreederFormName from '../RegisterBreederFormName';
 
-describe('RegisterPoultryFormName', () => {
+describe('RegisterBreederFormName', () => {
   it('renders correctly', () => {
     const render = createRegisterContextRenderer();
 
-    render(<RegisterPoultryFormName />);
+    render(<RegisterBreederFormName />);
 
-    expect(screen.getByText(String(i18next.t('poultry.fields.name')))).toBeInTheDocument();
+    expect(screen.getByText(String(i18next.t('breeder.fields.name')))).toBeInTheDocument();
   });
 
   it('renders the name value', () => {
     const mockStore = {
       ...INITIAL_STATE,
-      poultry: {
-        ...INITIAL_STATE.poultry,
+      breeder: {
+        ...INITIAL_STATE.breeder,
         name: 'name'
       }
     };
 
     const render = createRegisterContextRenderer(mockStore);
 
-    render(<RegisterPoultryFormName />);
+    render(<RegisterBreederFormName />);
 
-    expect(screen.getByDisplayValue(mockStore.poultry.name)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(mockStore.breeder.name)).toBeInTheDocument();
   });
 
-  it('calls setPoultryField when input value changes', () => {
+  it('calls setBreederField when input value changes', () => {
     const name = '1';
-    const mockSetPoultryField = jest.fn();
+    const mockSetBreederField = jest.fn();
 
-    jest.spyOn(registerActions, 'setPoultryField').mockImplementation(mockSetPoultryField);
+    jest.spyOn(registerActions, 'setBreederField').mockImplementation(mockSetBreederField);
 
     const render = createRegisterContextRenderer();
 
-    render(<RegisterPoultryFormName />);
+    render(<RegisterBreederFormName />);
 
     userEvent.type(screen.getByDisplayValue(''), name);
 
-    expect(mockSetPoultryField).toHaveBeenCalledWith('name', name);
+    expect(mockSetBreederField).toHaveBeenCalledWith('name', name);
   });
 });

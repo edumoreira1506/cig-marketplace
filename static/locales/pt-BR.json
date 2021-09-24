@@ -1,6 +1,6 @@
 {
   "pages.register": "Cadastro",
-  "common.poultry": "Criatório",
+  "common.breeder": "Criatório",
   "common.user": "Usuário",
   "common.next": "Próximo",
   "common.register": "Cadastrar",
@@ -19,12 +19,12 @@
   "user.fields.name": "Nome",
   "user.fields.register": "CPF",
   "user.fields.birth-date": "Data de nascimento",
-  "poultry.fields.name": "Nome",
-  "poultry.fields.address": "Endereço",
-  "poultry.fields.address.city": "Cidade",
-  "poultry.fields.address.province": "Estado",
-  "poultry.fields.address.street": "Rua",
-  "poultry.fields.address.zipcode": "CEP",
-  "poultry.fields.address.number": "Número",
-  "poultry.fields.description": "Descrição"
+  "breeder.fields.name": "Nome",
+  "breeder.fields.address": "Endereço",
+  "breeder.fields.address.city": "Cidade",
+  "breeder.fields.address.province": "Estado",
+  "breeder.fields.address.street": "Rua",
+  "breeder.fields.address.zipcode": "CEP",
+  "breeder.fields.address.number": "Número",
+  "breeder.fields.description": "Descrição"
 }

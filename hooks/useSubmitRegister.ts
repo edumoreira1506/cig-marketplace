@@ -12,10 +12,10 @@ export default function useSubmitRegister({
 }) {
   const dispatch = useRegisterDispach();
 
-  const handleSubmitRegister = useCallback(async ({ poultry, user }: { poultry: RegisterState['poultry']; user: RegisterState['user'] }) => {
+  const handleSubmitRegister = useCallback(async ({ breeder, user }: { breeder: RegisterState['breeder']; user: RegisterState['user'] }) => {
     dispatch(setIsLoading(true));
 
-    const authBffResponse = await AuthBffService.registerUser({ user, poultry });
+    const authBffResponse = await AuthBffService.registerUser({ user, breeder });
 
     dispatch(setIsLoading(false));
 
