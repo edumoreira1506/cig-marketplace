@@ -14,6 +14,5 @@ export default class AuthBffService {
 
   static login({ email, password }: { email: LoginState['email']; password: LoginState['password'] }) {
     return authBffClient.authUser(email, password);
-
   }
 }

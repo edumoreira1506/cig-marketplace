@@ -17,13 +17,13 @@ import { StyledLink } from './LoginContainer.styles';
 export default function LoginContainer() {
   const error = useContextSelector(LoginContext, selectError);
 
-  const { set } = useLocalStorage('token');
+  const { set } = useLocalStorage<string>('token');
 
   const { t } = useTranslation();
 
   const handleSuccessForm = useCallback((token: string) => {
     set(token);
-    window.location.href = BACKOFFICE_URL;
+    window.location.assign(BACKOFFICE_URL);
   }, [set]);
 
   const handleLogin = useLogin({ onSuccess: handleSuccessForm });
