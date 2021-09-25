@@ -8,7 +8,7 @@ import { LoginState } from '@Contexts/LoginContext/loginReducer';
 export default function useLogin({
   onSuccess
 }: {
-  onSuccess: () => void;
+  onSuccess: (token: string) => void;
 }) {
   const dispatch = useLoginDispatch();
 
@@ -22,7 +22,7 @@ export default function useLogin({
     if (!authBffResponse?.ok) {
       dispatch(setError(authBffResponse?.error));
     } else {
-      onSuccess();
+      onSuccess(authBffResponse.token);
     }
   }, [onSuccess]);
 

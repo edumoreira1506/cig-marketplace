@@ -12,9 +12,10 @@ describe('useLogin', () => {
       email: 'email@exemplo.com',
       password: 'password'
     };
+    const token = 'token';
     const mockSetIsLoading = jest.fn();
     const mockSetError = jest.fn();
-    const mockLogin = jest.fn().mockResolvedValue({ ok: true });
+    const mockLogin = jest.fn().mockResolvedValue({ ok: true, token });
     const onSuccess = jest.fn();
     const renderHook = createLoginContextHookRenderer(mockStore);
 
@@ -29,7 +30,7 @@ describe('useLogin', () => {
     expect(mockSetIsLoading).toHaveBeenCalledTimes(2);
     expect(mockSetError).not.toHaveBeenCalled();
     expect(mockLogin).toHaveBeenCalledWith({ email: mockStore.email, password: mockStore.password });
-    expect(onSuccess).toHaveBeenCalled();
+    expect(onSuccess).toHaveBeenCalledWith(token);
   });
 
   it('has the correct behavior when gets a invalid response', async () => {
