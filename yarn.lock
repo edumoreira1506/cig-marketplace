@@ -1405,6 +1405,14 @@
     "@cig-platform/types" "0.0.3"
     axios "^0.21.4"
 
+"@cig-platform/hooks@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@cig-platform/hooks/-/hooks-0.0.1.tgz#473bf79aa259e7589bfcdce5381d0042059fc655"
+  integrity sha512-zBjRGNXbjPnI2p0iyRMbj6VwUjIgpqfJHnMv+VXQfGwcqzxM9CJNW6WBdqwcTFx4IxYJ2jgUtMuP3T9JOLiUoA==
+  dependencies:
+    react "^17.0.2"
+    react-dom "^17.0.2"
+
 "@cig-platform/types@0.0.3", "@cig-platform/types@^0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.3.tgz#08a45c6907880bb722f4a08bac8b875cb37a6e1b"
