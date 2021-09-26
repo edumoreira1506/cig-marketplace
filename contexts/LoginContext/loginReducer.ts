@@ -13,9 +13,11 @@ export const INITIAL_STATE = {
   password: '',
 };
 
+export type LoginActionTypes = ActionType<typeof actions>
+
 export default function loginReducer(
   state = INITIAL_STATE,
-  action: ActionType<typeof actions>
+  action: LoginActionTypes
 ): LoginState {
   switch (action.type) {
   case 'SET_ERROR':

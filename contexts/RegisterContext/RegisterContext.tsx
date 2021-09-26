@@ -1,9 +1,8 @@
 import { createReducableContext } from '@Utils/context';
 
-import { INITIAL_STATE, RegisterState } from './registerReducer';
-import * as actions from './registerActions';
+import { INITIAL_STATE, RegisterState, RegisterActionTypes } from './registerReducer';
 
-const { context, useDispatch } = createReducableContext<RegisterState>({ initialState: INITIAL_STATE, actions });
+const { context, useDispatch } = createReducableContext<RegisterState, RegisterActionTypes>(INITIAL_STATE);
 
 export default context;
 
