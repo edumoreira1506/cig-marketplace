@@ -1,13 +1,10 @@
 
-import { ApiErrorType } from '@cig-platform/types';
-
 import { ActionType } from '@Types/context';
+import { DEFAULT_STATE, DefaultState } from '@Utils/context';
 
 import * as actions from './registerActions';
 
-export interface RegisterState {
-  isLoading: boolean;
-  error: null | ApiErrorType;
+export interface RegisterState extends DefaultState {
   user: {
     email: string;
     password: string;
@@ -30,8 +27,7 @@ export interface RegisterState {
 }
 
 export const INITIAL_STATE: RegisterState = {
-  isLoading: false,
-  error: null,
+  ...DEFAULT_STATE,
   user: {
     email: '',
     password: '',

@@ -1,20 +1,15 @@
-
-import { ApiErrorType } from '@cig-platform/types';
-
 import { ActionType } from '@Types/context';
+import { DEFAULT_STATE, DefaultState } from '@Utils/context';
 
 import * as actions from './loginActions';
 
-export interface LoginState {
-  isLoading: boolean;
-  error: null | ApiErrorType;
+export interface LoginState extends DefaultState {
   email: string;
   password: string;
 }
 
 export const INITIAL_STATE: LoginState = {
-  isLoading: false,
-  error: null,
+  ...DEFAULT_STATE,
   email: '',
   password: '',
 };
