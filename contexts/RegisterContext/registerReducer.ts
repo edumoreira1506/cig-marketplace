@@ -1,6 +1,5 @@
 
-import { ActionType } from '@Types/context';
-import { DefaultState } from '@Utils/context';
+import { DefaultState, ActionType } from '@cig-platform/context';
 
 import * as actions from './registerActions';
 

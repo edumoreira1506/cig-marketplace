@@ -1,4 +1,4 @@
-import { createReducableContext } from '@Utils/context';
+import createReducableContext from '@cig-platform/context';
 
 import { INITIAL_STATE, RegisterState, RegisterActionTypes } from './registerReducer';
 
