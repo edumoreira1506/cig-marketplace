@@ -19,6 +19,8 @@ export const INITIAL_STATE: LoginState = {
   password: '',
 };
 
+export type LoginActionsType = ActionType<typeof actions>
+
 export default function loginReducer(
   state = INITIAL_STATE,
   action: ActionType<typeof actions>

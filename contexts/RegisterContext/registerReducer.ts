@@ -53,9 +53,11 @@ export const INITIAL_STATE: RegisterState = {
   }
 };
 
+export type RegisterActionsType = ActionType<typeof actions>
+
 export default function registerReducer(
   state = INITIAL_STATE,
-  action: ActionType<typeof actions>
+  action: RegisterActionsType
 ): RegisterState {
   switch (action.type) {
   case 'SET_ERROR':

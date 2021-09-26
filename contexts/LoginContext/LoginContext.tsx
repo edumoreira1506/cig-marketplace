@@ -1,13 +1,10 @@
 import { Dispatch } from 'react';
 import { createContext, useContextSelector } from 'use-context-selector';
 
-import { ActionType } from '@Types/context';
-
-import * as actions from './loginActions';
-import { INITIAL_STATE, LoginState } from './loginReducer';
+import { INITIAL_STATE, LoginActionsType, LoginState } from './loginReducer';
 
 export interface ILoginContext extends LoginState {
-  dispatch: Dispatch<ActionType<typeof actions>>;
+  dispatch: Dispatch<LoginActionsType>;
 }
 
 const LoginContext = createContext<ILoginContext>({ ...INITIAL_STATE, dispatch: () => null });
