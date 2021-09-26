@@ -1,5 +1,5 @@
 import { ActionType } from '@Types/context';
-import { DEFAULT_STATE, DefaultState } from '@Utils/context';
+import { DefaultState } from '@Utils/context';
 
 import * as actions from './loginActions';
 
@@ -8,13 +8,10 @@ export interface LoginState extends DefaultState {
   password: string;
 }
 
-export const INITIAL_STATE: LoginState = {
-  ...DEFAULT_STATE,
+export const INITIAL_STATE = {
   email: '',
   password: '',
 };
-
-export type LoginActionsType = ActionType<typeof actions>
 
 export default function loginReducer(
   state = INITIAL_STATE,
