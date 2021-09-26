@@ -1,18 +1,10 @@
-import { Dispatch } from 'react';
-import { createContext, useContextSelector } from 'use-context-selector';
+import { createReducableContext } from '@Utils/context';
 
-import { INITIAL_STATE, RegisterState, RegisterActionsType } from './registerReducer';
+import { INITIAL_STATE, RegisterState } from './registerReducer';
+import * as actions from './registerActions';
 
-export interface IRegisterContext extends RegisterState {
-  dispatch: Dispatch<RegisterActionsType>;
-}
+const { context, useDispatch } = createReducableContext<RegisterState>({ initialState: INITIAL_STATE, actions });
 
-const RegisterContext = createContext<IRegisterContext>({ ...INITIAL_STATE, dispatch: () => null });
+export default context;
 
-export default RegisterContext;
-
-export const useRegisterDispach = () => {
-  const dispatch = useContextSelector(RegisterContext, state => state.dispatch);
-
-  return dispatch;
-};
+export const useRegisterDispach = useDispatch;

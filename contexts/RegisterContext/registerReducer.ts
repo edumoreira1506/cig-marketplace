@@ -1,6 +1,6 @@
 
 import { ActionType } from '@Types/context';
-import { DEFAULT_STATE, DefaultState } from '@Utils/context';
+import { DefaultState } from '@Utils/context';
 
 import * as actions from './registerActions';
 
@@ -27,7 +27,6 @@ export interface RegisterState extends DefaultState {
 }
 
 export const INITIAL_STATE: RegisterState = {
-  ...DEFAULT_STATE,
   user: {
     email: '',
     password: '',
@@ -49,11 +48,9 @@ export const INITIAL_STATE: RegisterState = {
   }
 };
 
-export type RegisterActionsType = ActionType<typeof actions>
-
 export default function registerReducer(
   state = INITIAL_STATE,
-  action: RegisterActionsType
+  action: ActionType<typeof actions>
 ): RegisterState {
   switch (action.type) {
   case 'SET_ERROR':
