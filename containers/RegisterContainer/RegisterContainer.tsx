@@ -1,6 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useContextSelector } from 'use-context-selector';
 import { useRouter } from 'next/router';
 import { Tabs } from '@cig-platform/ui';
 
@@ -8,7 +7,7 @@ import RegisterUserForm from '@Components/Register/RegisterUserForm/RegisterUser
 import RegisterBreederForm from '@Components/Register/RegisterBreederForm/RegisterBreederForm';
 import useSubmitRegister from '@Hooks/useSubmitRegister';
 import { error as showError, success } from '@Utils/alert';
-import RegisterContext from '@Contexts/RegisterContext/RegisterContext';
+import { useRegisterSelector } from '@Contexts/RegisterContext/RegisterContext';
 import { selectError } from '@Contexts/RegisterContext/registerSelectors';
 import { Routes } from '@Constants/routes';
 
@@ -17,7 +16,7 @@ export default function RegisterContainer() {
 
   const router = useRouter();
 
-  const error = useContextSelector(RegisterContext, selectError);
+  const error = useRegisterSelector(selectError);
 
   const { t } = useTranslation();
 

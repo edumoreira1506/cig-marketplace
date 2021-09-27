@@ -1,9 +1,8 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useContextSelector } from 'use-context-selector';
 import { FormField, Select } from '@cig-platform/ui';
 
-import RegisterContext, { useRegisterDispach } from '@Contexts/RegisterContext/RegisterContext';
+import { useRegisterDispach, useRegisterSelector } from '@Contexts/RegisterContext/RegisterContext';
 import { selectBreederAddressProvince } from '@Contexts/RegisterContext/registerSelectors';
 import { setBreederAddressField } from '@Contexts/RegisterContext/registerActions';
 import { AVAILABLE_PROVINCES } from '@Constants/breeder';
@@ -14,7 +13,7 @@ const selectOptions = AVAILABLE_PROVINCES.map(province => ({
 }));
 
 export default function RegisterBreederFormAddressProvince() {
-  const province = useContextSelector(RegisterContext, selectBreederAddressProvince);
+  const province = useRegisterSelector(selectBreederAddressProvince);
 
   const dispatch = useRegisterDispach();
 

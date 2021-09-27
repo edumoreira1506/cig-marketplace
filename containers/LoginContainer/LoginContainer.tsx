@@ -1,11 +1,10 @@
 import { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useContextSelector } from 'use-context-selector';
 import Link from 'next/link';
 import { useLocalStorage } from '@cig-platform/hooks';
 
 import { error as showError } from '@Utils/alert';
-import LoginContext from '@Contexts/LoginContext/LoginContext';
+import { useLoginSelector } from '@Contexts/LoginContext/LoginContext';
 import { selectError } from '@Contexts/LoginContext/loginSelectors';
 import useLogin from '@Hooks/useLogin';
 import LoginForm from '@Components/Login/LoginForm/LoginForm';
@@ -15,7 +14,7 @@ import { BACKOFFICE_URL } from '@Constants/urls';
 import { StyledLink } from './LoginContainer.styles';
 
 export default function LoginContainer() {
-  const error = useContextSelector(LoginContext, selectError);
+  const error = useLoginSelector(selectError);
 
   const { set } = useLocalStorage<string>('token');
 

@@ -1,9 +1,8 @@
 import { useMemo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useContextSelector } from 'use-context-selector';
 import { Button, FormField } from '@cig-platform/ui';
 
-import RegisterContext from '@Contexts/RegisterContext/RegisterContext';
+import { useRegisterSelector } from '@Contexts/RegisterContext/RegisterContext';
 import { selectUser } from '@Contexts/RegisterContext/registerSelectors';
 import { RegisterUserFormProps } from './RegisterUserForm';
 
@@ -14,7 +13,7 @@ export interface RegisterUserFormSubmitButtonProps {
 export default function RegisterUserFormSubmitButton({ onSubmit }: RegisterUserFormSubmitButtonProps) {
   const { t } = useTranslation();
 
-  const user = useContextSelector(RegisterContext, selectUser);
+  const user = useRegisterSelector(selectUser);
   
   const isValidUser = useMemo(() => Boolean(user.name && user.password && user.confirmPassword && user.email), [
     user.name,

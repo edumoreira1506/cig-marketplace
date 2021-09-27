@@ -1,14 +1,13 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useContextSelector } from 'use-context-selector';
 import { FormField, Input } from '@cig-platform/ui';
 
-import RegisterContext, { useRegisterDispach } from '@Contexts/RegisterContext/RegisterContext';
+import { useRegisterDispach, useRegisterSelector } from '@Contexts/RegisterContext/RegisterContext';
 import { selectBreederAddressStreet } from '@Contexts/RegisterContext/registerSelectors';
 import { setBreederAddressField } from '@Contexts/RegisterContext/registerActions';
 
 export default function RegisterBreederFormAddressStreet() {
-  const street = useContextSelector(RegisterContext, selectBreederAddressStreet);
+  const street = useRegisterSelector(selectBreederAddressStreet);
 
   const dispatch = useRegisterDispach();
 
