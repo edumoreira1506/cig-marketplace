@@ -1405,10 +1405,10 @@
     "@cig-platform/types" "0.0.3"
     axios "^0.21.4"
 
-"@cig-platform/context@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@cig-platform/context/-/context-0.0.3.tgz#185d41eee1da0c74f0ad9e4d6009e2d6dd78b3d3"
-  integrity sha512-ythtt7Tq/vrlsSIg6AclH8g5/pQWSwKisMCCayBCYprprK1mBhxvpxIJ5o+Kxa2oaNUDjw2HEznFCRpZRw06kw==
+"@cig-platform/context@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@cig-platform/context/-/context-0.0.4.tgz#c59bca373db6133d6a5a7a4d236f4b21a861a819"
+  integrity sha512-HDQtq55dL6Dta/XTeIg3IG2AhV8eAA7o8XI6D4JtjhJOCgX0No6iWkWlcRk8x8XiGnyY039ntEPN64MQqoi6XQ==
   dependencies:
     "@cig-platform/types" "^0.0.3"
     react "^17.0.2"
