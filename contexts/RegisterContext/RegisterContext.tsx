@@ -1,21 +1,13 @@
-import { Dispatch } from 'react';
-import { createContext, useContextSelector } from 'use-context-selector';
+import createReducableContext from '@cig-platform/context';
 
-import { ActionType } from '@Types/context';
+import registerReducer, { INITIAL_STATE, RegisterState, RegisterActionTypes } from './registerReducer';
 
-import * as actions from './registerActions';
-import { INITIAL_STATE, RegisterState } from './registerReducer';
+const { context, useDispatch, useSelector, provider } = createReducableContext<RegisterState, RegisterActionTypes>(INITIAL_STATE, registerReducer);
 
-export interface IRegisterContext extends RegisterState {
-  dispatch: Dispatch<ActionType<typeof actions>>;
-}
+export default context;
 
-const RegisterContext = createContext<IRegisterContext>({ ...INITIAL_STATE, dispatch: () => null });
+export const useRegisterDispach = useDispatch;
 
-export default RegisterContext;
+export const useRegisterSelector = useSelector;
 
-export const useRegisterDispach = () => {
-  const dispatch = useContextSelector(RegisterContext, state => state.dispatch);
-
-  return dispatch;
-};
+export const RegisterProvider = provider;

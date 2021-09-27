@@ -1,9 +1,8 @@
 import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useContextSelector } from 'use-context-selector';
 import { Button, FormField } from '@cig-platform/ui';
 
-import RegisterContext from '@Contexts/RegisterContext/RegisterContext';
+import { useRegisterSelector } from '@Contexts/RegisterContext/RegisterContext';
 import { selectIsLoading, selectBreeder, selectUser } from '@Contexts/RegisterContext/registerSelectors';
 import { RegisterBreederFormProps } from './RegisterBreederForm';
 
@@ -12,9 +11,9 @@ export interface RegisterBreederFormSubmitButtonProps {
 }
 
 export default function RegisterBreederFormSubmitButton({ onSubmit }: RegisterBreederFormSubmitButtonProps) {
-  const breeder = useContextSelector(RegisterContext, selectBreeder);
-  const user = useContextSelector(RegisterContext, selectUser);
-  const isLoading = useContextSelector(RegisterContext, selectIsLoading);
+  const breeder = useRegisterSelector(selectBreeder);
+  const user = useRegisterSelector(selectUser);
+  const isLoading = useRegisterSelector(selectIsLoading);
 
   const { t } = useTranslation();
   

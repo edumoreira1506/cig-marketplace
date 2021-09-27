@@ -1,27 +1,22 @@
-
-import { ApiErrorType } from '@cig-platform/types';
-
-import { ActionType } from '@Types/context';
+import { DefaultState, ActionType } from '@cig-platform/context';
 
 import * as actions from './loginActions';
 
-export interface LoginState {
-  isLoading: boolean;
-  error: null | ApiErrorType;
+export interface LoginState extends DefaultState {
   email: string;
   password: string;
 }
 
-export const INITIAL_STATE: LoginState = {
-  isLoading: false,
-  error: null,
+export const INITIAL_STATE = {
   email: '',
   password: '',
 };
 
+export type LoginActionTypes = ActionType<typeof actions>
+
 export default function loginReducer(
   state = INITIAL_STATE,
-  action: ActionType<typeof actions>
+  action: LoginActionTypes
 ): LoginState {
   switch (action.type) {
   case 'SET_ERROR':

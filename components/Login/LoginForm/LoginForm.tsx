@@ -1,9 +1,8 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useContextSelector } from 'use-context-selector';
 
 import LoginField from '@Components/Login/LoginField/LoginField';
-import LoginContext, { useLoginDispatch } from '@Contexts/LoginContext/LoginContext';
+import { useLoginDispatch, useLoginSelector } from '@Contexts/LoginContext/LoginContext';
 import { selectEmail, selectIsLoading, selectPassword } from '@Contexts/LoginContext/loginSelectors';
 import { setEmail, setPassword } from '@Contexts/LoginContext/loginActions';
 import LoginLoading from '@Components/Login/LoginLoading/LoginLoading';
@@ -20,9 +19,9 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
 
   const { t } = useTranslation();
 
-  const isLoading = useContextSelector(LoginContext, selectIsLoading);
-  const email = useContextSelector(LoginContext, selectEmail);
-  const password = useContextSelector(LoginContext, selectPassword);
+  const isLoading = useLoginSelector(selectIsLoading);
+  const email = useLoginSelector(selectEmail);
+  const password = useLoginSelector(selectPassword);
 
   const handleChangeEmail = useCallback((newEmail: string) => {
     dispatch(setEmail(newEmail));

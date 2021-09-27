@@ -1,10 +1,9 @@
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useContextSelector } from 'use-context-selector';
 import dynamic from 'next/dynamic';
 import { FormField } from '@cig-platform/ui';
 
-import RegisterContext, { useRegisterDispach } from '@Contexts/RegisterContext/RegisterContext';
+import { useRegisterDispach, useRegisterSelector } from '@Contexts/RegisterContext/RegisterContext';
 import { selectBreederAddressZipcode } from '@Contexts/RegisterContext/registerSelectors';
 import { setBreederAddressField } from '@Contexts/RegisterContext/registerActions';
 import useDebouncedEffect from '@Hooks/useDebouncedEffect';
@@ -15,7 +14,7 @@ const Input: any = dynamic(() => import('@cig-platform/ui').then(mod => mod.Inpu
 export default function RegisterBreederFormAddressZipcode() {
   const [isLoading, setIsLoading] = useState(false);
 
-  const zipcode = useContextSelector(RegisterContext, selectBreederAddressZipcode);
+  const zipcode = useRegisterSelector(selectBreederAddressZipcode);
 
   const dispatch = useRegisterDispach();
 
