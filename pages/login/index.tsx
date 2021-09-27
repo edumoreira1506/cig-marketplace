@@ -1,5 +1,5 @@
 import LoginContainer from '@Containers/LoginContainer/LoginContainer';
-import LoginProvider from '@Contexts/LoginContext/LoginProvider';
+import { LoginProvider } from '@Contexts/LoginContext/LoginContext';
 
 import { StyledContainer, StyledFormWrapper, StyledPage } from './index.styles';
 

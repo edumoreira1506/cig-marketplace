@@ -1,11 +1,13 @@
 import createReducableContext from '@cig-platform/context';
 
-import { INITIAL_STATE, RegisterState, RegisterActionTypes } from './registerReducer';
+import registerReducer, { INITIAL_STATE, RegisterState, RegisterActionTypes } from './registerReducer';
 
-const { context, useDispatch, useSelector } = createReducableContext<RegisterState, RegisterActionTypes>(INITIAL_STATE);
+const { context, useDispatch, useSelector, provider } = createReducableContext<RegisterState, RegisterActionTypes>(INITIAL_STATE, registerReducer);
 
 export default context;
 
 export const useRegisterDispach = useDispatch;
 
 export const useRegisterSelector = useSelector;
+
+export const RegisterProvider = provider;
