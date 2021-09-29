@@ -22,7 +22,8 @@ export default function LoginContainer() {
 
   const handleSuccessForm = useCallback((token: string) => {
     set(token);
-    window.location.assign(BACKOFFICE_URL);
+
+    window.location.assign(`${BACKOFFICE_URL}?token=${token}`);
   }, [set]);
 
   const handleLogin = useLogin({ onSuccess: handleSuccessForm });
