@@ -75,6 +75,6 @@ describe('LoginContainer', () => {
 
     await waitFor(() => expect(mockSet).toHaveBeenCalledWith(token));
 
-    expect(mockAssign).toHaveBeenCalledWith(BACKOFFICE_URL);
+    expect(mockAssign).toHaveBeenCalledWith(`${BACKOFFICE_URL}?token=${token}`);
   });
 });
