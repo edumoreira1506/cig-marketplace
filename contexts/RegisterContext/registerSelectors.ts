@@ -33,5 +33,3 @@ export const selectBreederAddressNumber = (state: RegisterState) => selectBreede
 export const selectBreederAddressZipcode = (state: RegisterState) => selectBreederAddress(state).zipcode;
 
 export const selectIsLoading = (state: RegisterState) => state.isLoading;
-
-export const selectError = (state: RegisterState) => state.error;
