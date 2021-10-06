@@ -1,4 +1,5 @@
-import * as actions from '../../contexts/RegisterContext/registerActions';
+import * as registerActions from '../../contexts/RegisterContext/registerActions';
+import * as appActions from '../../contexts/AppContext/appActions';
 import { INITIAL_STATE } from '../../contexts/RegisterContext/registerReducer';
 import { createRegisterContextHookRenderer } from '../../utils/tests/registerContextRenderer';
 import AuthBffService from '../../services/AuthBffService';
@@ -19,8 +20,8 @@ describe('useSubmitRegister', () => {
     const renderHook = createRegisterContextHookRenderer(mockStore);
 
     jest.spyOn(AuthBffService, 'registerUser').mockImplementation(mockRegisterUser);
-    jest.spyOn(actions, 'setIsLoading').mockImplementation(mockSetIsLoading);
-    jest.spyOn(actions, 'setError').mockImplementation(mockSetError);
+    jest.spyOn(registerActions, 'setIsLoading').mockImplementation(mockSetIsLoading);
+    jest.spyOn(appActions, 'setError').mockImplementation(mockSetError);
 
     const { result } = renderHook(() => useSubmitRegister({ onSuccess }));
 
@@ -46,8 +47,8 @@ describe('useSubmitRegister', () => {
     const renderHook = createRegisterContextHookRenderer(mockStore);
 
     jest.spyOn(AuthBffService, 'registerUser').mockImplementation(mockRegisterUser);
-    jest.spyOn(actions, 'setIsLoading').mockImplementation(mockSetIsLoading);
-    jest.spyOn(actions, 'setError').mockImplementation(mockSetError);
+    jest.spyOn(registerActions, 'setIsLoading').mockImplementation(mockSetIsLoading);
+    jest.spyOn(appActions, 'setError').mockImplementation(mockSetError);
 
     const { result } = renderHook(() => useSubmitRegister({ onSuccess }));
 

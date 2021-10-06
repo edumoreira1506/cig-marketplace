@@ -16,3 +16,19 @@ export const success = (message: string, t: TFunction, callback?: () => void) =>
     callback();
   }
 });
+
+export const withInput = async (message: string, callback: (value: string) => void, t: TFunction) => {
+  const { value } = await Swal.fire({
+    title: message,
+    input: 'text',
+    inputValue: '',
+    showCancelButton: true,
+    inputValidator: (string) => {
+      if (!string) return t('common.empty-error', { field: t('user.fields.email') });
+
+      return null;
+    },
+  });
+
+  if (value) return callback(value);
+};
