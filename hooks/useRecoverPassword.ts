@@ -16,7 +16,7 @@ export default function useRecoverPassword({
   const dispatch = useAppDispatch();
 
   const handleRecoverPassword = useCallback(() => {
-    withInput(
+    return withInput(
       t('recover-password.message'),
       async (email) => {
         try {
