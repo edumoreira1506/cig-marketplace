@@ -3,13 +3,17 @@ import { useTranslation } from 'react-i18next';
 
 import { withInput } from '@Utils/alert';
 import AuthBffService from '@Services/AuthBffService';
+import { useAppDispatch } from '@Contexts/AppContext/AppContext';
+import { setError } from '@Contexts/AppContext/appActions';
 
 export default function useRecoverPassword({
-  onSuccess
+  onSuccess,
 }: {
   onSuccess: () => void;
 }) {
   const { t } = useTranslation();
+
+  const dispatch = useAppDispatch();
 
   const handleRecoverPassword = useCallback(() => {
     withInput(
@@ -20,6 +24,8 @@ export default function useRecoverPassword({
 
           if (response?.ok) {
             onSuccess();
+          } else {
+            dispatch(setError(response?.error));
           }
         } catch(error) {
           console.log(error);
@@ -27,7 +33,7 @@ export default function useRecoverPassword({
       },
       t
     );
-  }, [t, onSuccess]);
+  }, [t, onSuccess, dispatch]);
 
   return handleRecoverPassword;
 }
