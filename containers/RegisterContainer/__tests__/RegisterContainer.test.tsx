@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 
 import { INITIAL_STATE } from '@Contexts/RegisterContext/registerReducer';
 import { createRegisterContextRenderer } from '@Utils/tests/registerContextRenderer';
-import * as Alert from '@Utils/alert';
 
 import RegisterContainer from '../RegisterContainer';
 
@@ -79,26 +78,5 @@ describe('RegisterContainer', () => {
     expect(screen.queryByText(String(i18next.t('breeder.fields.address.state')))).not.toBeInTheDocument();
     expect(screen.queryByText(String(i18next.t('breeder.fields.address.zipcode')))).not.toBeInTheDocument();
     expect(screen.queryByText(String(i18next.t('breeder.fields.address.number')))).not.toBeInTheDocument();
-  });
-
-  it('shows the error when get an error', () => {
-    const mockStore = {
-      ...INITIAL_STATE,
-      error: {
-        message: 'Error message',
-        name: 'ErrorName',
-        getError: jest.fn()
-      }
-    };
-
-    const mockShowError = jest.fn();
-
-    jest.spyOn(Alert, 'error').mockImplementation(mockShowError);
-
-    const render = createRegisterContextRenderer(mockStore);
-
-    render(<RegisterContainer />);
-
-    expect(mockShowError).toHaveBeenCalled();
   });
 });

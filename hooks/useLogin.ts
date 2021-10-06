@@ -6,6 +6,7 @@ import { setError } from '@Contexts/AppContext/appActions';
 import { useLoginDispatch } from '@Contexts/LoginContext/LoginContext';
 import { LoginState } from '@Contexts/LoginContext/loginReducer';
 import { useAppDispatch } from '@Contexts/AppContext/AppContext';
+import { setIsLoading as setIsLoadingApp } from '@Contexts/AppContext/appActions';
 
 export default function useLogin({
   onSuccess
@@ -18,12 +19,12 @@ export default function useLogin({
 
   const handleLogin = useCallback(async (email: LoginState['email'], password: LoginState['password']) => {
     dispatch(setIsLoading(true));
-    appDispatch(setIsLoading(true));
+    appDispatch(setIsLoadingApp(true));
 
     const authBffResponse = await AuthBffService.login({ email, password });
 
     dispatch(setIsLoading(false));
-    appDispatch(setIsLoading(false));
+    appDispatch(setIsLoadingApp(false));
 
     if (!authBffResponse?.ok) {
       appDispatch(setError(authBffResponse?.error));

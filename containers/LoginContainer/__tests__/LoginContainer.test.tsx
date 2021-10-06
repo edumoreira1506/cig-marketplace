@@ -3,7 +3,6 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as Hooks from '@cig-platform/hooks';
 
-import * as Alert from '@Utils/alert';
 import { INITIAL_STATE } from '@Contexts/LoginContext/loginReducer';
 import { createLoginContextRenderer } from '@Utils/tests/loginContextRenderer';
 import AuthBffService from '@Services/AuthBffService';
@@ -26,27 +25,6 @@ describe('LoginContainer', () => {
     expect(screen.getByText(String(i18next.t('common.sign-up')))).toBeInTheDocument();
     expect(screen.getByText(String(i18next.t('user.fields.email')))).toBeInTheDocument();
     expect(screen.getByText(String(i18next.t('user.fields.password')))).toBeInTheDocument();
-  });
-
-  it('shows the error when get an error', () => {
-    const mockStore = {
-      ...INITIAL_STATE,
-      error: {
-        message: 'Error message',
-        name: 'ErrorName',
-        getError: jest.fn()
-      }
-    };
-
-    const mockShowError = jest.fn();
-
-    jest.spyOn(Alert, 'error').mockImplementation(mockShowError);
-
-    const render = createLoginContextRenderer(mockStore);
-
-    render(<LoginContainer />);
-
-    expect(mockShowError).toHaveBeenCalled();
   });
 
   it('set token on local storage and reassign url after success login', async () => {

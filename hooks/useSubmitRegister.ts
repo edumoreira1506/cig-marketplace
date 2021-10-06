@@ -4,6 +4,7 @@ import { RegisterState } from '@Contexts/RegisterContext/registerReducer';
 import AuthBffService from '@Services/AuthBffService';
 import { useRegisterDispach } from '@Contexts/RegisterContext/RegisterContext';
 import { setIsLoading } from '@Contexts/RegisterContext/registerActions';
+import { setIsLoading as setIsLoadingApp } from '@Contexts/AppContext/appActions';
 import { useAppDispatch } from '@Contexts/AppContext/AppContext';
 import { setError } from '@Contexts/AppContext/appActions';
 
@@ -18,12 +19,12 @@ export default function useSubmitRegister({
 
   const handleSubmitRegister = useCallback(async ({ breeder, user }: { breeder: RegisterState['breeder']; user: RegisterState['user'] }) => {
     dispatch(setIsLoading(true));
-    appDispatch(setIsLoading(true));
+    appDispatch(setIsLoadingApp(true));
 
     const authBffResponse = await AuthBffService.registerUser({ user, breeder });
 
     dispatch(setIsLoading(false));
-    appDispatch(setIsLoading(false));
+    appDispatch(setIsLoadingApp(false));
 
     if (!authBffResponse?.ok) {
       appDispatch(setError(authBffResponse?.error));

@@ -1,4 +1,5 @@
-import * as actions from '../../contexts/LoginContext/loginActions';
+import * as loginActions from '../../contexts/LoginContext/loginActions';
+import * as appActions from '../../contexts/AppContext/appActions';
 import { INITIAL_STATE } from '../../contexts/LoginContext/loginReducer';
 import { createLoginContextHookRenderer } from '../../utils/tests/loginContextRenderer';
 import AuthBffService from '../../services/AuthBffService';
@@ -20,8 +21,8 @@ describe('useLogin', () => {
     const renderHook = createLoginContextHookRenderer(mockStore);
 
     jest.spyOn(AuthBffService, 'login').mockImplementation(mockLogin);
-    jest.spyOn(actions, 'setIsLoading').mockImplementation(mockSetIsLoading);
-    jest.spyOn(actions, 'setError').mockImplementation(mockSetError);
+    jest.spyOn(loginActions, 'setIsLoading').mockImplementation(mockSetIsLoading);
+    jest.spyOn(appActions, 'setError').mockImplementation(mockSetError);
 
     const { result } = renderHook(() => useLogin({ onSuccess }));
 
@@ -47,8 +48,8 @@ describe('useLogin', () => {
     const renderHook = createLoginContextHookRenderer(mockStore);
 
     jest.spyOn(AuthBffService, 'login').mockImplementation(mockLogin);
-    jest.spyOn(actions, 'setIsLoading').mockImplementation(mockSetIsLoading);
-    jest.spyOn(actions, 'setError').mockImplementation(mockSetError);
+    jest.spyOn(loginActions, 'setIsLoading').mockImplementation(mockSetIsLoading);
+    jest.spyOn(appActions, 'setError').mockImplementation(mockSetError);
 
     const { result } = renderHook(() => useLogin({ onSuccess }));
 
