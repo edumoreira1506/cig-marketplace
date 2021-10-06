@@ -3,15 +3,16 @@ import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 import { useLocalStorage } from '@cig-platform/hooks';
 
-import { error as showError } from '@Utils/alert';
+import { error as showError, success } from '@Utils/alert';
 import { useLoginSelector } from '@Contexts/LoginContext/LoginContext';
 import { selectError } from '@Contexts/LoginContext/loginSelectors';
 import useLogin from '@Hooks/useLogin';
 import LoginForm from '@Components/Login/LoginForm/LoginForm';
 import { Routes } from '@Constants/routes';
 import { BACKOFFICE_URL } from '@Constants/urls';
+import useRecoverPassword from '@Hooks/useRecoverPassword';
 
-import { StyledLink } from './LoginContainer.styles';
+import { StyledLink, StyledLinks } from './LoginContainer.styles';
 
 export default function LoginContainer() {
   const error = useLoginSelector(selectError);
@@ -28,6 +29,12 @@ export default function LoginContainer() {
 
   const handleLogin = useLogin({ onSuccess: handleSuccessForm });
 
+  const handleRecoverPasswordSuccess = useCallback(() => {
+    success(t('recover-password.success.message'), t);
+  }, [t]);
+
+  const handleRecoverPassword = useRecoverPassword({ onSuccess: handleRecoverPasswordSuccess });
+
   useEffect(() => {
     if (error) {
       showError(error?.message ?? t('common.something-wrong'), t);
@@ -37,11 +44,16 @@ export default function LoginContainer() {
   return (
     <>
       <LoginForm onSubmit={handleLogin} />
-      <StyledLink>
-        <Link href={Routes.Register}>
-          {t('common.sign-up')}
-        </Link>
-      </StyledLink>
+      <StyledLinks>
+        <StyledLink>
+          <Link href={Routes.Register}>
+            {t('common.sign-up')}
+          </Link>
+        </StyledLink>
+        <StyledLink onClick={handleRecoverPassword}>
+          {t('common.recover-password')}
+        </StyledLink>
+      </StyledLinks>
     </>
   );
 }
