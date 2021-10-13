@@ -54,4 +54,22 @@ describe('Container', () => {
 
     expect(screen.getByText(children)).toBeInTheDocument();
   });
+
+  it('clears the local storage', () => {
+    const localStorageKey = 'key';
+    const localStorageValue = 'value';
+
+    window.localStorage.setItem(localStorageKey, localStorageValue);
+
+    const RouterWrapper = createRouterWrapper('/', '/', { logout: 'true' });
+    const render = createAppContextRenderer();
+
+    render(
+      <RouterWrapper>
+        <Container {...DEFAULT_PROPS} />
+      </RouterWrapper>
+    );
+
+    expect(window.localStorage.getItem(localStorageKey)).toBeNull;
+  });
 });
