@@ -3,6 +3,7 @@ import { screen } from '@testing-library/react';
 import * as Alert from '@Utils/alert';
 import { INITIAL_STATE } from '@Contexts/AppContext/appReducer';
 import { createAppContextRenderer } from '@Utils/tests/appContextRenderer';
+import { createRouterWrapper } from '@Utils/tests/wrappers';
 
 import Container from '../Container';
 
@@ -26,8 +27,13 @@ describe('Container', () => {
     jest.spyOn(Alert, 'error').mockImplementation(mockShowError);
 
     const render = createAppContextRenderer(mockStore);
+    const RouterWrapper = createRouterWrapper('/', '/');
 
-    render(<Container {...DEFAULT_PROPS} />);
+    render(
+      <RouterWrapper>
+        <Container {...DEFAULT_PROPS} />
+      </RouterWrapper>
+    );
 
     expect(mockShowError).toHaveBeenCalled();
   });
@@ -35,10 +41,35 @@ describe('Container', () => {
   it('renders the children', () => {
     const children = 'Hello!';
 
+    const RouterWrapper = createRouterWrapper('/', '/');
     const render = createAppContextRenderer();
 
-    render(<Container {...DEFAULT_PROPS}>{children}</Container>);
+    render(
+      <RouterWrapper>
+        <Container {...DEFAULT_PROPS}>
+          {children}
+        </Container>
+      </RouterWrapper>
+    );
 
     expect(screen.getByText(children)).toBeInTheDocument();
+  });
+
+  it('clears the local storage', () => {
+    const localStorageKey = 'key';
+    const localStorageValue = 'value';
+
+    window.localStorage.setItem(localStorageKey, localStorageValue);
+
+    const RouterWrapper = createRouterWrapper('/', '/', { logout: 'true' });
+    const render = createAppContextRenderer();
+
+    render(
+      <RouterWrapper>
+        <Container {...DEFAULT_PROPS} />
+      </RouterWrapper>
+    );
+
+    expect(window.localStorage.getItem(localStorageKey)).toBeNull;
   });
 });
