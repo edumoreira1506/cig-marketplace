@@ -37,7 +37,9 @@ export default function LoginContainer() {
       <StyledLinks>
         <StyledLink>
           <Link href={Routes.Register}>
-            {t('common.sign-up')}
+            <a>
+              {t('common.sign-up')}
+            </a>
           </Link>
         </StyledLink>
         <StyledLink onClick={handleRecoverPassword}>
