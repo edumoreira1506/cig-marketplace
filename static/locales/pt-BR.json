@@ -24,6 +24,7 @@
   "user.fields.register": "CPF",
   "user.fields.birth-date": "Data de nascimento",
   "breeder.fields.name": "Nome",
+  "breeder.fields.code": "Código",
   "breeder.fields.address": "Endereço",
   "breeder.fields.address.city": "Cidade",
   "breeder.fields.address.province": "Estado",
