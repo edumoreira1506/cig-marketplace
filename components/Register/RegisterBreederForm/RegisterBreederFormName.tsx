@@ -14,7 +14,13 @@ export default function RegisterBreederFormName() {
   const { t } = useTranslation();
 
   const handleChangeName = useCallback((newName: string | number) => {
-    dispatch(setBreederField('name', String(newName)));
+    const stringNewName = String(newName);
+
+    dispatch(setBreederField('name', stringNewName));
+
+    const code = stringNewName.split(' ').map((word) => word?.[0] ?? '').join('').toUpperCase();
+
+    dispatch(setBreederField('code', code));
   }, []);
 
   return (

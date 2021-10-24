@@ -22,6 +22,8 @@ export const selectBreederDescription = (state: RegisterState) => selectBreeder(
 
 export const selectBreederAddress = (state: RegisterState) => selectBreeder(state).address;
 
+export const selectBreederCode = (state: RegisterState) => selectBreeder(state).code;
+
 export const selectBreederAddressCity = (state: RegisterState) => selectBreederAddress(state).city;
 
 export const selectBreederAddressProvince = (state: RegisterState) => selectBreederAddress(state).province;

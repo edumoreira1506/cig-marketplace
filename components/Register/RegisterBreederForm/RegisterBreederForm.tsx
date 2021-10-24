@@ -12,6 +12,7 @@ import RegisterBreederFormAddressStreet from './RegisterBreederFormAddressStreet
 import RegisterBreederFormAddressZipcode from './RegisterBreederFormAddressZipcode';
 import RegisterBreederFormSubmitButton from './RegisterBreederFormSubmitButton';
 import RegisterBreederFormAddressNumber from './RegisterBreederFormAddressNumber';
+import RegisterBreederFormCode from './RegisterBreederFormCode';
 
 import { StyledForm } from './RegisterBreederForm.styles';
 
@@ -26,6 +27,7 @@ export default function RegisterBreederForm({ onSubmit, title }: RegisterBreeder
   return (
     <StyledForm onSubmit={preventDefaultHandler} title={title}>
       <RegisterBreederFormName />
+      <RegisterBreederFormCode />
       <RegisterBreederFormDescription />
       <Subtitle text={t('breeder.fields.address')} />
       <RegisterBreederFormAddressZipcode />

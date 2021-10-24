@@ -21,7 +21,8 @@ export interface RegisterState extends DefaultState {
       province: string;
       street: string;
       number: number | undefined;
-    }
+    };
+    code: string;
   }
 }
 
@@ -37,6 +38,7 @@ export const INITIAL_STATE: RegisterState = {
   breeder: {
     name: '',
     description: '',
+    code: '',
     address: {
       city: '',
       province: '',
