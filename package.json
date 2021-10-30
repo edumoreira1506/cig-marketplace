@@ -14,7 +14,7 @@
     "@cig-platform/context": "^0.1.7",
     "@cig-platform/hooks": "^0.0.1",
     "@cig-platform/types": "^0.0.3",
-    "@cig-platform/ui": "^0.1.56",
+    "@cig-platform/ui": "^0.1.62",
     "axios": "^0.21.4",
     "i18next": "^20.6.1",
     "next": "11.0.1",

@@ -20,7 +20,7 @@ export default function RegisterBreederFormName() {
 
     const code = stringNewName.split(' ').map((word) => word?.[0] ?? '').join('').toUpperCase();
 
-    dispatch(setBreederField('code', code));
+    dispatch(setBreederField('code', code.toUpperCase()));
   }, []);
 
   return (

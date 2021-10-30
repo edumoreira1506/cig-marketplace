@@ -14,7 +14,7 @@ export default function RegisterBreederFormCode() {
   const { t } = useTranslation();
 
   const handleChangeCode = useCallback((newCode: string | number) => {
-    dispatch(setBreederField('code', String(newCode)));
+    dispatch(setBreederField('code', String(newCode).toUpperCase()));
   }, []);
 
   return (
@@ -26,7 +26,9 @@ export default function RegisterBreederFormCode() {
         onChange={handleChangeCode}
         required
         requiredMessage={t('common.required-field', { field: t('breeder.fields.code') })}
-        placeholder="CS"
+        placeholder="ABCD"
+        min={4}
+        max={4}
       />
     </FormField>
   );
