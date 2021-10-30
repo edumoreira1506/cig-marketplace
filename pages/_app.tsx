@@ -4,7 +4,6 @@ import { ReactElement } from 'react';
 import { AppProvider } from '@Contexts/AppContext/AppContext';
 import Container from '@Components/Shared/Container/Container';
 
-import '@Styles/globals.css';
 import '@Configs/i18n';
 
 export default function MyApp({ Component, pageProps }: AppProps): ReactElement {
