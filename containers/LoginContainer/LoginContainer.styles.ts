@@ -7,6 +7,10 @@ export const StyledLinks = styled.div`
   align-items: center;
   cursor: pointer;
   width: 85%;
+
+  a {
+    color: ${Colors.White};
+  }
 `;
 
 export const StyledLink = styled.div`
