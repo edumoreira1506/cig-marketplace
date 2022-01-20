@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect } from 'react';
 
+import 'react-image-gallery/styles/css/image-gallery.css';
+
 export interface MicroFrontendProps {
   name: string;
   host: string;

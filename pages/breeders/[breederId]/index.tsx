@@ -1,11 +1,13 @@
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 
-import MicroFrontend from '@Components/MicroFrontend/MicroFrontend';
 import { BREEDER_PAGE_URL } from '@Constants/urls';
 
 import { StyledContainer } from './index.styles';
 
-import 'react-image-gallery/styles/css/image-gallery.css';
+const MicroFrontend = dynamic(() => import('@Components/MicroFrontend/MicroFrontend'), {
+  ssr: false
+});
 
 const BreederPage = () => {
   const router = useRouter();
