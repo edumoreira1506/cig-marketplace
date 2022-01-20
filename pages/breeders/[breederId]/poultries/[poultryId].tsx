@@ -1,9 +1,13 @@
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 
-import MicroFrontend from '@Components/MicroFrontend/MicroFrontend';
 import { POULTRY_PAGE_URL } from '@Constants/urls';
 
-import 'react-image-gallery/styles/css/image-gallery.css';
+import { StyledContainer } from './[poultryId].styles';
+
+const MicroFrontend = dynamic(() => import('@Components/MicroFrontend/MicroFrontend'), {
+  ssr: false
+});
 
 const PoultryPage = () => {
   const router = useRouter();
@@ -12,7 +16,7 @@ const PoultryPage = () => {
   if (!breederId || !poultryId) return null;
 
   return (
-    <div id="poultry-container">
+    <StyledContainer id="poultry-container">
       <MicroFrontend
         breederId={breederId.toString()}
         poultryId={poultryId.toString()}
@@ -20,7 +24,7 @@ const PoultryPage = () => {
         host={POULTRY_PAGE_URL}
         containerId="poultry-container"
       />
-    </div>
+    </StyledContainer>
   );
 };
 

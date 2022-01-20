@@ -1,7 +1,13 @@
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 
-import MicroFrontend from '@Components/MicroFrontend/MicroFrontend';
 import { BREEDER_PAGE_URL } from '@Constants/urls';
+
+import { StyledContainer } from './index.styles';
+
+const MicroFrontend = dynamic(() => import('@Components/MicroFrontend/MicroFrontend'), {
+  ssr: false
+});
 
 const BreederPage = () => {
   const router = useRouter();
@@ -10,14 +16,14 @@ const BreederPage = () => {
   if (!breederId) return null;
 
   return (
-    <div id="breeder-container">
+    <StyledContainer id="breeder-container">
       <MicroFrontend
         breederId={breederId.toString()}
         name="BreederPage"
         host={BREEDER_PAGE_URL}
         containerId="breeder-container"
       />
-    </div>
+    </StyledContainer>
   );
 };
 

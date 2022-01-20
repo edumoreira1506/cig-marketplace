@@ -10,7 +10,7 @@ export default function MyApp({ Component, pageProps }: AppProps): ReactElement 
   return (
     <AppProvider>
       <Container>
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
       </Container>
     </AppProvider>
   );
