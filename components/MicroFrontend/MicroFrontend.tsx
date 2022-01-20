@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import React, { useCallback, useEffect } from 'react';
 
 export interface MicroFrontendProps {
   name: string;
@@ -15,13 +16,19 @@ export default function MicroFrontend({
   breederId,
   poultryId
 }: MicroFrontendProps) {
+  const router = useRouter();
+
+  const handleViewPoultry = useCallback(({ poultryId, breederId }: { poultryId: string, breederId: string }) => {
+    router.push(`/breeders/${breederId}/poultries/${poultryId}`);
+  }, [router]);
+
   useEffect(() => {
     const renderMicroFrontend = () => {
       const windowRender = (window as any)?.[`render${name}`];
 
       if (windowRender) {
         if (breederId && !poultryId) {
-          windowRender(containerId, breederId);
+          windowRender(containerId, breederId, handleViewPoultry);
         }
         
         if (breederId && poultryId) {
@@ -47,7 +54,7 @@ export default function MicroFrontend({
     return () => {
       (window as any)[`unmount${name}`] && (window as any)[`unmount${name}`](`${name}-container`);
     };
-  }, [name, host, containerId, poultryId]);
+  }, [name, host, containerId, poultryId, handleViewPoultry]);
 
   return <main id={`${name}-container`} />;
 }
