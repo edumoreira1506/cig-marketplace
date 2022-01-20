@@ -10,12 +10,12 @@ const BreederPage = () => {
   if (!breederId) return null;
 
   return (
-    <div id="breeder-preview">
+    <div id="breeder-container">
       <MicroFrontend
         breederId={breederId.toString()}
         name="BreederPage"
         host={BREEDER_PAGE_URL}
-        containerId="breeder-preview"
+        containerId="breeder-container"
       />
     </div>
   );
