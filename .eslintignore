@@ -1,1 +1,2 @@
 next.config.js
+utils/tests/svgMock.js
