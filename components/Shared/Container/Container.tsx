@@ -28,6 +28,7 @@ export default function Container({ children }: ContainerProps) {
   useEffect(() => {
     if (logout) {
       window.localStorage.clear();
+      window.location.reload();
     }
   }, [logout]);
 
