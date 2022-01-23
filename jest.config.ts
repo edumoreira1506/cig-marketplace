@@ -89,6 +89,7 @@ export default {
       prefix: '<rootDir>',
     }),
     '\\.(css|less)$': '<rootDir>/utils/tests/styleMock.js',
+    '\\.(svg)$': '<rootDir>/utils/tests/svgMock.js',
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader

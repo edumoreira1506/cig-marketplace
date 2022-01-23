@@ -1434,10 +1434,10 @@
   dependencies:
     express "^4.17.1"
 
-"@cig-platform/ui@^0.1.75":
-  version "0.1.75"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.75.tgz#116a6f29cd2d335196d6d317713846be648405ae"
-  integrity sha512-9Lb1Uc1nXkYOEBYLLpX43rSTxgMd5jTnRe8zGo7FPQUdTIEz/GkU8b1PJ/lLX+D3k8ljFKG4mnHD+CbgZ9alpQ==
+"@cig-platform/ui@^0.1.84":
+  version "0.1.84"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.84.tgz#411cd7cc21dd5a449fb0e34fe905c2511e18d065"
+  integrity sha512-n46mzaeSB9y0e5Itm3g/feGLU96ZsKDEA4YQ433MBvti32/IWAgd+hAIZibKrKvi7lpEsexlgxyNZGyRu2dAmw==
   dependencies:
     "@cig-platform/types" "^0.0.14"
     "@testing-library/jest-dom" "^5.11.4"
@@ -9172,11 +9172,6 @@ neo-async@^2.5.0, neo-async@^2.6.1, neo-async@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
-
-next-global-css@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/next-global-css/-/next-global-css-1.2.0.tgz#b04870e39eccdf81b5ad0b74514762ac9a39cb7f"
-  integrity sha512-36EeyYTSoKN7rWyCKfhM4TScJ4VuJP8b2ThAPLmlZRiYT+DS3QVcsZWuClC55S2zwvx6eRUB1SljfUjUiPig5A==
 
 next-tick@~1.0.0:
   version "1.0.0"
