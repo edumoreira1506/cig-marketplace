@@ -13,7 +13,7 @@ export interface ContainerProps {
 export default function Container({ children }: ContainerProps) {
   const error = useAppSelector(selectError);
 
-  const { query } = useRouter();
+  const { query, push } = useRouter();
 
   const logout = useMemo(() => query?.logout === 'true', [query?.logout]);
 
@@ -28,9 +28,9 @@ export default function Container({ children }: ContainerProps) {
   useEffect(() => {
     if (logout) {
       window.localStorage.clear();
-      window.location.reload();
+      window.location.assign('login');
     }
-  }, [logout]);
+  }, [logout, push]);
 
   return (
     <>
