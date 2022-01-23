@@ -10,7 +10,7 @@ import '@Configs/i18n';
 import useUser from '@Hooks/useUser';
 import { useRouter } from 'next/router';
 import { AiFillHome } from 'react-icons/ai';
-import { BACKOFFICE_URL } from '@Constants/urls';
+import { BACKOFFICE_URL, LOGO_URL } from '@Constants/urls';
 
 const unauthorizedItems = [
   {
@@ -64,6 +64,7 @@ export default function MyApp({ Component, pageProps }: AppProps): ReactElement 
         shortcuts={[]}
         title='CIG Marketplace'
         user={user}
+        logoUrl={LOGO_URL}
       >
         <Container>
           <Component {...pageProps} />
