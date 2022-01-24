@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import { useMemo } from 'react';
+import { useMemo, useCallback } from 'react';
 
 import { BREEDER_PAGE_URL } from '@Constants/urls';
 
@@ -18,6 +18,16 @@ const BreederPage = () => {
     breederId: breederId?.toString() ?? ''
   }), [breederId]);
 
+  const handleNavigateToViewPoultry = useCallback(({ poultryId }: any) => {
+    if (poultryId?.poultryId) {
+      router.push(`/breeders/${breederId}/poultries/${poultryId.poultryId}`);
+    }
+  }, [router, breederId]);
+
+  const microFrontEndCallbacks = useMemo<Record<string, any>>(() => ({
+    onViewPoultry: handleNavigateToViewPoultry
+  }), [handleNavigateToViewPoultry]);
+
   if (!breederId) return null;
 
   return (
@@ -27,6 +37,7 @@ const BreederPage = () => {
         name="BreederPage"
         host={BREEDER_PAGE_URL}
         containerId="breeder-container"
+        callbacks={microFrontEndCallbacks}
       />
     </StyledContainer>
   );
