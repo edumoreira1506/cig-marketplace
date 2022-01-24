@@ -38,6 +38,13 @@ export const authorizedItems = [
   },
 ];
 
+const shortcuts = ['Sair', 'Editar senha'];
+
+const shortcutLinks = {
+  [shortcuts[0]]: `${BACKOFFICE_URL}logout`,
+  [shortcuts[1]]: `${BACKOFFICE_URL}editar-senha`,
+};
+
 export default function MyApp({ Component, pageProps }: AppProps): ReactElement {
   const user = useUser();
 
@@ -47,6 +54,8 @@ export default function MyApp({ Component, pageProps }: AppProps): ReactElement 
 
   const items = useMemo(() => isAuthenticated ? authorizedItems : unauthorizedItems, [isAuthenticated]);
 
+  const shurtcutItems = useMemo(() => isAuthenticated ? shortcuts : [], [isAuthenticated]);
+
   const handleMenuItemClick = useCallback((menuItemTitle: string) => {
     const itemRoute = [...unauthorizedItems, ...authorizedItems].find(i => i.title === menuItemTitle)?.route;
 
@@ -55,13 +64,17 @@ export default function MyApp({ Component, pageProps }: AppProps): ReactElement 
     }
   }, [router]);
 
+  const handleShortcutClick = useCallback((shortcut: string) => {
+    router.push(shortcutLinks[shortcut]);
+  }, [router]);
+
   return (
     <AppProvider>
       <UiContainer
         items={items}
         onMenuClick={handleMenuItemClick}
-        onShortcutClick={() => null}
-        shortcuts={[]}
+        onShortcutClick={handleShortcutClick}
+        shortcuts={shurtcutItems}
         title='CIG Marketplace'
         user={user}
         logoUrl={LOGO_URL}
