@@ -18,9 +18,9 @@ const BreederPage = () => {
     breederId: breederId?.toString() ?? ''
   }), [breederId]);
 
-  const handleNavigateToViewPoultry = useCallback(({ poultryId }: any) => {
-    if (poultryId?.poultryId) {
-      router.push(`/breeders/${breederId}/poultries/${poultryId.poultryId}`);
+  const handleNavigateToViewPoultry = useCallback(({ poultryId }: { poultryId: string; }) => {
+    if (poultryId) {
+      router.push(`/breeders/${breederId}/poultries/${poultryId}`);
     }
   }, [router, breederId]);
 
