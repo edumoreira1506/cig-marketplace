@@ -53,7 +53,7 @@ const PoultryPage = () => {
   const callbacks = useMemo<Record<string, any>>(() => ({
     onAnswer: breeder?.id === breederId && token ? saveAnswerQuestion : undefined,
     onComment: breeder?.id !== breederId && token ? saveQuestion : undefined
-  }), [breederId, breeder]);
+  }), [breederId, breeder, token, saveAnswerQuestion, saveQuestion]);
 
   if (!breederId || !poultryId) return null;
 
