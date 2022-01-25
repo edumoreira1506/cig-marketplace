@@ -26,7 +26,8 @@ export default function useUser() {
     } catch {
       return { 
         image: 'https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png',
-        name: ''
+        name: '',
+        breeders: [],
       };
     }
   }, [get]);
