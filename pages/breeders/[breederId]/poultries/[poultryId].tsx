@@ -42,12 +42,14 @@ const PoultryPage = () => {
 
   const saveAnswerQuestion = useAnswerAdvertisingQuestion({
     onSuccess: handleSaveSuccess,
+    breederId: breederId?.toString() ?? '',
     poultryId: poultryId?.toString() ?? ''
   });
 
   const saveQuestion = useSaveAdvertisingQuestion({
     onSuccess: handleSaveSuccess,
-    poultryId: poultryId?.toString() ?? ''
+    poultryId: poultryId?.toString() ?? '',
+    breederId: breederId?.toString() ?? '',
   });
 
   const callbacks = useMemo<Record<string, any>>(() => ({

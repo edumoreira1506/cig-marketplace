@@ -5,20 +5,19 @@ import { setError, setIsLoading } from '@Contexts/AppContext/appActions';
 import MarketplaceBffService from 'services/MarketplaceBffService';
 
 import useAuth from './useAuth';
-import useBreeder from './useBreeder';
 
 export default function useSaveAdvertisingQuestion({
   poultryId,
+  breederId,
   onSuccess,
 }: {
   poultryId: string;
+  breederId: string;
   onSuccess: () => void;
 }) {
   const appDispatch = useAppDispatch();
 
   const { token } = useAuth();
-
-  const breeder = useBreeder();
 
   const handleAnswerAdvertisingQuestion = useCallback(async ({
     comment,
@@ -27,13 +26,11 @@ export default function useSaveAdvertisingQuestion({
     advertisingId: string;
     comment: string;
   }) => {
-    if (!breeder) return;
-
     try {
       appDispatch(setIsLoading(true));
 
       await MarketplaceBffService.postAdvertisingQuestion(
-        breeder.id,
+        breederId,
         poultryId,
         advertisingId,
         token,
@@ -46,7 +43,7 @@ export default function useSaveAdvertisingQuestion({
     } finally {
       appDispatch(setIsLoading(false));
     }
-  }, [onSuccess, appDispatch, breeder, token, poultryId]);
+  }, [onSuccess, appDispatch, breederId, token, poultryId]);
 
   return handleAnswerAdvertisingQuestion;
 }
