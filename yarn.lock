@@ -1129,6 +1129,13 @@
     react "^17.0.2"
     use-context-selector "^1.3.9"
 
+"@cig-platform/decorators@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@cig-platform/decorators/-/decorators-0.0.1.tgz#6714481803ed94e8c46a68f51bd207b3129f6462"
+  integrity sha512-gJXseewZipGW7ONTVH566/YwkGIGn5fHKZD8BNrxDKMZVuQjw+764hElgujXg3q0D4u2Mw4rmhup7Ft5sWfhqQ==
+  dependencies:
+    axios "^0.22.0"
+
 "@cig-platform/hooks@^0.0.1":
   version "0.0.1"
   resolved "https://registry.npmjs.org/@cig-platform/hooks/-/hooks-0.0.1.tgz"
@@ -1136,6 +1143,15 @@
   dependencies:
     react "^17.0.2"
     react-dom "^17.0.2"
+
+"@cig-platform/marketplace-bff-client@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@cig-platform/marketplace-bff-client/-/marketplace-bff-client-0.0.2.tgz#5c8e9abcd9a7e47a3ae514e235dbf8bd98c393ff"
+  integrity sha512-mZmANNMp4gHyVV9/ka/E8KouxKIDvlNvyfWPtLumZY+dyXfPCt4MCJYnbE7RCiLw7dsNjsFh8C5m680yRL3TJA==
+  dependencies:
+    "@cig-platform/decorators" "^0.0.1"
+    "@cig-platform/types" "^0.0.22"
+    axios "^0.25.0"
 
 "@cig-platform/microfrontend-helper@^0.0.2":
   version "0.0.2"
@@ -1154,6 +1170,13 @@
   version "0.0.14"
   resolved "https://registry.npmjs.org/@cig-platform/types/-/types-0.0.14.tgz"
   integrity sha512-BLPzdGqZuDJWRjh/3jtHS1M6dMGJyKRZobnNhsSCbh/ZdnzYB1fKxGxsevXMe4ikQGlhSd60+T1zPsKHMJT+CQ==
+  dependencies:
+    express "^4.17.1"
+
+"@cig-platform/types@^0.0.22":
+  version "0.0.22"
+  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.22.tgz#856e95719db4272374c15969975f357d6806e897"
+  integrity sha512-2IC/1uoaQOzZkOacNzeBBz2VE4yLMgiUSZ+rDax/wdCaXN2c229bH7zbJiOJ0l39ErUFdSlnE9BJAGLdYLOnRw==
   dependencies:
     express "^4.17.1"
 
@@ -3588,6 +3611,20 @@ axios@^0.21.4:
   integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
   dependencies:
     follow-redirects "^1.14.0"
+
+axios@^0.22.0:
+  version "0.22.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.22.0.tgz#bf702c41fb50fbca4539589d839a077117b79b25"
+  integrity sha512-Z0U3uhqQeg1oNcihswf4ZD57O3NrR1+ZXhxaROaWpDmsDTx7T2HNBV2ulBtie2hwJptu8UvgnJoK+BIqdzh/1w==
+  dependencies:
+    follow-redirects "^1.14.4"
+
+axios@^0.25.0:
+  version "0.25.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.25.0.tgz#349cfbb31331a9b4453190791760a8d35b093e0a"
+  integrity sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g==
+  dependencies:
+    follow-redirects "^1.14.7"
 
 axobject-query@^2.2.0:
   version "2.2.0"
@@ -6802,6 +6839,11 @@ follow-redirects@^1.14.0:
   version "1.14.4"
   resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.14.4.tgz"
   integrity sha512-zwGkiSXC1MUJG/qmeIFH2HBJx9u0V46QGUe3YR1fXG8bXQxq7fLj0RjLZQ5nubr9qNJUZrH+xUcwXEoXNpfS+g==
+
+follow-redirects@^1.14.4, follow-redirects@^1.14.7:
+  version "1.14.7"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.7.tgz#2004c02eb9436eee9a21446a6477debf17e81685"
+  integrity sha512-+hbxoLbFMbRKDwohX8GkTataGqO6Jb7jGwpAlwgy2bIz25XtRm7KEzJM76R1WiNT5SwZkX4Y75SwBolkpmE7iQ==
 
 for-in@^1.0.2:
   version "1.0.2"
