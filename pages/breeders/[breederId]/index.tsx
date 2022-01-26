@@ -6,6 +6,9 @@ import { BREEDER_PAGE_URL } from '@Constants/urls';
 
 import { StyledContainer } from './index.styles';
 
+import 'slick-carousel/slick/slick.css'; 
+import 'slick-carousel/slick/slick-theme.css';
+
 const MicroFrontend = dynamic(() => import('@cig-platform/microfrontend-helper'), {
   ssr: false
 });
