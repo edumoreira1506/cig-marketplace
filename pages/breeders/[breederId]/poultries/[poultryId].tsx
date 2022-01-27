@@ -37,7 +37,7 @@ const PoultryPage = () => {
   }), [breederId, poultryId]);
 
   const handleSaveSuccess = useCallback(() => {
-    success(t('action-success'), t, () => window.location.reload());
+    success(t('common.success'), t, () => window.location.reload());
   }, [t]);
 
   const saveAnswerQuestion = useAnswerAdvertisingQuestion({
