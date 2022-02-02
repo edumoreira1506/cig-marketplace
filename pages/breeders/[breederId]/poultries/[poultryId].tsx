@@ -15,6 +15,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import useSaveAdvertisingQuestion from '@Hooks/useSaveAdvertisingQuestion';
 import useAuth from '@Hooks/useAuth';
+import useSaveDeal from '@Hooks/useSaveDeal';
 
 const MicroFrontend = dynamic(() => import('@cig-platform/microfrontend-helper'), {
   ssr: false
@@ -52,10 +53,17 @@ const PoultryPage = () => {
     breederId: breederId?.toString() ?? '',
   });
 
+  const saveDeal = useSaveDeal({
+    onSuccess: handleSaveSuccess,
+    poultryId: poultryId?.toString() ?? '',
+    breederId: breederId?.toString() ?? '',
+  });
+
   const callbacks = useMemo<Record<string, any>>(() => ({
     onAnswer: breeder?.id === breederId && token ? saveAnswerQuestion : undefined,
-    onComment: breeder?.id !== breederId && token ? saveQuestion : undefined
-  }), [breederId, breeder, token, saveAnswerQuestion, saveQuestion]);
+    onComment: breeder?.id !== breederId && token ? saveQuestion : undefined,
+    onBuy: breeder?.id !== breederId && token ? saveDeal : undefined
+  }), [breederId, breeder, token, saveAnswerQuestion, saveQuestion, saveDeal]);
 
   if (!breederId || !poultryId) return null;
 
