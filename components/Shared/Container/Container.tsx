@@ -6,7 +6,7 @@ import { BiLogIn } from 'react-icons/bi';
 import { AiFillHome, AiOutlinePoweroff } from 'react-icons/ai';
 
 import { useAppSelector } from '@Contexts/AppContext/AppContext';
-import { selectError } from '@Contexts/AppContext/appSelectors';
+import { selectError, selectIsLoading } from '@Contexts/AppContext/appSelectors';
 import { error as showError } from '@Utils/alert';
 import { BACKOFFICE_URL, LOGO_URL } from '@Constants/urls';
 import { GiChicken, GiReceiveMoney } from 'react-icons/gi';
@@ -66,6 +66,7 @@ export interface ContainerProps {
 
 export default function Container({ children }: ContainerProps) {
   const error = useAppSelector(selectError);
+  const isLoading = useAppSelector(selectIsLoading);
 
   const { query, push } = useRouter();
 
@@ -115,6 +116,7 @@ export default function Container({ children }: ContainerProps) {
       title='CIG Marketplace'
       user={user}
       logoUrl={LOGO_URL}
+      isLoading={isLoading}
     >
       {children}
     </UiContainer>
