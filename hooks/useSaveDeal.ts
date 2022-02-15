@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import { IDeal } from '@cig-platform/types';
 
 import { useAppDispatch } from '@Contexts/AppContext/AppContext';
 import { setError, setIsLoading } from '@Contexts/AppContext/appActions';
@@ -15,7 +16,7 @@ export default function useSaveDeal({
 }: {
   poultryId: string;
   breederId: string;
-  onSuccess: () => void;
+  onSuccess: (deal: IDeal) => void;
 }) {
   const appDispatch = useAppDispatch();
 
@@ -56,15 +57,15 @@ export default function useSaveDeal({
             try {
               appDispatch(setIsLoading(true));
 
-              await MarketplaceBffService.postDeal(
+              const deal = await MarketplaceBffService.postDeal(
                 breederId,
                 poultryId,
                 advertisingId,
                 token,
                 { value, description }
               );
-      
-              onSuccess();
+
+              onSuccess(deal);
             } catch (error) {
               appDispatch(setError(error));
             } finally {
