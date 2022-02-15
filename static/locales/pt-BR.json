@@ -31,5 +31,7 @@
   "breeder.fields.address.street": "Rua",
   "breeder.fields.address.zipcode": "CEP",
   "breeder.fields.address.number": "Número",
-  "breeder.fields.description": "Descrição"
+  "breeder.fields.description": "Descrição",
+  "confirm-deal-value": "Qual é o valor da sua proposta?",
+  "confirm-deal-description": "Deseja enviar alguma mensagem adicional ao criador?"
 }
