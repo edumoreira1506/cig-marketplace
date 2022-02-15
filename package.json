@@ -13,7 +13,7 @@
     "@cig-platform/auth-bff-client": "^0.1.5",
     "@cig-platform/context": "^0.1.7",
     "@cig-platform/hooks": "^0.0.1",
-    "@cig-platform/marketplace-bff-client": "^0.0.3",
+    "@cig-platform/marketplace-bff-client": "^0.0.4",
     "@cig-platform/microfrontend-helper": "^0.0.2",
     "@cig-platform/types": "^0.0.3",
     "@cig-platform/ui": "^0.1.106",

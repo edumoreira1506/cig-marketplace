@@ -1,8 +1,10 @@
 import { useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { useAppDispatch } from '@Contexts/AppContext/AppContext';
 import { setError, setIsLoading } from '@Contexts/AppContext/appActions';
-import MarketplaceBffService from 'services/MarketplaceBffService';
+import MarketplaceBffService from '@Services/MarketplaceBffService';
+import { withInput } from '@Utils/alert';
 
 import useAuth from './useAuth';
 
@@ -19,28 +21,64 @@ export default function useSaveDeal({
 
   const { token } = useAuth();
 
+  const { t } = useTranslation();
+
+  const handleOnChangeInputAlert = useCallback(() => {
+    const inputElement = document.querySelector('.swal2-input') as HTMLInputElement;
+
+    if (!inputElement) return;
+
+    const typed = inputElement.value;
+    const numbers = typed.replace(/[^0-9]/g,'');
+
+    if (typed.includes('R')) {
+      inputElement.value = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(numbers) / 100);
+    } else {
+      inputElement.value = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(numbers));
+    }
+  }, []);
+
   const handleSaveDeal = useCallback(async ({
     advertisingId
   }: {
     advertisingId: string;
   }) => {
-    try {
-      appDispatch(setIsLoading(true));
+    withInput(
+      t('confirm-deal-value'),
+      async (rawValue) => {
+        const value = Number(rawValue.replace(/[^0-9]/g,''));
 
-      await MarketplaceBffService.postDeal(
-        breederId,
-        poultryId,
-        advertisingId,
-        token
-      );
-  
-      onSuccess();
-    } catch (error) {
-      appDispatch(setError(error));
-    } finally {
-      appDispatch(setIsLoading(false));
-    }
-  }, [onSuccess, appDispatch, breederId, token, poultryId]);
+        document.querySelector('.swal2-input')?.removeEventListener('keyup', handleOnChangeInputAlert);
+
+        withInput(
+          t('confirm-deal-description'),
+          async (description = '') => {
+            try {
+              appDispatch(setIsLoading(true));
+
+              await MarketplaceBffService.postDeal(
+                breederId,
+                poultryId,
+                advertisingId,
+                token,
+                { value, description }
+              );
+      
+              onSuccess();
+            } catch (error) {
+              appDispatch(setError(error));
+            } finally {
+              appDispatch(setIsLoading(false));
+            }
+          },
+          t
+        );
+      },
+      t
+    );
+
+    document.querySelector('.swal2-input')?.addEventListener('keyup', handleOnChangeInputAlert);
+  }, [onSuccess, appDispatch, breederId, token, poultryId, t]);
 
   return handleSaveDeal;
 }
