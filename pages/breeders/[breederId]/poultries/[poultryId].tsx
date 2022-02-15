@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import { useMemo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { POULTRY_PAGE_URL } from '@Constants/urls';
+import { BACKOFFICE_URL, POULTRY_PAGE_URL } from '@Constants/urls';
 import useAnswerAdvertisingQuestion from '@Hooks/useAnswerAdvertisingQuestion';
 import useBreeder from '@Hooks/useBreeder';
 import { success } from '@Utils/alert';
@@ -16,6 +16,7 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 import useSaveAdvertisingQuestion from '@Hooks/useSaveAdvertisingQuestion';
 import useAuth from '@Hooks/useAuth';
 import useSaveDeal from '@Hooks/useSaveDeal';
+import { IDeal } from '@cig-platform/types';
 
 const MicroFrontend = dynamic(() => import('@cig-platform/microfrontend-helper'), {
   ssr: false
@@ -41,6 +42,10 @@ const PoultryPage = () => {
     success(t('common.success'), t, () => window.location.reload());
   }, [t]);
 
+  const handleBuySuccess = useCallback((deal: IDeal) => {
+    window.location.assign(`${BACKOFFICE_URL}compras/${deal.id}`);
+  }, []);
+
   const saveAnswerQuestion = useAnswerAdvertisingQuestion({
     onSuccess: handleSaveSuccess,
     breederId: breederId?.toString() ?? '',
@@ -54,7 +59,7 @@ const PoultryPage = () => {
   });
 
   const saveDeal = useSaveDeal({
-    onSuccess: handleSaveSuccess,
+    onSuccess: handleBuySuccess,
     poultryId: poultryId?.toString() ?? '',
     breederId: breederId?.toString() ?? '',
   });
