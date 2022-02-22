@@ -1149,13 +1149,13 @@
     react "^17.0.2"
     react-dom "^17.0.2"
 
-"@cig-platform/marketplace-bff-client@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@cig-platform/marketplace-bff-client/-/marketplace-bff-client-0.0.4.tgz#38ac4242c871faf1b7cb30112483bf9ef2123878"
-  integrity sha512-qq747rN2gPlieJmcHjCYfjIy0PwVtLWUA8/xSxmWULEdlaUJPxwV096kX+gPj+PZOcm16pBUXdEKnzDeeZp1UQ==
+"@cig-platform/marketplace-bff-client@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@cig-platform/marketplace-bff-client/-/marketplace-bff-client-0.0.5.tgz#5b796d57c1374d69dae8d9824999da0ae841394d"
+  integrity sha512-XjagjgQfTqbFBoiIZpgSoOm8lnGM4kOBuJ0AteOvzuedFFGTvRm+76Mv7qj9fVX1KKNYlPRIN64jeDHwG+9zFg==
   dependencies:
     "@cig-platform/decorators" "^0.0.1"
-    "@cig-platform/types" "^0.0.26"
+    "@cig-platform/types" "^0.0.28"
     axios "^0.25.0"
 
 "@cig-platform/microfrontend-helper@^0.0.2":
@@ -1178,10 +1178,17 @@
   dependencies:
     express "^4.17.1"
 
-"@cig-platform/ui@^0.1.106":
-  version "0.1.106"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.106.tgz#7c9759169f3d1ae64296e6e3ab3e70c5124604a3"
-  integrity sha512-W3pHfXimnAvPmpu2+cDMhSXEYi+HID6jlNOjExDBtxrSZlg+hBPhJRnsho1xbq8jt9jJY+YJ9cVjQqGGL4qDdQ==
+"@cig-platform/types@^0.0.28":
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.28.tgz#16a80e9c522d197e72d29672978c610a3205ffd2"
+  integrity sha512-Mpg3kPbRuIHzLL0Mr0MbDQ4FKDNOWvk7sdAElmPq/GoKgiz1d8X8RnDU01h+/8UlTKVkotxRwC7OUV+HN2qgbA==
+  dependencies:
+    express "^4.17.1"
+
+"@cig-platform/ui@^0.1.118":
+  version "0.1.118"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.118.tgz#cb589084e5c90547180d11b19745e387e019b456"
+  integrity sha512-bSb+qUHLiKlSJpkM3vkVE04bvmvjorV2J/Xs4J4Z5SOscxh7cjeEbLq1WmbFiUmdxwMp4/OZPUY66KTvqDQfEg==
   dependencies:
     "@cig-platform/enums" "^0.0.3"
     "@cig-platform/types" "^0.0.26"
