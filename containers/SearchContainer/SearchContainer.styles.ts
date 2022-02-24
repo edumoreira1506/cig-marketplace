@@ -1,3 +1,4 @@
+import { Colors } from '@cig-platform/ui';
 import styled from 'styled-components';
 
 export const StyledContainer = styled.section`
@@ -34,5 +35,17 @@ export const StyledAdvertising = styled.li`
 
   @media (min-width: 768px) {
     width: 33%;
+  }
+`;
+
+export const StyledFilterModalContainer = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+`;
+
+export const StyledFilterModalItem = styled.li`
+  &:first-child {
+    border-top: solid 1px ${Colors.DarkGrey};
   }
 `;
