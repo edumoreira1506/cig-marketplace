@@ -4,6 +4,17 @@ export const StyledContainer = styled.section`
   width: 100%;
 `;
 
+export const StyledFilters = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+`;
+
+export const StyledFilter = styled.div`
+  width: calc(50% - 2px);
+`;
+
 export const StyledAdvertisings = styled.ul`
   margin: 0;
   padding: 0;
