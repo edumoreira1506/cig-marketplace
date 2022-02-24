@@ -49,3 +49,7 @@ export const StyledFilterModalItem = styled.li`
     border-top: solid 1px ${Colors.DarkGrey};
   }
 `;
+
+export const StyledConfirmButton = styled.div`
+  width: 100%;
+`;
