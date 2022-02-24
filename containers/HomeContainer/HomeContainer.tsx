@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { AdvertisingCarousel } from '@cig-platform/ui';
+import { AdvertisingCarousel, AdvertisingCarouselItem } from '@cig-platform/ui';
 import { useRouter } from 'next/router';
 
 import { useAppDispatch, useAppSelector } from '@Contexts/AppContext/AppContext';
@@ -7,7 +7,7 @@ import { setError, setIsLoading } from '@Contexts/AppContext/appActions';
 import MarketplaceBffService from '@Services/MarketplaceBffService';
 import { selectIsLoading } from '@Contexts/AppContext/appSelectors';
 import { POULTRY_PLACEHOLDER_IMAGE_URL } from '@Constants/urls';
-
+import { PoultryData } from '@Hooks/useSearchAdvertisings';
 
 import { StyledContainer, StyledCarouselContainer } from './HomeContainer.styles';
 
@@ -47,7 +47,7 @@ export default function HomeContainer() {
 
         const data = await MarketplaceBffService.getHome();
 
-        const dataToAdvertisingItem = (d: any) => ({
+        const dataToAdvertisingItem = (d: PoultryData): AdvertisingCarouselItem => ({
           description: d.poultry.description,
           identifier: `${d.breeder.id}/${d.poultry.id}`,
           price: d.advertising.price,
