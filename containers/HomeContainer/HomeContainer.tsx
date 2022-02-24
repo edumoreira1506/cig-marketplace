@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { AdvertisingCarousel, AdvertisingCarouselItem } from '@cig-platform/ui';
 import { useRouter } from 'next/router';
+import { PoultryGenderCategoryEnum } from '@cig-platform/enums';
 
 import { useAppDispatch, useAppSelector } from '@Contexts/AppContext/AppContext';
 import { setError, setIsLoading } from '@Contexts/AppContext/appActions';
@@ -76,7 +77,7 @@ export default function HomeContainer() {
           <AdvertisingCarousel
             advertisings={matrixes}
             onViewAdvertising={handleViewAdvertising}
-            onViewAll={() => alert('matrixes page!')}
+            onViewAll={() => router.push(`/search?genderCategory=${PoultryGenderCategoryEnum.Matrix}`)}
             title="Matrizes"
             placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
           />
@@ -88,7 +89,7 @@ export default function HomeContainer() {
           <AdvertisingCarousel
             advertisings={reproductives}
             onViewAdvertising={handleViewAdvertising}
-            onViewAll={() => alert('reproductives page!')}
+            onViewAll={() => router.push(`/search?genderCategory=${PoultryGenderCategoryEnum.Reproductive}`)}
             title="Reprodutores"
             placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
           />
@@ -100,7 +101,7 @@ export default function HomeContainer() {
           <AdvertisingCarousel
             advertisings={maleChickens}
             onViewAdvertising={handleViewAdvertising}
-            onViewAll={() => alert('male chickens page!')}
+            onViewAll={() => router.push(`/search?genderCategory=${PoultryGenderCategoryEnum.MaleChicken}`)}
             title="Frangos"
             placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
           />
@@ -112,7 +113,7 @@ export default function HomeContainer() {
           <AdvertisingCarousel
             advertisings={femaleChickens}
             onViewAdvertising={handleViewAdvertising}
-            onViewAll={() => alert('female chickens page!')}
+            onViewAll={() => router.push(`/search?genderCategory=${PoultryGenderCategoryEnum.MaleChicken}`)}
             title="Frangas"
             placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
           />
