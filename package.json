@@ -12,6 +12,7 @@
   "dependencies": {
     "@cig-platform/auth-bff-client": "^0.1.5",
     "@cig-platform/context": "^0.1.7",
+    "@cig-platform/enums": "^0.0.3",
     "@cig-platform/hooks": "^0.0.1",
     "@cig-platform/marketplace-bff-client": "^0.0.6",
     "@cig-platform/microfrontend-helper": "^0.0.2",
