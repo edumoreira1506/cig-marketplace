@@ -1,5 +1,5 @@
 import { useLocalStorage } from '@cig-platform/hooks';
-import { IBreeder, IUser } from '@cig-platform/types';
+import { IBreeder, IUser, IAdvertisingFavorite } from '@cig-platform/types';
 import { useMemo } from 'react';
 import jwt from 'jsonwebtoken';
 
@@ -8,6 +8,7 @@ interface IDecodedToken {
   email: IUser['email'];
   id: IUser['id'];
   name: IUser['name'];
+  favorites: IAdvertisingFavorite[];
 }
 
 export default function useUser() {
@@ -28,6 +29,7 @@ export default function useUser() {
         image: 'https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png',
         name: '',
         breeders: [],
+        favorites: [],
       };
     }
   }, [get]);
