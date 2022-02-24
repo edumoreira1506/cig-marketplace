@@ -1149,10 +1149,10 @@
     react "^17.0.2"
     react-dom "^17.0.2"
 
-"@cig-platform/marketplace-bff-client@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@cig-platform/marketplace-bff-client/-/marketplace-bff-client-0.0.5.tgz#5b796d57c1374d69dae8d9824999da0ae841394d"
-  integrity sha512-XjagjgQfTqbFBoiIZpgSoOm8lnGM4kOBuJ0AteOvzuedFFGTvRm+76Mv7qj9fVX1KKNYlPRIN64jeDHwG+9zFg==
+"@cig-platform/marketplace-bff-client@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@cig-platform/marketplace-bff-client/-/marketplace-bff-client-0.0.6.tgz#0913df03d15ce43ee24233d55f67caadebe43f33"
+  integrity sha512-Pw7xjCA+mYbJpUzaW2aEXn+Xvlz7QyeXYURY9CREL/qinhS8GUXm/uPXPcZ5qLATZtB2F9C3Pt//mJ7qoV6dmQ==
   dependencies:
     "@cig-platform/decorators" "^0.0.1"
     "@cig-platform/types" "^0.0.28"
