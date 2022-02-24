@@ -5,14 +5,17 @@ import useAuth from '@Hooks/useAuth';
 import { useAppDispatch } from '@Contexts/AppContext/AppContext';
 import { setError, setIsLoading } from '@Contexts/AppContext/appActions';
 import MarketplaceBffService from '@Services/MarketplaceBffService';
+import useRefreshToken from '@Hooks/useRefreshToken';
 
 export default function useToggleFavorite() {
   const { favorites } = useUser();
 
   const { isAuthenticated, token } = useAuth();
 
+  const refreshToken = useRefreshToken(token);
+
   const dispatch = useAppDispatch();
-  console.log({ favorites });
+
   const handleToggleFavorite = useCallback(async (identifier: string) => {
     const [breederId, poultryId, advertisingId] = identifier.split('/');
 
@@ -37,12 +40,14 @@ export default function useToggleFavorite() {
           token
         });
       }
+
+      refreshToken();
     } catch (error) {
       dispatch(setError(error));
     } finally {
       dispatch(setIsLoading(false));
     }
-  }, [favorites, dispatch]);
+  }, [favorites, dispatch, refreshToken]);
 
   if (!isAuthenticated) return undefined;
 
