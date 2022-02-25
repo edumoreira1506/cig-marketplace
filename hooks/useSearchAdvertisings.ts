@@ -34,6 +34,7 @@ export default function useSearchAdvertisngs() {
   const tail = useMemo(() => query?.tail?.toString(), [query?.tail]);
   const type = useMemo(() => query?.type?.toString(), [query?.type]);
   const prices = useMemo(() => query?.prices ? JSON.parse(query.prices.toString()) : undefined, [query?.prices]);
+  const isFavoritesFilterEnabled = useMemo(() => query?.favorites?.toString() === 'true', [query?.favorites]);
 
   useEffect(() => {
     (async () => {
@@ -50,7 +51,7 @@ export default function useSearchAdvertisngs() {
           sort,
           tail,
           type,
-          favorites: []
+          favorites: isFavoritesFilterEnabled ? favorites.map(f => f.advertisingId) : []
         });
 
         setAdvertisingsData(advertisings);
@@ -70,6 +71,8 @@ export default function useSearchAdvertisngs() {
     sort,
     tail,
     type,
+    isFavoritesFilterEnabled,
+    favorites
   ]);
 
   return useMemo(() => advertisingsData?.map((a: PoultryData) => ({
