@@ -25,7 +25,7 @@ export default function useRecoverPassword({
           if (response?.ok) {
             onSuccess();
           } else {
-            dispatch(setError(response?.error));
+            dispatch(setError((response as any)?.error));
           }
         } catch(error) {
           console.log(error);

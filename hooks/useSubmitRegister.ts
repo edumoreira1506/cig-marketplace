@@ -27,7 +27,7 @@ export default function useSubmitRegister({
     appDispatch(setIsLoadingApp(false));
 
     if (!authBffResponse?.ok) {
-      appDispatch(setError(authBffResponse?.error));
+      appDispatch(setError((authBffResponse as any)?.error));
     } else {
       onSuccess();
     }

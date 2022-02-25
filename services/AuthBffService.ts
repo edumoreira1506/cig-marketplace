@@ -19,4 +19,8 @@ export default class AuthBffService {
   static recoverPassword(email: string) {
     return authBffClient.recoverPassword(email);
   }
+
+  static refreshToken(token: string) {
+    return authBffClient.refreshToken(token);
+  }
 }
