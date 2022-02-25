@@ -123,6 +123,13 @@ const typeListItems = [
   },
 ];
 
+const favoriteListItems = [
+  {
+    value: 'true',
+    label: 'Ativo'
+  }
+];
+
 export default function SearchContainer() {
   const advertisings = useSearchAdvertisngs();
 
@@ -139,6 +146,7 @@ export default function SearchContainer() {
     tailOptions: [] as string[],
     typeOptions: [] as string[],
   });
+  const [isFavoritesFilterActive, setIsFavoriteFilterActive] = useState(false);
 
   const toggleFavorite = useToggleFavorite();
 
@@ -161,9 +169,10 @@ export default function SearchContainer() {
         sort: localFilters.sortOptions.length ? localFilters.sortOptions[0] : '',
         tail: localFilters.tailOptions.length ? localFilters.tailOptions[0] : '',
         type: localFilters.typeOptions.length ? localFilters.typeOptions[0] : '',
+        favorites: isFavoritesFilterActive.toString()
       }).toString()}`
     );
-  }, [push, closeFilterModal, localFilters]);
+  }, [push, closeFilterModal, localFilters, isFavoritesFilterActive]);
 
   const handleChangeFilter = (filterName: string, filterValue: string, toggleFilter = true) => {
     setLocalFilters((prevLocalFilters) => {
@@ -216,6 +225,10 @@ export default function SearchContainer() {
 
     if (query?.type) {
       handleChangeFilter('type', query.type.toString(), false);
+    }
+
+    if (query?.favorites === 'true') {
+      setIsFavoriteFilterActive(true);
     }
   }, [query]);
 
@@ -334,6 +347,16 @@ export default function SearchContainer() {
                 onToggle={(value) => handleChangeFilter('type', value)}
                 selecteds={localFilters.typeOptions}
                 items={typeListItems}
+              />
+            </Expand>
+          </StyledFilterModalItem>
+
+          <StyledFilterModalItem>
+            <Expand title="Favoritos">
+              <SelectedList
+                onToggle={() => setIsFavoriteFilterActive(prevIsFavoriteFilterActive => !prevIsFavoriteFilterActive)}
+                selecteds={[isFavoritesFilterActive.toString()]}
+                items={favoriteListItems}
               />
             </Expand>
           </StyledFilterModalItem>
