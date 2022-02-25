@@ -21,6 +21,7 @@ import {
 
 import useSearchAdvertisngs from '@Hooks/useSearchAdvertisings';
 import { POULTRY_PLACEHOLDER_IMAGE_URL } from '@Constants/urls';
+import useToggleFavorite from '@Hooks/useToggleFavorite';
 
 import {
   StyledAdvertising,
@@ -139,6 +140,8 @@ export default function SearchContainer() {
     typeOptions: [] as string[],
   });
 
+  const toggleFavorite = useToggleFavorite();
+
   const openFilterModal = useCallback(() => setIsOpenFilterModal(true), []);
   const openSortModal = useCallback(() => setIsOpenSortModal(true), []);
 
@@ -248,6 +251,8 @@ export default function SearchContainer() {
               price={advertising.price}
               title={advertising.title}
               image={advertising.image}
+              favorited={advertising.favorited}
+              onToggleFavorite={() => toggleFavorite ? toggleFavorite(`${advertising.breederId}/${advertising.poultryId}/${advertising.id}`) : undefined}
             />
           </StyledAdvertising>
         ))}
