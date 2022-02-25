@@ -6,7 +6,7 @@ import AuthBffService from '@Services/AuthBffService';
 import { IDecodedToken } from '@Hooks/useUser';
 import { useAppDispatch, useAppSelector } from '@Contexts/AppContext/AppContext';
 import { selectFavorites } from '@Contexts/AppContext/appSelectors';
-import { setFavorites } from '@Contexts/AppContext/appActions';
+import { setError, setFavorites, setIsLoading } from '@Contexts/AppContext/appActions';
 
 export default function useRefreshToken(token: string) {
   const { set } = useLocalStorage('token');
@@ -17,6 +17,8 @@ export default function useRefreshToken(token: string) {
 
   const refreshToken = useCallback(async () => {
     try {
+      dispatch(setIsLoading(true));
+
       const newToken = await AuthBffService.refreshToken(token);
 
       if (newToken?.ok) {
@@ -26,8 +28,12 @@ export default function useRefreshToken(token: string) {
 
         set(newToken.token);
       }
-    } catch {
-      console.log('Error refreshing token');
+    } catch (error) {
+      dispatch(setError(error));
+
+      console.error('Error refreshing token');
+    } finally {
+      dispatch(setIsLoading(false));
     }
   }, [token, set, favorites, dispatch]);
 
