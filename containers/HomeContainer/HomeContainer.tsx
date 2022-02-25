@@ -60,7 +60,10 @@ export default function HomeContainer() {
         const dataToAdvertisingItem = (
           d: PoultryData
         ): AdvertisingCarouselItem => ({
-          description: `${new Intl.DateTimeFormat('pt-BR').format(d.poultry.birthDate)} ${d.measurementAndWeight.metadata.measurement ? `${d.measurementAndWeight.metadata.measurement} CM` : ''}`,
+          description: `${[
+            d.poultry.birthDate ? new Intl.DateTimeFormat('pt-BR').format(new Date(d.poultry.birthDate)) : '',
+            d.measurementAndWeight.metadata.measurement ? `${d.measurementAndWeight.metadata.measurement} CM` : ''
+          ].filter(Boolean).join(' - ')}`,
           identifier: `${d.breeder.id}/${d.poultry.id}/${d.advertising.id}`,
           price: d.advertising.price,
           breederImage: d.breeder.profileImageUrl,
