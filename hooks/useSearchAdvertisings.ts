@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { IAdvertising, IBreeder, IPoultry } from '@cig-platform/types';
+import { IAdvertising, IBreeder, IPoultry, IPoultryRegister } from '@cig-platform/types';
 import { useRouter } from 'next/router';
 
 import { useAppDispatch } from '@Contexts/AppContext/AppContext';
@@ -14,6 +14,12 @@ export interface PoultryData {
   };
   advertising: IAdvertising;
   breeder: IBreeder;
+  measurementAndWeight: IPoultryRegister & {
+    metadata: {
+      weight?: string;
+      measurement?: string;
+    }
+  }
 }
 
 export default function useSearchAdvertisngs() {

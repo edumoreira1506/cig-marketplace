@@ -11,7 +11,10 @@ import { PoultryData } from '@Hooks/useSearchAdvertisings';
 import useToggleFavorite from '@Hooks/useToggleFavorite';
 import useUser from '@Hooks/useUser';
 
-import { StyledContainer, StyledCarouselContainer } from './HomeContainer.styles';
+import {
+  StyledContainer,
+  StyledCarouselContainer,
+} from './HomeContainer.styles';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -22,7 +25,7 @@ type AdvertisingItem = {
   breederImage?: string;
   image?: string;
   identifier: string;
-}
+};
 
 export default function HomeContainer() {
   const toggleFavorite = useToggleFavorite();
@@ -38,11 +41,14 @@ export default function HomeContainer() {
   const [maleChickens, setMaleChickens] = useState<AdvertisingItem[]>([]);
   const [femaleChickens, setFemaleChickens] = useState<AdvertisingItem[]>([]);
 
-  const handleViewAdvertising = useCallback((identifier: string) => {
-    const [breederId, poultryId] = identifier.split('/');
+  const handleViewAdvertising = useCallback(
+    (identifier: string) => {
+      const [breederId, poultryId] = identifier.split('/');
 
-    router.push(`/breeders/${breederId}/poultries/${poultryId}`);
-  }, [router]);
+      router.push(`/breeders/${breederId}/poultries/${poultryId}`);
+    },
+    [router]
+  );
 
   useEffect(() => {
     (async () => {
@@ -51,13 +57,20 @@ export default function HomeContainer() {
 
         const data = await MarketplaceBffService.getHome();
 
-        const dataToAdvertisingItem = (d: PoultryData): AdvertisingCarouselItem => ({
-          description: d.poultry.description,
+        const dataToAdvertisingItem = (
+          d: PoultryData
+        ): AdvertisingCarouselItem => ({
+          description: `${[
+            d.poultry.birthDate ? new Intl.DateTimeFormat('pt-BR').format(new Date(d.poultry.birthDate)) : '',
+            d.measurementAndWeight.metadata.measurement ? `${d.measurementAndWeight.metadata.measurement} CM` : ''
+          ].filter(Boolean).join(' - ')}`,
           identifier: `${d.breeder.id}/${d.poultry.id}/${d.advertising.id}`,
           price: d.advertising.price,
           breederImage: d.breeder.profileImageUrl,
           image: d.poultry.mainImage,
-          favorited: favorites.some(f => f.advertisingId === d.advertising.id)
+          favorited: favorites.some(
+            (f) => f.advertisingId === d.advertising.id
+          ),
         });
 
         setMatrixes(data.matrixes.map(dataToAdvertisingItem));
@@ -79,7 +92,11 @@ export default function HomeContainer() {
           <AdvertisingCarousel
             advertisings={matrixes}
             onViewAdvertising={handleViewAdvertising}
-            onViewAll={() => router.push(`/search?genderCategory=${PoultryGenderCategoryEnum.Matrix}`)}
+            onViewAll={() =>
+              router.push(
+                `/search?genderCategory=${PoultryGenderCategoryEnum.Matrix}`
+              )
+            }
             title="Matrizes"
             placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
             onFavorite={toggleFavorite}
@@ -92,7 +109,11 @@ export default function HomeContainer() {
           <AdvertisingCarousel
             advertisings={reproductives}
             onViewAdvertising={handleViewAdvertising}
-            onViewAll={() => router.push(`/search?genderCategory=${PoultryGenderCategoryEnum.Reproductive}`)}
+            onViewAll={() =>
+              router.push(
+                `/search?genderCategory=${PoultryGenderCategoryEnum.Reproductive}`
+              )
+            }
             title="Reprodutores"
             placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
             onFavorite={toggleFavorite}
@@ -105,7 +126,11 @@ export default function HomeContainer() {
           <AdvertisingCarousel
             advertisings={maleChickens}
             onViewAdvertising={handleViewAdvertising}
-            onViewAll={() => router.push(`/search?genderCategory=${PoultryGenderCategoryEnum.MaleChicken}`)}
+            onViewAll={() =>
+              router.push(
+                `/search?genderCategory=${PoultryGenderCategoryEnum.MaleChicken}`
+              )
+            }
             title="Frangos"
             placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
             onFavorite={toggleFavorite}
@@ -118,7 +143,11 @@ export default function HomeContainer() {
           <AdvertisingCarousel
             advertisings={femaleChickens}
             onViewAdvertising={handleViewAdvertising}
-            onViewAll={() => router.push(`/search?genderCategory=${PoultryGenderCategoryEnum.MaleChicken}`)}
+            onViewAll={() =>
+              router.push(
+                `/search?genderCategory=${PoultryGenderCategoryEnum.MaleChicken}`
+              )
+            }
             title="Frangas"
             placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
             onFavorite={toggleFavorite}
