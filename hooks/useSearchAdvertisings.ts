@@ -84,7 +84,10 @@ export default function useSearchAdvertisngs() {
   return useMemo(() => advertisingsData?.map((a: PoultryData) => ({
     title: a.poultry.name,
     price: a.advertising.price,
-    description: a.poultry.description,
+    description: `${[
+      a.poultry.birthDate ? new Intl.DateTimeFormat('pt-BR').format(new Date(a.poultry.birthDate)) : '',
+      a.measurementAndWeight.metadata.measurement ? `${a.measurementAndWeight.metadata.measurement} CM` : ''
+    ].filter(Boolean).join(' - ')}`,
     image: a.poultry.mainImage,
     id: a.advertising.id,
     breederId: a.breeder.id,
