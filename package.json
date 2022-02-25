@@ -14,7 +14,7 @@
     "@cig-platform/context": "^0.1.7",
     "@cig-platform/enums": "^0.0.3",
     "@cig-platform/hooks": "^0.0.1",
-    "@cig-platform/marketplace-bff-client": "^0.0.8",
+    "@cig-platform/marketplace-bff-client": "^0.0.9",
     "@cig-platform/microfrontend-helper": "^0.0.2",
     "@cig-platform/types": "^0.0.28",
     "@cig-platform/ui": "^0.1.125",
