@@ -46,6 +46,7 @@ export default function useSearchAdvertisngs() {
           sort,
           tail,
           type,
+          favorites: []
         });
 
         setAdvertisingsData(advertisings);
