@@ -25,14 +25,14 @@ export default function useSearchAdvertisngs() {
 
   const { query } = useRouter();
 
-  const crest = useMemo(() => query?.crest?.toString(), [query?.crest]);
-  const dewlap = useMemo(() => query?.dewlap?.toString(), [query?.dewlap]);
-  const gender = useMemo(() => query?.gender?.toString(), [query?.gender]);
-  const genderCategory = useMemo(() => query?.genderCategory?.toString(), [query?.genderCategory]);
+  const crest = useMemo(() => query?.crest?.toString().split(',') ?? [], [query?.crest]);
+  const dewlap = useMemo(() => query?.dewlap?.toString().split(',') ?? [], [query?.dewlap]);
+  const gender = useMemo(() => query?.gender?.toString().split(',') ?? [], [query?.gender]);
+  const genderCategory = useMemo(() => query?.genderCategory?.toString().split(',') ?? [], [query?.genderCategory]);
   const keyword = useMemo(() => query?.keyword?.toString(), [query?.keyword]);
   const sort = useMemo(() => query?.sort?.toString(), [query?.sort]);
-  const tail = useMemo(() => query?.tail?.toString(), [query?.tail]);
-  const type = useMemo(() => query?.type?.toString(), [query?.type]);
+  const tail = useMemo(() => query?.tail?.toString().split(',') ?? [], [query?.tail]);
+  const type = useMemo(() => query?.type?.toString().split(',') ?? [], [query?.type]);
   const prices = useMemo(() => query?.prices ? JSON.parse(query.prices.toString()) : undefined, [query?.prices]);
   const isFavoritesFilterEnabled = useMemo(() => query?.favorites?.toString() === 'true', [query?.favorites]);
 

@@ -162,13 +162,13 @@ export default function SearchContainer() {
     push(
       `/search?${new URLSearchParams({
         ...(query as any),
-        crest: localFilters.crestOptions.length ? localFilters.crestOptions[0] : '' ,
-        dewlap: localFilters.dewlapOptions.length ? localFilters.dewlapOptions[0] : '',
-        genderCategory: localFilters.genderCategoryOptions.length ? localFilters.genderCategoryOptions[0] : '',
-        gender: localFilters.genderOptions.length ? localFilters.genderOptions[0] : '',
-        sort: localFilters.sortOptions.length ? localFilters.sortOptions[0] : '',
-        tail: localFilters.tailOptions.length ? localFilters.tailOptions[0] : '',
-        type: localFilters.typeOptions.length ? localFilters.typeOptions[0] : '',
+        crest: localFilters.crestOptions.length ? localFilters.crestOptions.join(',') : '' ,
+        dewlap: localFilters.dewlapOptions.length ? localFilters.dewlapOptions.join(',') : '',
+        genderCategory: localFilters.genderCategoryOptions.length ? localFilters.genderCategoryOptions.join(',') : '',
+        gender: localFilters.genderOptions.length ? localFilters.genderOptions.join(',') : '',
+        sort: localFilters.sortOptions.length ? localFilters.sortOptions.join(',') : '',
+        tail: localFilters.tailOptions.length ? localFilters.tailOptions.join(',') : '',
+        type: localFilters.typeOptions.length ? localFilters.typeOptions.join(',') : '',
         favorites: isFavoritesFilterActive.toString()
       }).toString()}`
     );
@@ -178,14 +178,14 @@ export default function SearchContainer() {
     setLocalFilters((prevLocalFilters) => {
       const prevValue = (prevLocalFilters as any)?.[`${filterName}Options`];
 
-      if (prevValue?.[0] === filterValue && toggleFilter) return {
+      if (prevValue.some((p: string) => p === filterValue) && toggleFilter) return {
         ...prevLocalFilters,
-        [`${filterName}Options`]: []
+        [`${filterName}Options`]: prevValue.filter((p: string) => p !== filterValue)
       };
 
       return {
         ...prevLocalFilters,
-        [`${filterName}Options`]: [filterValue],
+        [`${filterName}Options`]: [...prevValue, filterValue],
       };
     });
   };
@@ -199,32 +199,60 @@ export default function SearchContainer() {
   );
   
   useEffect(() => {
-    if (query?.sort) {
-      handleChangeFilter('sort', query.sort.toString(), false);
+    if (query.sort && query?.sort?.toString().split(',').length !== localFilters.sortOptions.length) {
+      query.sort.toString().split(',').forEach((o) => {
+        if (!localFilters.sortOptions.includes(o)) {
+          handleChangeFilter('sort', o, false);
+        }
+      });
     }
 
-    if (query?.crest) {
-      handleChangeFilter('crest', query.crest.toString(), false);
+    if (query.crest && query?.crest?.toString().split(',').length !== localFilters.crestOptions.length) {
+      query.crest.toString().split(',').forEach((o) => {
+        if (!localFilters.crestOptions.includes(o)) {
+          handleChangeFilter('crest', o, false);
+        }
+      });
     }
 
-    if (query?.dewlap) {
-      handleChangeFilter('dewlap', query.dewlap.toString(), false);
+    if (query.dewlap && query?.dewlap?.toString().split(',').length !== localFilters.dewlapOptions.length) {
+      query.dewlap.toString().split(',').forEach((o) => {
+        if (!localFilters.dewlapOptions.includes(o)) {
+          handleChangeFilter('dewlap', o, false);
+        }
+      });
     }
 
-    if (query?.gender) {
-      handleChangeFilter('gender', query.gender.toString(), false);
+    if (query.gender && query?.gender?.toString().split(',').length !== localFilters.genderOptions.length) {
+      query.gender.toString().split(',').forEach((o) => {
+        if (!localFilters.genderOptions.includes(o)) {
+          handleChangeFilter('gender', o, false);
+        }
+      });
     }
 
-    if (query?.genderCategory) {
-      handleChangeFilter('genderCategory', query.genderCategory.toString(), false);
+    if (query.genderCategory && query?.genderCategory?.toString().split(',').length !== localFilters.genderCategoryOptions.length) {
+      query.genderCategory.toString().split(',').forEach((o) => {
+        if (!localFilters.genderCategoryOptions.includes(o)) {
+          handleChangeFilter('genderCategory', o, false);
+        }
+      });
     }
 
-    if (query?.tail) {
-      handleChangeFilter('tail', query.tail.toString(), false);
+    if (query.tail && query?.tail?.toString().split(',').length !== localFilters.tailOptions.length) {
+      query.tail.toString().split(',').forEach((o) => {
+        if (!localFilters.tailOptions.includes(o)) {
+          handleChangeFilter('tail', o, false);
+        }
+      });
     }
 
-    if (query?.type) {
-      handleChangeFilter('type', query.type.toString(), false);
+    if (query.type && query?.type?.toString().split(',').length !== localFilters.typeOptions.length) {
+      query.type.toString().split(',').forEach((o) => {
+        if (!localFilters.typeOptions.includes(o)) {
+          handleChangeFilter('type', o, false);
+        }
+      });
     }
 
     if (query?.favorites === 'true') {
