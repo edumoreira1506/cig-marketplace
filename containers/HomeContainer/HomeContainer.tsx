@@ -70,7 +70,7 @@ export default function HomeContainer() {
         dispatch(setIsLoading(false));
       }
     })();
-  }, [dispatch]);
+  }, [dispatch, favorites]);
 
   return (
     <StyledContainer>

@@ -1,10 +1,14 @@
 import { DefaultState, ActionType } from '@cig-platform/context';
+import { IAdvertisingFavorite } from '@cig-platform/types';
 
 import * as actions from './appActions';
 
-export type AppState = DefaultState
+export type AppState = DefaultState & {
+  favorites: IAdvertisingFavorite[];
+}
 
 export const INITIAL_STATE: AppState = {
+  favorites: []
 };
 
 export type AppActionTypes = ActionType<typeof actions>
@@ -18,6 +22,8 @@ export default function appReducer(
     return { ...state, isLoading: action.payload.isLoading };
   case 'SET_ERROR':
     return { ...state, error: action.payload.error };
+  case 'SET_FAVORITES':
+    return { ...state, favorites: action.payload.favorites };
   default:
     return state;
   }

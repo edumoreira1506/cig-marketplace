@@ -1,20 +1,35 @@
 import { useCallback } from 'react';
+import jwt from 'jsonwebtoken';
 import { useLocalStorage } from '@cig-platform/hooks';
 
-import AuthBffService from '../services/AuthBffService';
+import AuthBffService from '@Services/AuthBffService';
+import { IDecodedToken } from '@Hooks/useUser';
+import { useAppDispatch, useAppSelector } from '@Contexts/AppContext/AppContext';
+import { selectFavorites } from '@Contexts/AppContext/appSelectors';
+import { setFavorites } from '@Contexts/AppContext/appActions';
 
 export default function useRefreshToken(token: string) {
   const { set } = useLocalStorage('token');
+
+  const favorites = useAppSelector(selectFavorites);
+
+  const dispatch = useAppDispatch();
 
   const refreshToken = useCallback(async () => {
     try {
       const newToken = await AuthBffService.refreshToken(token);
 
-      if (newToken?.ok) set(newToken.token);
+      if (newToken?.ok) {
+        const decodedToken = jwt.decode(newToken.token) as IDecodedToken;
+
+        if (decodedToken.favorites.length !== favorites.length) dispatch(setFavorites(decodedToken.favorites));
+
+        set(newToken.token);
+      }
     } catch {
       console.log('Error refreshing token');
     }
-  }, [token, set]);
+  }, [token, set, favorites, dispatch]);
 
   return refreshToken;
 }
