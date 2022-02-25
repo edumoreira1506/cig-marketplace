@@ -1,9 +1,11 @@
 import { useState, useMemo, useEffect } from 'react';
 import { IAdvertising, IBreeder, IPoultry } from '@cig-platform/types';
 import { useRouter } from 'next/router';
+
 import { useAppDispatch } from '@Contexts/AppContext/AppContext';
 import { setError, setIsLoading } from '@Contexts/AppContext/appActions';
 import MarketplaceBffService from '@Services/MarketplaceBffService';
+import useUser from '@Hooks/useUser';
 
 export interface PoultryData {
   poultry: IPoultry & {
@@ -18,6 +20,8 @@ export default function useSearchAdvertisngs() {
   const [advertisingsData, setAdvertisingsData] = useState<PoultryData[]>();
 
   const dispatch = useAppDispatch();
+
+  const { favorites } = useUser();
 
   const { query } = useRouter();
 
@@ -75,6 +79,7 @@ export default function useSearchAdvertisngs() {
     image: a.poultry.mainImage,
     id: a.advertising.id,
     breederId: a.breeder.id,
-    poultryId: a.poultry.id
-  })), [advertisingsData]);
+    poultryId: a.poultry.id,
+    favorited: favorites.some(f => f.advertisingId === a.advertising.id)
+  })), [advertisingsData, favorites]);
 }
