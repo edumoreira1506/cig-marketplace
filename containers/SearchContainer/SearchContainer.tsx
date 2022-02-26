@@ -342,7 +342,7 @@ export default function SearchContainer() {
       >
         <StyledFilterModalContainer>
           <StyledFilterModalItem>
-            <Expand title="Preços">
+            <Expand title="Preços" expand={Boolean(query?.prices)}>
               <PriceFilterStyle />
 
               <StyledPriceFilterArea>
@@ -367,7 +367,7 @@ export default function SearchContainer() {
           </StyledFilterModalItem>
 
           <StyledFilterModalItem>
-            <Expand title="Crista">
+            <Expand title="Crista" expand={Boolean(query?.crest)}>
               <SelectedList
                 onToggle={(value) => handleChangeFilter('crest', value)}
                 selecteds={localFilters.crestOptions}
@@ -377,7 +377,7 @@ export default function SearchContainer() {
           </StyledFilterModalItem>
 
           <StyledFilterModalItem>
-            <Expand title="Barbela">
+            <Expand title="Barbela" expand={Boolean(query?.dewlap)}>
               <SelectedList
                 onToggle={(value) => handleChangeFilter('dewlap', value)}
                 selecteds={localFilters.dewlapOptions}
@@ -387,7 +387,7 @@ export default function SearchContainer() {
           </StyledFilterModalItem>
 
           <StyledFilterModalItem>
-            <Expand title="Sexo">
+            <Expand title="Sexo" expand={Boolean(query?.gender)}>
               <SelectedList
                 onToggle={(value) => handleChangeFilter('gender', value)}
                 selecteds={localFilters.genderOptions}
@@ -397,7 +397,7 @@ export default function SearchContainer() {
           </StyledFilterModalItem>
 
           <StyledFilterModalItem>
-            <Expand title="Sexagem">
+            <Expand title="Sexagem" expand={Boolean(query?.genderCategory)}>
               <SelectedList
                 onToggle={(value) =>
                   handleChangeFilter('genderCategory', value)
@@ -409,7 +409,7 @@ export default function SearchContainer() {
           </StyledFilterModalItem>
 
           <StyledFilterModalItem>
-            <Expand title="Rabo">
+            <Expand title="Rabo" expand={Boolean(query?.tail)}>
               <SelectedList
                 onToggle={(value) => handleChangeFilter('tail', value)}
                 selecteds={localFilters.tailOptions}
@@ -419,7 +419,7 @@ export default function SearchContainer() {
           </StyledFilterModalItem>
 
           <StyledFilterModalItem>
-            <Expand title="Raça">
+            <Expand title="Raça" expand={Boolean(query?.type)}>
               <SelectedList
                 onToggle={(value) => handleChangeFilter('type', value)}
                 selecteds={localFilters.typeOptions}
@@ -429,7 +429,7 @@ export default function SearchContainer() {
           </StyledFilterModalItem>
 
           <StyledFilterModalItem>
-            <Expand title="Favoritos">
+            <Expand title="Favoritos" expand={Boolean(query?.favorites === 'true')}>
               <SelectedList
                 onToggle={() => setIsFavoriteFilterActive(prevIsFavoriteFilterActive => !prevIsFavoriteFilterActive)}
                 selecteds={[isFavoritesFilterActive.toString()]}
