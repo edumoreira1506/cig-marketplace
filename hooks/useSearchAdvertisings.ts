@@ -23,7 +23,8 @@ export interface PoultryData {
 }
 
 export default function useSearchAdvertisngs() {
-  const [advertisingsData, setAdvertisingsData] = useState<PoultryData[]>();
+  const [advertisingsData, setAdvertisingsData] = useState<PoultryData[]>([]);
+  const [filteredData, setFilteredData] = useState<PoultryData[]>([]);
 
   const dispatch = useAppDispatch();
 
@@ -57,7 +58,7 @@ export default function useSearchAdvertisngs() {
           sort,
           tail,
           type,
-          favorites: isFavoritesFilterEnabled ? favorites.map(f => f.advertisingId) : []
+          favorites: []
         });
 
         setAdvertisingsData(advertisings);
@@ -77,11 +78,13 @@ export default function useSearchAdvertisngs() {
     sort,
     tail,
     type,
-    isFavoritesFilterEnabled,
-    favorites
   ]);
 
-  return useMemo(() => advertisingsData?.map((a: PoultryData) => ({
+  useEffect(() => {
+    setFilteredData(advertisingsData.filter(a => favorites.some(favorite => favorite.advertisingId === a.advertising.id)));
+  }, [filteredData, favorites, advertisingsData]);
+
+  return useMemo(() => (isFavoritesFilterEnabled ? filteredData : advertisingsData)?.map((a: PoultryData) => ({
     title: a.poultry.name,
     price: a.advertising.price,
     description: `${[
@@ -93,5 +96,5 @@ export default function useSearchAdvertisngs() {
     breederId: a.breeder.id,
     poultryId: a.poultry.id,
     favorited: favorites.some(f => f.advertisingId === a.advertising.id)
-  })), [advertisingsData, favorites]);
+  })), [advertisingsData, favorites, isFavoritesFilterEnabled, filteredData]);
 }
