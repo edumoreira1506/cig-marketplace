@@ -31,7 +31,12 @@ import {
   StyledFilters,
   StyledFilterModalContainer,
   StyledFilterModalItem,
-  StyledConfirmButton
+  StyledConfirmButton,
+  StyledPriceFilter,
+  StyledPriceDot,
+  StyledPrice,
+  StyledPriceFilterArea,
+  PriceFilterStyle
 } from './SearchContainer.styles';
 
 const sortListItems = [
@@ -130,6 +135,9 @@ const favoriteListItems = [
   }
 ];
 
+const MAX_VALUE_PRICE_FILTER = 10000000;
+const MIN_VALUE_PRICE_FILTER = 100;
+
 export default function SearchContainer() {
   const advertisings = useSearchAdvertisngs();
 
@@ -147,7 +155,7 @@ export default function SearchContainer() {
     typeOptions: [] as string[],
   });
   const [isFavoritesFilterActive, setIsFavoriteFilterActive] = useState(false);
-  const [pricesFilter, setPricesFilter] = useState({ min: 0, max: 500000000 });
+  const [pricesFilter, setPricesFilter] = useState({ min: MIN_VALUE_PRICE_FILTER, max: MAX_VALUE_PRICE_FILTER });
 
   const toggleFavorite = useToggleFavorite();
 
@@ -327,6 +335,31 @@ export default function SearchContainer() {
         title="Filtrar"
       >
         <StyledFilterModalContainer>
+          <StyledFilterModalItem>
+            <Expand title="Preços">
+              <PriceFilterStyle />
+
+              <StyledPriceFilterArea>
+                <StyledPrice>
+                  {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(pricesFilter.min / 100)}
+                </StyledPrice>
+                <StyledPrice>
+                  {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(pricesFilter.max / 100)}
+                </StyledPrice>
+                <StyledPriceFilter
+                  value={[pricesFilter.min, pricesFilter.max]}
+                  renderThumb={(props: any) => <StyledPriceDot {...props} />}
+                  pearling
+                  max={MAX_VALUE_PRICE_FILTER}
+                  min={MIN_VALUE_PRICE_FILTER}
+                  thumbClassName="slider-thumb"
+                  trackClassName="slider-track"
+                  onAfterChange={(value: any) => setPricesFilter({ min: value[0], max: value[1] })}
+                />
+              </StyledPriceFilterArea>
+            </Expand>
+          </StyledFilterModalItem>
+
           <StyledFilterModalItem>
             <Expand title="Crista">
               <SelectedList
