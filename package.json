@@ -17,7 +17,7 @@
     "@cig-platform/marketplace-bff-client": "^0.0.10",
     "@cig-platform/microfrontend-helper": "^0.0.2",
     "@cig-platform/types": "^0.0.28",
-    "@cig-platform/ui": "^0.1.128",
+    "@cig-platform/ui": "^0.1.129",
     "axios": "^0.21.4",
     "i18next": "^20.6.1",
     "jsonwebtoken": "^8.5.1",
