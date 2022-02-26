@@ -50,6 +50,15 @@ export default function HomeContainer() {
     [router]
   );
 
+  const handleViewBreeder = useCallback(
+    (identifier: string) => {
+      const [breederId] = identifier.split('/');
+
+      router.push(`/breeders/${breederId}`);
+    },
+    [router]
+  );
+
   useEffect(() => {
     (async () => {
       try {
@@ -100,6 +109,7 @@ export default function HomeContainer() {
             title="Matrizes"
             placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
             onFavorite={toggleFavorite}
+            onViewBreeder={handleViewBreeder}
           />
         </StyledCarouselContainer>
       )}
@@ -116,6 +126,7 @@ export default function HomeContainer() {
             }
             title="Reprodutores"
             placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
+            onViewBreeder={handleViewBreeder}
             onFavorite={toggleFavorite}
           />
         </StyledCarouselContainer>
@@ -133,6 +144,7 @@ export default function HomeContainer() {
             }
             title="Frangos"
             placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
+            onViewBreeder={handleViewBreeder}
             onFavorite={toggleFavorite}
           />
         </StyledCarouselContainer>
@@ -150,6 +162,7 @@ export default function HomeContainer() {
             }
             title="Frangas"
             placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
+            onViewBreeder={handleViewBreeder}
             onFavorite={toggleFavorite}
           />
         </StyledCarouselContainer>
