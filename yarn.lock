@@ -1225,10 +1225,10 @@
   resolved "https://registry.npmjs.org/@cig-platform/types/-/types-0.0.3.tgz"
   integrity sha512-E3De9U1R7LrMi0mzQZZb4QyDXHBxvW3ngiV3h+1D3PMTTgE93k/Wi20hmuGjMiiy8372Wnii31ymP+arm5187A==
 
-"@cig-platform/ui@^0.1.127":
-  version "0.1.127"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.127.tgz#cab4e4ebb53876d75230f071a508417586aff08f"
-  integrity sha512-kPeoPYdcjD1/pr7boo/XZUbNKcV4HUZdCzv/ZOsAvxefIuxaVY+/1HrVMpPg3ZJLKQozqUe4HnG5MIAB9Bdgrw==
+"@cig-platform/ui@^0.1.128":
+  version "0.1.128"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.128.tgz#f96ead219fd2b2a8c869938d47f0f310c3b2d69d"
+  integrity sha512-cHUXAqY6HWOsbofU7bSDDAq1Sonm5tgaipUiM28W4YljkUfw07YDZXu+4d5SXXP5AJD4fT7e7oCjLSLmRFZLFw==
   dependencies:
     "@cig-platform/enums" "^0.0.3"
     "@cig-platform/types" "^0.0.26"
