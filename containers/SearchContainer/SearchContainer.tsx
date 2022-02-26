@@ -147,6 +147,7 @@ export default function SearchContainer() {
     typeOptions: [] as string[],
   });
   const [isFavoritesFilterActive, setIsFavoriteFilterActive] = useState(false);
+  const [pricesFilter, setPricesFilter] = useState({ min: 0, max: 500000000 });
 
   const toggleFavorite = useToggleFavorite();
 
@@ -169,10 +170,11 @@ export default function SearchContainer() {
         sort: localFilters.sortOptions.length ? localFilters.sortOptions.join(',') : '',
         tail: localFilters.tailOptions.length ? localFilters.tailOptions.join(',') : '',
         type: localFilters.typeOptions.length ? localFilters.typeOptions.join(',') : '',
-        favorites: isFavoritesFilterActive.toString()
+        favorites: isFavoritesFilterActive.toString(),
+        prices: JSON.stringify(pricesFilter)
       }).toString()}`
     );
-  }, [push, closeFilterModal, localFilters, isFavoritesFilterActive]);
+  }, [push, closeFilterModal, localFilters, isFavoritesFilterActive, pricesFilter]);
 
   const handleChangeFilter = (filterName: string, filterValue: string, toggleFilter = true) => {
     setLocalFilters((prevLocalFilters) => {
@@ -258,7 +260,15 @@ export default function SearchContainer() {
     if (query?.favorites === 'true') {
       setIsFavoriteFilterActive(true);
     }
-  }, [query]);
+
+    if (query?.prices) {
+      const pricesObjest = JSON.parse(query.prices.toString());
+
+      if (pricesFilter.min !== pricesObjest.min && pricesObjest.max !== pricesFilter.max) {
+        setPricesFilter({ min: Number(pricesObjest.min), max: Number(pricesObjest.max) });
+      }
+    }
+  }, [query, pricesFilter]);
 
   return (
     <StyledContainer>
