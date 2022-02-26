@@ -342,7 +342,10 @@ export default function SearchContainer() {
       >
         <StyledFilterModalContainer>
           <StyledFilterModalItem>
-            <Expand title="Preços" expand={Boolean(query?.prices)}>
+            <Expand
+              title="Preços"
+              expand={query?.prices ? JSON.parse(query.prices.toString()).min !== MIN_VALUE_PRICE_FILTER || JSON.parse(query.prices.toString()).max !== MAX_VALUE_PRICE_FILTER : false}
+            >
               <PriceFilterStyle />
 
               <StyledPriceFilterArea>
