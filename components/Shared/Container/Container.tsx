@@ -98,6 +98,8 @@ export default function Container({ children }: ContainerProps) {
     push(`/search?${new URLSearchParams({ ...query, keyword }).toString()}`);
   }, [push, query]);
 
+  const handleNavigateToMainPage = useCallback(() => push('/'), [push]);
+
   useEffect(() => {
     if (error) {
       showError(error?.message ?? t('common.something-wrong'), t);
@@ -122,6 +124,7 @@ export default function Container({ children }: ContainerProps) {
       logoUrl={LOGO_URL}
       isLoading={isLoading}
       onSearch={handleSearch}
+      onClickTitle={handleNavigateToMainPage}
     >
       {children}
     </UiContainer>
