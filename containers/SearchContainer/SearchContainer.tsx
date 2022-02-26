@@ -316,6 +316,7 @@ export default function SearchContainer() {
               title={advertising.title}
               image={advertising.image}
               favorited={advertising.favorited}
+              breederImage={advertising.breederImage}
               onToggleFavorite={toggleFavorite ? () => toggleFavorite(`${advertising.breederId}/${advertising.poultryId}/${advertising.id}`) : undefined}
             />
           </StyledAdvertising>
