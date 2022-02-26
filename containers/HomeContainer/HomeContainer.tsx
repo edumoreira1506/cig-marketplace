@@ -92,8 +92,8 @@ export default function HomeContainer() {
       ].filter(Boolean).join(' - ')}`,
       identifier: `${d.breeder.id}/${d.poultry.id}/${d.advertising.id}`,
       price: d.advertising.price,
-      breederImage: d.breeder.profileImageUrl,
-      image: d.poultry.mainImage,
+      breederImage: d.breeder.profileImageUrl ? `https://cig-maketplace.s3.sa-east-1.amazonaws.com/breeders/profile/${d.breeder.profileImageUrl}` : undefined,
+      image: d.poultry.mainImage ? `https://cig-maketplace.s3.sa-east-1.amazonaws.com/poultries/images/${d.poultry.mainImage}` : undefined,
       favorited: favorites.some(
         (f) => f.advertisingId === d.advertising.id
       ),

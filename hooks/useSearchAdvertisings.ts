@@ -91,10 +91,11 @@ export default function useSearchAdvertisngs() {
       a.poultry.birthDate ? new Intl.DateTimeFormat('pt-BR').format(new Date(a.poultry.birthDate)) : '',
       a.measurementAndWeight.metadata.measurement ? `${a.measurementAndWeight.metadata.measurement} CM` : ''
     ].filter(Boolean).join(' - ')}`,
-    image: a.poultry.mainImage,
+    image: a.poultry.mainImage ? `https://cig-maketplace.s3.sa-east-1.amazonaws.com/poultries/images/${a.poultry.mainImage}` : undefined,
     id: a.advertising.id,
     breederId: a.breeder.id,
     poultryId: a.poultry.id,
-    favorited: favorites.some(f => f.advertisingId === a.advertising.id)
+    favorited: favorites.some(f => f.advertisingId === a.advertising.id),
+    breederImage: a.breeder.profileImageUrl ? `https://cig-maketplace.s3.sa-east-1.amazonaws.com/breeders/profile/${a.breeder.profileImageUrl}` : undefined
   })), [advertisingsData, favorites, isFavoritesFilterEnabled, filteredData]);
 }
