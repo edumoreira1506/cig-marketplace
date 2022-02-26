@@ -307,6 +307,11 @@ export default function SearchContainer() {
                   `/breeders/${advertising.breederId}/poultries/${advertising.poultryId}`
                 )
               }
+              onViewBreeder={() =>
+                push(
+                  `/breeders/${advertising.breederId}`
+                )
+              }
               price={advertising.price}
               title={advertising.title}
               image={advertising.image}
