@@ -82,7 +82,7 @@ export default function useSearchAdvertisngs() {
 
   useEffect(() => {
     setFilteredData(advertisingsData.filter(a => favorites.some(favorite => favorite.advertisingId === a.advertising.id)));
-  }, [filteredData, favorites, advertisingsData]);
+  }, [favorites, advertisingsData]);
 
   return useMemo(() => (isFavoritesFilterEnabled ? filteredData : advertisingsData)?.map((a: PoultryData) => ({
     title: a.poultry.name,
