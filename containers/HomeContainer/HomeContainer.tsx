@@ -30,6 +30,13 @@ type AdvertisingItem = {
 export default function HomeContainer() {
   const toggleFavorite = useToggleFavorite();
 
+  const [rawAdvertisings, setRawAdvertisings] = useState({
+    maleChickens: [] as PoultryData[],
+    femaleChickens: [] as PoultryData[],
+    matrixes: [] as PoultryData[],
+    reproductives: [] as PoultryData[],
+  });
+
   const dispatch = useAppDispatch();
 
   const { favorites } = useUser();
@@ -66,33 +73,37 @@ export default function HomeContainer() {
 
         const data = await MarketplaceBffService.getHome();
 
-        const dataToAdvertisingItem = (
-          d: PoultryData
-        ): AdvertisingCarouselItem => ({
-          description: `${[
-            d.poultry.birthDate ? new Intl.DateTimeFormat('pt-BR').format(new Date(d.poultry.birthDate)) : '',
-            d.measurementAndWeight.metadata.measurement ? `${d.measurementAndWeight.metadata.measurement} CM` : ''
-          ].filter(Boolean).join(' - ')}`,
-          identifier: `${d.breeder.id}/${d.poultry.id}/${d.advertising.id}`,
-          price: d.advertising.price,
-          breederImage: d.breeder.profileImageUrl,
-          image: d.poultry.mainImage,
-          favorited: favorites.some(
-            (f) => f.advertisingId === d.advertising.id
-          ),
-        });
-
-        setMatrixes(data.matrixes.map(dataToAdvertisingItem));
-        setReproductives(data.reproductives.map(dataToAdvertisingItem));
-        setFemaleChickens(data.femaleChickens.map(dataToAdvertisingItem));
-        setMaleChickens(data.maleChickens.map(dataToAdvertisingItem));
+        setRawAdvertisings(data);
       } catch (error) {
         dispatch(setError(error));
       } finally {
         dispatch(setIsLoading(false));
       }
     })();
-  }, [dispatch, favorites]);
+  }, [dispatch]);
+
+  useEffect(() => {
+    const dataToAdvertisingItem = (
+      d: PoultryData
+    ): AdvertisingCarouselItem => ({
+      description: `${[
+        d.poultry.birthDate ? new Intl.DateTimeFormat('pt-BR').format(new Date(d.poultry.birthDate)) : '',
+        d.measurementAndWeight.metadata.measurement ? `${d.measurementAndWeight.metadata.measurement} CM` : ''
+      ].filter(Boolean).join(' - ')}`,
+      identifier: `${d.breeder.id}/${d.poultry.id}/${d.advertising.id}`,
+      price: d.advertising.price,
+      breederImage: d.breeder.profileImageUrl,
+      image: d.poultry.mainImage,
+      favorited: favorites.some(
+        (f) => f.advertisingId === d.advertising.id
+      ),
+    });
+
+    setMatrixes(rawAdvertisings.matrixes.map(dataToAdvertisingItem));
+    setReproductives(rawAdvertisings.reproductives.map(dataToAdvertisingItem));
+    setFemaleChickens(rawAdvertisings.femaleChickens.map(dataToAdvertisingItem));
+    setMaleChickens(rawAdvertisings.maleChickens.map(dataToAdvertisingItem));
+  }, [favorites, rawAdvertisings]);
 
   return (
     <StyledContainer>
