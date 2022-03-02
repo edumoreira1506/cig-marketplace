@@ -5,6 +5,7 @@ import { createLoginContextHookRenderer } from '../../utils/tests/loginContextRe
 import AuthBffService from '../../services/AuthBffService';
 
 import useLogin from '../useLogin';
+import { UserRegisterTypeEnum } from '@cig-platform/enums';
 
 describe('useLogin', () => {
   it('has the correct behavior when gets a valid response', async () => {
@@ -30,7 +31,7 @@ describe('useLogin', () => {
 
     expect(mockSetIsLoading).toHaveBeenCalledTimes(2);
     expect(mockSetError).not.toHaveBeenCalled();
-    expect(mockLogin).toHaveBeenCalledWith({ email: mockStore.email, password: mockStore.password });
+    expect(mockLogin).toHaveBeenCalledWith({ email: mockStore.email, password: mockStore.password, type: UserRegisterTypeEnum.Default });
     expect(onSuccess).toHaveBeenCalledWith(token);
   });
 
@@ -57,7 +58,7 @@ describe('useLogin', () => {
 
     expect(mockSetIsLoading).toHaveBeenCalledTimes(2);
     expect(mockSetError).toHaveBeenCalledWith(error);
-    expect(mockLogin).toHaveBeenCalledWith({ email: mockStore.email, password: mockStore.password });
+    expect(mockLogin).toHaveBeenCalledWith({ email: mockStore.email, password: mockStore.password, type: UserRegisterTypeEnum.Default });
     expect(onSuccess).not.toHaveBeenCalled();
   });
 });
