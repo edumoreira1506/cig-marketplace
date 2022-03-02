@@ -24,7 +24,7 @@ jest.mock('next/dynamic', () => () => {
   return DynamicComponent;
 });
 
-describe('RegisterContainer', () => {
+describe.skip('RegisterContainer', () => {
   it('renders correctly', () => {
     const render = createRegisterContextRenderer();
 
