@@ -4,6 +4,7 @@ import { DefaultState, ActionType } from '@cig-platform/context';
 import * as actions from './registerActions';
 
 export interface RegisterState extends DefaultState {
+  type: 'default' | 'facebook';
   user: {
     email: string;
     password: string;
@@ -11,6 +12,7 @@ export interface RegisterState extends DefaultState {
     name: string;
     register: string;
     birthDate: string;
+    externalId?: string;
   },
   breeder: {
     name: string;
@@ -27,6 +29,7 @@ export interface RegisterState extends DefaultState {
 }
 
 export const INITIAL_STATE: RegisterState = {
+  type: 'default',
   user: {
     email: '',
     password: '',
@@ -34,6 +37,7 @@ export const INITIAL_STATE: RegisterState = {
     name: '',
     register: '',
     birthDate: '',
+    externalId: undefined,
   },
   breeder: {
     name: '',
@@ -56,6 +60,8 @@ export default function registerReducer(
   action: RegisterActionTypes
 ): RegisterState {
   switch (action.type) {
+  case 'SET_REGISTER_TYPE':
+    return { ...state, type: action.payload.type };
   case 'SET_IS_LOADING':
     return { ...state, isLoading: action.payload.isLoading };
   case 'SET_USER_FIELD':
