@@ -4,7 +4,7 @@ import { DefaultState, ActionType } from '@cig-platform/context';
 import * as actions from './registerActions';
 
 export interface RegisterState extends DefaultState {
-  type: 'default' | 'facebook';
+  type: 'default' | 'facebook' | 'email';
   user: {
     email: string;
     password: string;
