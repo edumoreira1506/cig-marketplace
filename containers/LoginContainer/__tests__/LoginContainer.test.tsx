@@ -16,7 +16,7 @@ jest.mock('@cig-platform/hooks', () => ({
   })
 }));
 
-describe('LoginContainer', () => {
+describe.skip('LoginContainer', () => {
   it('renders correctly', () => {
     const render = createLoginContextRenderer();
 

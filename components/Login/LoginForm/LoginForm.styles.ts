@@ -23,3 +23,23 @@ export const StyledSubmitButton = styled.button`
     outline: none;
   }
 `;
+
+export const StyledSocialMediaButtons = styled.div`
+  display: flex;
+  margin-bottom: 10px;
+  justify-content: space-between;
+`;
+
+export const StyledFacebookButton = styled.button`
+  background-color: #3b5998;
+  cursor: pointer;
+  color: ${Colors.White};
+  border-radius: 100%;
+  border: none;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+`;

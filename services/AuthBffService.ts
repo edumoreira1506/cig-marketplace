@@ -26,8 +26,18 @@ export default class AuthBffService {
     );
   }
 
-  static login({ email, password }: { email: LoginState['email']; password: LoginState['password'] }) {
-    return authBffClient.authUser(email, password);
+  static login({
+    email,
+    password,
+    type = UserRegisterTypeEnum.Default,
+    externalId
+  }: {
+    email: LoginState['email'];
+    password: LoginState['password'];
+    type?: string;
+    externalId?: string;
+  }) {
+    return authBffClient.authUser(email, password, type, externalId);
   }
 
   static recoverPassword(email: string) {
