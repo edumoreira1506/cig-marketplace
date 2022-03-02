@@ -1,4 +1,8 @@
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import { AiFillFacebook } from 'react-icons/ai';
+
 import { preventDefaultHandler } from '@Utils/dom';
+import { FACEBOOK_APP_ID } from '@Constants/urls';
 
 import RegisterUserFormName from './RegisterUserFormName';
 import RegisterUserFormEmail from './RegisterUserFormEmail';
@@ -8,13 +12,15 @@ import RegisterUserFormRegister from './RegisterUserFormRegister';
 import RegisterUserFormBirthDate from './RegisterUserFormBirthDate';
 import RegisterUserFormSubmitButton from './RegisterUserFormSubmitButton';
 
+import { StyledFacebookButton } from './RegisterUserForm.styles';
 
 export interface RegisterUserFormProps {
   onSubmit: () => void;
+  onGetFacebookData: ({ name, email, userID }: { name: string; email: string; userID: string }) => void;
   title: string;
 }
 
-export default function RegisterUserForm({ onSubmit, title }: RegisterUserFormProps) {
+export default function RegisterUserForm({ onSubmit, title, onGetFacebookData }: RegisterUserFormProps) {
   return (
     <form onSubmit={preventDefaultHandler} title={title}>
       <RegisterUserFormName />
@@ -24,6 +30,21 @@ export default function RegisterUserForm({ onSubmit, title }: RegisterUserFormPr
       <RegisterUserFormRegister />
       <RegisterUserFormBirthDate />
       <RegisterUserFormSubmitButton onSubmit={onSubmit} />
+      <FacebookLogin
+        appId={FACEBOOK_APP_ID}
+        autoLoad={false}
+        fields="name,email"
+        callback={onGetFacebookData}
+        render={(props: any) => (
+          <StyledFacebookButton {...props} onClick={(e: React.FormEvent<HTMLFormElement>) => {
+            preventDefaultHandler(e),
+            props.onClick();
+          }}>
+              Continuar com facebook
+            <AiFillFacebook />
+          </StyledFacebookButton>
+        )}
+      />
     </form>
   );
 }

@@ -36,7 +36,11 @@ describe('RegisterBreederFormSubmitButton', () => {
 
     userEvent.click(screen.getByText(String(i18next.t('common.register'))));
 
-    expect(onSubmit).toHaveBeenCalledWith({ user: mockStore.user, breeder: mockStore.breeder });
+    expect(onSubmit).toHaveBeenCalledWith({
+      user: mockStore.user,
+      breeder: mockStore.breeder,
+      registerType: mockStore.type
+    });
   });
 
   it('does not call onSubmit', () => {

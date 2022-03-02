@@ -35,3 +35,7 @@ export const selectBreederAddressNumber = (state: RegisterState) => selectBreede
 export const selectBreederAddressZipcode = (state: RegisterState) => selectBreederAddress(state).zipcode;
 
 export const selectIsLoading = (state: RegisterState) => state.isLoading;
+
+export const selectUserExternalId = (state: RegisterState) => selectUser(state)?.externalId;
+
+export const selectRegisterType = (state: RegisterState) => state.type;

@@ -19,3 +19,13 @@ export const setBreederAddressField = (key: keyof RegisterState['breeder']['addr
   type: 'SET_BREEDER_ADDRESS_FIELD',
   payload: { key, value }
 } as const );
+
+export const setRegisterType = (type: RegisterState['type']) => ({
+  type: 'SET_REGISTER_TYPE',
+  payload: { type }
+} as const);
+
+export const setUserExternalId = (externalId: string) => ({
+  type: 'SET_USER_EXTERNAL_ID',
+  payload: { externalId }
+} as const);

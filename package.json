@@ -10,9 +10,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@cig-platform/auth-bff-client": "^0.1.7",
+    "@cig-platform/auth-bff-client": "^0.1.9",
     "@cig-platform/context": "^0.1.7",
-    "@cig-platform/enums": "^0.0.3",
+    "@cig-platform/enums": "^0.0.4",
     "@cig-platform/hooks": "^0.0.1",
     "@cig-platform/marketplace-bff-client": "^0.0.10",
     "@cig-platform/microfrontend-helper": "^0.0.2",
@@ -24,6 +24,7 @@
     "next": "11.0.1",
     "react": "^17.0.2",
     "react-dom": "17.0.2",
+    "react-facebook-login": "^4.1.1",
     "react-i18next": "^11.12.0",
     "react-icons": "^4.2.0",
     "react-slider": "^1.3.1",
@@ -39,6 +40,7 @@
     "@types/jest": "^26.0.24",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/react": "17.0.15",
+    "@types/react-facebook-login": "^4.1.4",
     "@types/react-slider": "^1.3.1",
     "@types/styled-components": "^5.1.14",
     "@typescript-eslint/eslint-plugin": "^4.28.5",

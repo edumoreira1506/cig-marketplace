@@ -8,9 +8,13 @@ import RegisterBreederForm from '@Components/Register/RegisterBreederForm/Regist
 import useSubmitRegister from '@Hooks/useSubmitRegister';
 import { success } from '@Utils/alert';
 import { Routes } from '@Constants/routes';
+import { useRegisterDispach } from '@Contexts/RegisterContext/RegisterContext';
+import { setRegisterType, setUserField } from '@Contexts/RegisterContext/registerActions';
 
 export default function RegisterContainer() {
   const [tab, setTab] = useState(0);
+
+  const dispatch = useRegisterDispach();
 
   const router = useRouter();
 
@@ -29,9 +33,25 @@ export default function RegisterContainer() {
 
   const handleSubmitRegister = useSubmitRegister({ onSuccess: handleSuccessForm });
 
+  const handleReceiveFacebookData = useCallback(({ name, email, userID }: {
+    name: string;
+    email: string;
+    userID: string;
+  }) => {
+    dispatch(setUserField('email', email));
+    dispatch(setUserField('name', name));
+    dispatch(setUserField('externalId', userID));
+    dispatch(setRegisterType('facebook'));
+    handleSubmitUserForm();
+  }, [dispatch]);
+
   return (
     <Tabs tab={tab} setTab={setTab}>
-      <RegisterUserForm title={t('common.user')} onSubmit={handleSubmitUserForm} />
+      <RegisterUserForm
+        title={t('common.user')}
+        onSubmit={handleSubmitUserForm}
+        onGetFacebookData={handleReceiveFacebookData}
+      />
       <RegisterBreederForm title={t('common.breeder')} onSubmit={handleSubmitRegister} />
     </Tabs>
   );

@@ -17,11 +17,19 @@ export default function useSubmitRegister({
 
   const dispatch = useRegisterDispach();
 
-  const handleSubmitRegister = useCallback(async ({ breeder, user }: { breeder: RegisterState['breeder']; user: RegisterState['user'] }) => {
+  const handleSubmitRegister = useCallback(async ({ breeder, user, registerType }: {
+    breeder: RegisterState['breeder'];
+    user: RegisterState['user'];
+    registerType: string;
+  }) => {
     dispatch(setIsLoading(true));
     appDispatch(setIsLoadingApp(true));
 
-    const authBffResponse = await AuthBffService.registerUser({ user, breeder });
+    const authBffResponse = await AuthBffService.registerUser({
+      user,
+      breeder,
+      type: registerType
+    });
 
     dispatch(setIsLoading(false));
     appDispatch(setIsLoadingApp(false));

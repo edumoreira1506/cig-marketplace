@@ -1143,14 +1143,15 @@
   resolved "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cig-platform/auth-bff-client@^0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@cig-platform/auth-bff-client/-/auth-bff-client-0.1.7.tgz#5a23aacf0ed1c01c508723d4fb267dc26a44ea70"
-  integrity sha512-gIkfssVxJv3lorY9Fcrw6qFxlAwbwPep7JFDU7ksvva9bvSH3r4VWb4Oju026q03U971RsYFJONEX2FpTEk3kw==
+"@cig-platform/auth-bff-client@^0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@cig-platform/auth-bff-client/-/auth-bff-client-0.1.9.tgz#7ac3a69ebffb0c47c0235496bc85d92c7198f734"
+  integrity sha512-+6B1lwYYZKUMyR3BozFSWSDKo1KXXcwmRy1VC2/Ra02fKjYpis69sSJSXHUmNn/F0CPHjYNRD5eo4Pyj4ejKbQ==
   dependencies:
     "@babel/plugin-proposal-decorators" "^7.15.8"
     "@cig-platform/decorators" "0.0.1"
-    "@cig-platform/types" "0.0.14"
+    "@cig-platform/enums" "0.0.4"
+    "@cig-platform/types" "0.0.30"
     axios "^0.21.4"
 
 "@cig-platform/context@^0.1.7":
@@ -1168,6 +1169,11 @@
   integrity sha512-gJXseewZipGW7ONTVH566/YwkGIGn5fHKZD8BNrxDKMZVuQjw+764hElgujXg3q0D4u2Mw4rmhup7Ft5sWfhqQ==
   dependencies:
     axios "^0.22.0"
+
+"@cig-platform/enums@0.0.4", "@cig-platform/enums@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@cig-platform/enums/-/enums-0.0.4.tgz#cc718733f9173809cddd177e70b4a820c05adec1"
+  integrity sha512-daI6kgrHOCiJBGQcEaSHLR8o7tRgU80xnDRmHZamHdmj1nhsS/Ybe8lJn7te15pYABaIA8NDP8LOAwLzCcKclQ==
 
 "@cig-platform/enums@^0.0.3":
   version "0.0.3"
@@ -1199,10 +1205,10 @@
     react "^17.0.2"
     react-scripts "^5.0.0"
 
-"@cig-platform/types@0.0.14":
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.14.tgz#0ff5cf055a97da735b32ec4703f2f813306c063b"
-  integrity sha512-BLPzdGqZuDJWRjh/3jtHS1M6dMGJyKRZobnNhsSCbh/ZdnzYB1fKxGxsevXMe4ikQGlhSd60+T1zPsKHMJT+CQ==
+"@cig-platform/types@0.0.30":
+  version "0.0.30"
+  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.30.tgz#5d8010e2e29dc2da51a7d45e2633fff563bb8130"
+  integrity sha512-f9MJqL8zcWlhEeJOtbjl83vGX+UIts9GxfDUu2thRrmGcnX2bE2Wup1pPW73CQ9QlVPNwjtwrLY3dQg2rPeS3g==
   dependencies:
     express "^4.17.1"
 
@@ -2447,6 +2453,13 @@
   version "17.0.9"
   resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-17.0.9.tgz"
   integrity sha512-wIvGxLfgpVDSAMH5utdL9Ngm5Owu0VsGmldro3ORLXV8CShrL8awVj06NuEXFQ5xyaYfdca7Sgbk/50Ri1GdPg==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-facebook-login@^4.1.4":
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/@types/react-facebook-login/-/react-facebook-login-4.1.4.tgz#64b9e7ef638ee3048a60c39acc8111c04aa9edf9"
+  integrity sha512-TX6y5shj0wCx8Whho05MqjAcb8lg1R33Jdy4raCl5b/t2nO9WC8/VLF+7u9cXzRd4ohN7Iz1RwuT+90LUROhyg==
   dependencies:
     "@types/react" "*"
 
@@ -12385,6 +12398,11 @@ react-error-overlay@^6.0.10, react-error-overlay@^6.0.9:
   version "6.0.10"
   resolved "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.10.tgz"
   integrity sha512-mKR90fX7Pm5seCOfz8q9F+66VCc1PGsWSBxKbITjfKVQHMNF2zudxHnMdJiB1fRCb+XsbQV9sO9DCkgsMQgBIA==
+
+react-facebook-login@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/react-facebook-login/-/react-facebook-login-4.1.1.tgz#005121236a6ac0dee02099976fb1a3265f9d633e"
+  integrity sha512-COnHEHlYGTKipz4963safFAK9PaNTcCiXfPXMS/yxo8El+/AJL5ye8kMJf23lKSSGGPgqFQuInskIHVqGqTvSw==
 
 react-i18next@^11.12.0:
   version "11.12.0"

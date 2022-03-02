@@ -17,7 +17,11 @@ import RegisterBreederFormCode from './RegisterBreederFormCode';
 import { StyledForm } from './RegisterBreederForm.styles';
 
 export interface RegisterBreederFormProps {
-  onSubmit: ({ user, breeder }: { user: RegisterState['user']; breeder: RegisterState['breeder'] }) => void;
+  onSubmit: ({ user, breeder, registerType }: {
+    user: RegisterState['user'];
+    breeder: RegisterState['breeder'];
+    registerType: string;
+   }) => void;
   title: string;
 }
 
