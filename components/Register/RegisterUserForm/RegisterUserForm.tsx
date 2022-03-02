@@ -64,7 +64,6 @@ export default function RegisterUserForm({
       />
       <GoogleLogin
         clientId={GOOGLE_CLIENT_ID}
-        buttonText="Login"
         onSuccess={onGetGoogleData}
         render={(props: any) => (
           <StyledGoogleButton
