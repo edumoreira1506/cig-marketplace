@@ -50,6 +50,7 @@ export default function RegisterUserForm({
         autoLoad={false}
         fields="name,email"
         callback={onGetFacebookData}
+        redirectUri={window.location.href}
         render={(props: any) => (
           <StyledFacebookButton
             {...props}
