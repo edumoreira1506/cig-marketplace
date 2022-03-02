@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import GoogleLogin, { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 
 import LoginField from '@Components/Login/LoginField/LoginField';
 import { useLoginDispatch, useLoginSelector } from '@Contexts/LoginContext/LoginContext';
@@ -13,10 +14,11 @@ import {
   StyledForm,
   StyledSubmitButton,
   StyledSocialMediaButtons,
-  StyledFacebookButton
+  StyledFacebookButton,
+  StyledGoogleButton
 } from './LoginForm.styles';
-import { AiFillFacebook } from 'react-icons/ai';
-import { FACEBOOK_APP_ID } from '@Constants/urls';
+import { AiFillFacebook, AiOutlineGoogle } from 'react-icons/ai';
+import { FACEBOOK_APP_ID, GOOGLE_CLIENT_ID } from '@Constants/urls';
 import { preventDefaultHandler } from '@Utils/dom';
 import { UserRegisterTypeEnum } from '@cig-platform/enums';
 
@@ -54,6 +56,12 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
     onSubmit(email, '', UserRegisterTypeEnum.Facebook, userID);
   }, [onSubmit]);
 
+  const handleGoogleLogin = useCallback((response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
+    if ((response as GoogleLoginResponse).profileObj) {
+      onSubmit((response as GoogleLoginResponse).profileObj.email, '', UserRegisterTypeEnum.Facebook, (response as GoogleLoginResponse).profileObj.googleId);
+    }
+  }, [dispatch, onSubmit]);
+
   return (
     <StyledForm onSubmit={handleSubmit}>
       {isLoading && <LoginLoading />}
@@ -72,6 +80,20 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
             }}>
               <AiFillFacebook />
             </StyledFacebookButton>
+          )}
+        />
+        <GoogleLogin
+          clientId={GOOGLE_CLIENT_ID}
+          onSuccess={handleGoogleLogin}
+          render={(props: any) => (
+            <StyledGoogleButton
+              {...props}
+              onClick={(e: React.FormEvent<HTMLFormElement>) => {
+                preventDefaultHandler(e), props.onClick();
+              }}
+            >
+              <AiOutlineGoogle />
+            </StyledGoogleButton>
           )}
         />
       </StyledSocialMediaButtons>
