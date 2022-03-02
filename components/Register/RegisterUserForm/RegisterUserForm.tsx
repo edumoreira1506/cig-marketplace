@@ -1,5 +1,5 @@
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import { AiFillFacebook } from 'react-icons/ai';
+import { AiFillFacebook, AiOutlineGoogle } from 'react-icons/ai';
 import GoogleLogin, { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 
 import { preventDefaultHandler } from '@Utils/dom';
@@ -13,7 +13,7 @@ import RegisterUserFormRegister from './RegisterUserFormRegister';
 import RegisterUserFormBirthDate from './RegisterUserFormBirthDate';
 import RegisterUserFormSubmitButton from './RegisterUserFormSubmitButton';
 
-import { StyledFacebookButton } from './RegisterUserForm.styles';
+import { StyledFacebookButton, StyledGoogleButton } from './RegisterUserForm.styles';
 
 export interface RegisterUserFormProps {
   onSubmit: () => void;
@@ -66,6 +66,17 @@ export default function RegisterUserForm({
         clientId={GOOGLE_CLIENT_ID}
         buttonText="Login"
         onSuccess={onGetGoogleData}
+        render={(props: any) => (
+          <StyledGoogleButton
+            {...props}
+            onClick={(e: React.FormEvent<HTMLFormElement>) => {
+              preventDefaultHandler(e), props.onClick();
+            }}
+          >
+            Continuar com gmail
+            <AiOutlineGoogle />
+          </StyledGoogleButton>
+        )}
       />
     </form>
   );
