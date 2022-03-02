@@ -67,6 +67,9 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
       {isLoading && <LoginLoading />}
       <LoginField onChange={handleChangeEmail} type="email" value={email} label={t('user.fields.email')}  />
       <LoginField onChange={handleChangePassword} type="password" value={password} label={t('user.fields.password')}  />
+      <StyledSubmitButton type="submit" onClick={handleSubmit}>
+        {t('common.enter')}
+      </StyledSubmitButton>
       <StyledSocialMediaButtons>
         <FacebookLogin
           appId={FACEBOOK_APP_ID}
@@ -77,7 +80,7 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
             <StyledFacebookButton {...props} onClick={(e: React.FormEvent<HTMLFormElement>) => {
               preventDefaultHandler(e),
               props.onClick();
-            }}>
+            }} type="button">
               <AiFillFacebook />
             </StyledFacebookButton>
           )}
@@ -91,15 +94,13 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
               onClick={(e: React.FormEvent<HTMLFormElement>) => {
                 preventDefaultHandler(e), props.onClick();
               }}
+              type="button"
             >
               <AiOutlineGoogle />
             </StyledGoogleButton>
           )}
         />
       </StyledSocialMediaButtons>
-      <StyledSubmitButton type="submit" onClick={handleSubmit}>
-        {t('common.enter')}
-      </StyledSubmitButton>
     </StyledForm>
   );
 }

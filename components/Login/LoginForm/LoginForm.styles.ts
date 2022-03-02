@@ -26,7 +26,7 @@ export const StyledSubmitButton = styled.button`
 
 export const StyledSocialMediaButtons = styled.div`
   display: flex;
-  margin-bottom: 10px;
+  margin-top: 10px;
   justify-content: space-between;
   width: 70px;
 `;
