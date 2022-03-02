@@ -1,4 +1,5 @@
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import { AiFillFacebook } from 'react-icons/ai';
 
 import { preventDefaultHandler } from '@Utils/dom';
 import { FACEBOOK_APP_ID } from '@Constants/urls';
@@ -39,7 +40,8 @@ export default function RegisterUserForm({ onSubmit, title, onGetFacebookData }:
             preventDefaultHandler(e),
             props.onClick();
           }}>
-              Cadastro com facebook
+              Continuar com facebook
+            <AiFillFacebook />
           </StyledFacebookButton>
         )}
       />
