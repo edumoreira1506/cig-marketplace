@@ -1,11 +1,13 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useCallback } from 'react';
 import { IAdvertising, IBreeder, IPoultry, IPoultryRegister } from '@cig-platform/types';
 import { useRouter } from 'next/router';
+import { useDebouncedEffect } from '@cig-platform/hooks';
 
-import { useAppDispatch } from '@Contexts/AppContext/AppContext';
+import { useAppDispatch, useAppSelector } from '@Contexts/AppContext/AppContext';
 import { setError, setIsLoading } from '@Contexts/AppContext/appActions';
 import MarketplaceBffService from '@Services/MarketplaceBffService';
 import useUser from '@Hooks/useUser';
+import { selectIsLoading } from '@Contexts/AppContext/appSelectors';
 
 export interface PoultryData {
   poultry: IPoultry & {
@@ -25,6 +27,10 @@ export interface PoultryData {
 export default function useSearchAdvertisngs() {
   const [advertisingsData, setAdvertisingsData] = useState<PoultryData[]>([]);
   const [filteredData, setFilteredData] = useState<PoultryData[]>([]);
+  const [page, setPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+
+  const isLoading = useAppSelector(selectIsLoading);
 
   const dispatch = useAppDispatch();
 
@@ -43,12 +49,40 @@ export default function useSearchAdvertisngs() {
   const prices = useMemo(() => query?.prices ? JSON.parse(query.prices.toString()) : undefined, [query?.prices]);
   const isFavoritesFilterEnabled = useMemo(() => query?.favorites?.toString() === 'true', [query?.favorites]);
 
+  const handleClear = useCallback(() => {
+    setAdvertisingsData([]);
+    setPage(0);
+  }, []);
+
+  const handlePaginate = useCallback(() => {
+    const documentHeight = document.body.scrollHeight;
+    const currentScroll = window.scrollY + window.innerHeight;
+    const modifier = 200; 
+    
+    if (currentScroll + modifier > documentHeight && page < totalPages - 1 && !isLoading) {
+      setPage(page + 1);
+      dispatch(setIsLoading(true));
+    }
+  }, [page, totalPages, isLoading]);
+
   useEffect(() => {
+    if (sort || crest || dewlap || gender || genderCategory || tail || type || keyword || prices) {
+      handleClear();
+    }
+  }, [sort, handleClear, crest, dewlap, gender, genderCategory, tail, type, keyword, prices]);
+
+  useEffect(() => {
+    document.addEventListener('scroll', handlePaginate);
+
+    return () => document.removeEventListener('scroll', handlePaginate);
+  }, [handlePaginate]);
+
+  useDebouncedEffect(() => {
     (async () => {
       try {
         dispatch(setIsLoading(true));
 
-        const advertisings = await MarketplaceBffService.getSearch({
+        const { advertisings, pages } = await MarketplaceBffService.getSearch({
           crest,
           dewlap,
           gender,
@@ -58,17 +92,19 @@ export default function useSearchAdvertisngs() {
           sort,
           tail,
           type,
-          favorites: []
+          favorites: [],
+          page
         });
 
-        setAdvertisingsData(advertisings);
+        setAdvertisingsData(prevAdvertisings => [...prevAdvertisings, ...advertisings]);
+        setTotalPages(pages);
       } catch (error) {
         dispatch(setError(error));
       } finally {
         dispatch(setIsLoading(false));
       }
     })();
-  }, [
+  }, 1000, [
     crest,
     dewlap,
     gender,
@@ -78,6 +114,7 @@ export default function useSearchAdvertisngs() {
     sort,
     tail,
     type,
+    page
   ]);
 
   useEffect(() => {

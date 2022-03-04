@@ -1180,18 +1180,18 @@
   resolved "https://registry.yarnpkg.com/@cig-platform/enums/-/enums-0.0.3.tgz#dcec8ec55ca30dff410041f27650326ce5ee7706"
   integrity sha512-0wKd4Ub3ZTujimPEhc+68y1yu/NZwhpkZJRfTYrk24AmVH5vWWold+zQdK6pTWMQ/qQuCvtpBM1JdEEjZtG68w==
 
-"@cig-platform/hooks@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.npmjs.org/@cig-platform/hooks/-/hooks-0.0.1.tgz"
-  integrity sha512-zBjRGNXbjPnI2p0iyRMbj6VwUjIgpqfJHnMv+VXQfGwcqzxM9CJNW6WBdqwcTFx4IxYJ2jgUtMuP3T9JOLiUoA==
+"@cig-platform/hooks@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@cig-platform/hooks/-/hooks-0.0.2.tgz#464634522df0a7c415647463992d9d9d1402bc99"
+  integrity sha512-Fw1LRym4QbLMjjMWoZ5oKjKNDi9n0XDfwMTFCzc56omOPYvNjE+X9SYg+nqdZdi16FgKtQFvDmEZOxq6sHelCA==
   dependencies:
     react "^17.0.2"
     react-dom "^17.0.2"
 
-"@cig-platform/marketplace-bff-client@^0.0.10":
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/@cig-platform/marketplace-bff-client/-/marketplace-bff-client-0.0.10.tgz#35b52eebcc5d237d993f7ec789efbd4a5e9f99c8"
-  integrity sha512-4IN4deJ1DC6umGSzSm3du7luBXBFdVYUvTjO11uGpxE0oGsowvC4OkOM3jTvWUEASaxSGZjq9nt3AoRaolBRjQ==
+"@cig-platform/marketplace-bff-client@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@cig-platform/marketplace-bff-client/-/marketplace-bff-client-0.0.12.tgz#49198bee136df8ad60dcff9780db7a7711e0e7ce"
+  integrity sha512-iFXHGrspqkCmyhWcBnAys6t7HUPfoyW0g9tPTkfJw6pQYtr+culyaJaKWSm6+4SUpUIrBHv2rKQy0oowXlnYhw==
   dependencies:
     "@cig-platform/decorators" "^0.0.1"
     "@cig-platform/types" "^0.0.28"
