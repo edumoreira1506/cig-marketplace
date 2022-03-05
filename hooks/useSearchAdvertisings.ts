@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
 import { IAdvertising, IBreeder, IPoultry, IPoultryRegister } from '@cig-platform/types';
 import { useRouter } from 'next/router';
-import { useDebouncedEffect } from '@cig-platform/hooks';
+import { useDebouncedEffect, useInfiniteScroll } from '@cig-platform/hooks';
 
 import { useAppDispatch, useAppSelector } from '@Contexts/AppContext/AppContext';
 import { setError, setIsLoading } from '@Contexts/AppContext/appActions';
@@ -55,15 +55,13 @@ export default function useSearchAdvertisngs() {
   }, []);
 
   const handlePaginate = useCallback(() => {
-    const documentHeight = document.body.scrollHeight;
-    const currentScroll = window.scrollY + window.innerHeight;
-    const modifier = 200; 
-    
-    if (currentScroll + modifier > documentHeight && page < totalPages - 1 && !isLoading) {
+    if (page < totalPages - 1 && !isLoading) {
       setPage(page + 1);
       dispatch(setIsLoading(true));
     }
   }, [page, totalPages, isLoading]);
+
+  useInfiniteScroll(handlePaginate);
 
   useEffect(() => {
     if (sort || crest || dewlap || gender || genderCategory || tail || type || keyword || prices) {
