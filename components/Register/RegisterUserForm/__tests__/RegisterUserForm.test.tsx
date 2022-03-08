@@ -10,7 +10,8 @@ import RegisterUserForm from '../RegisterUserForm';
 const DEFAULT_PROPS = {
   onSubmit: jest.fn(),
   title: 'title',
-  onGetFacebookData: jest.fn()
+  onGetFacebookData: jest.fn(),
+  onGetGoogleData: jest.fn()
 };
 
 jest.mock('next/dynamic', () => () => {
@@ -30,8 +31,10 @@ jest.mock('next/dynamic', () => () => {
   return DynamicComponent;
 });
 
+jest.mock('react-facebook-login/dist/facebook-login-render-props');
+
 describe('RegisterUserForm', () => {
-  it.skip('renders correctly', () => {
+  it('renders correctly', () => {
     const mockStore = {
       ...INITIAL_STATE,
       user: {
@@ -54,7 +57,7 @@ describe('RegisterUserForm', () => {
     expect(screen.getByDisplayValue(mockStore.user.birthDate)).toBeInTheDocument();
   });
 
-  it.skip('calls onSubmit', () => {
+  it('calls onSubmit', () => {
     const mockStore = {
       ...INITIAL_STATE,
       user: {
