@@ -1154,6 +1154,14 @@
   resolved "https://registry.yarnpkg.com/@cig-platform/enums/-/enums-0.0.5.tgz#620f243afd4401efdb90e1f987aa011a9c3377fa"
   integrity sha512-o2fKGYnPbZboBxsj/oa8jt+ry1mjoWFT9tMMdVUBavd6SgDu3S81bXU/yQ1ytHCA89rK8smpttPNDCMrTOMNUg==
 
+"@cig-platform/factories@^0.0.20":
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/@cig-platform/factories/-/factories-0.0.20.tgz#27502371622103b0858da07b8cb5a2197038638e"
+  integrity sha512-oRaDDS4QQsjKsD2kF/MmIU4dpNUjh/FSegahvQaUvc9G9tAjPLigM1nQYtxQeCk7VZoBBTtISt4szP3j3Hh9ZA==
+  dependencies:
+    "@cig-platform/types" "^0.0.33"
+    faker "^5.5.3"
+
 "@cig-platform/hooks@^0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@cig-platform/hooks/-/hooks-0.0.3.tgz#78374db9d2b7bf8b08421cac7ef2cfd9c40d288e"
@@ -6534,6 +6542,11 @@ extglob@^2.0.4:
     regex-not "^1.0.0"
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
+
+faker@^5.5.3:
+  version "5.5.3"
+  resolved "https://registry.yarnpkg.com/faker/-/faker-5.5.3.tgz#c57974ee484431b25205c2c8dc09fda861e51e0e"
+  integrity sha512-wLTv2a28wjUyWkbnX7u/ABZBkUkIF2fCd73V6P2oFqEGEktDfzWx4UxrSqtPRw0xPRAcjeAOIiJWqZm3pP4u3g==
 
 fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   version "3.1.3"

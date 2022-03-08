@@ -52,6 +52,7 @@ describe('RegisterBreederForm', () => {
 
     expect(screen.getByText(String(i18next.t('breeder.fields.address')))).toBeInTheDocument();
     expect(screen.getByDisplayValue(mockStore.breeder.name)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(mockStore.breeder.code)).toBeInTheDocument();
     expect(screen.getByDisplayValue(mockStore.breeder.description)).toBeInTheDocument();
     expect(screen.getByDisplayValue(mockStore.breeder.address.city)).toBeInTheDocument();
     expect(screen.getByDisplayValue(mockStore.breeder.address.province)).toBeInTheDocument();
