@@ -2,11 +2,11 @@ import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import dynamic from 'next/dynamic';
 import { FormField } from '@cig-platform/ui';
+import { useDebouncedEffect } from '@cig-platform/hooks';
 
 import { useRegisterDispach, useRegisterSelector } from '@Contexts/RegisterContext/RegisterContext';
 import { selectBreederAddressZipcode } from '@Contexts/RegisterContext/registerSelectors';
 import { setBreederAddressField } from '@Contexts/RegisterContext/registerActions';
-import useDebouncedEffect from '@Hooks/useDebouncedEffect';
 import CepService from '@Services/CepService';
 
 const Input: any = dynamic(() => import('@cig-platform/ui').then(mod => mod.Input) as any, { ssr: false });
