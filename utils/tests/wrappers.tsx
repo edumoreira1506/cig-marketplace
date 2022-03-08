@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { createRouter } from 'next/router';
-import { RouterContext } from 'next/dist/next-server/lib/router-context';
+import { RouterContext } from 'next/dist/shared/lib/router-context';
 
 export const createRouterWrapper = (as: string, pathname: string, query: Record<string, string> = {})  => {
   const router = createRouter(pathname, query, as, {
