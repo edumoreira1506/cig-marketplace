@@ -39,7 +39,7 @@ import {
   PriceFilterStyle
 } from './SearchContainer.styles';
 
-const sortListItems = [
+export const sortListItems = [
   {
     label: 'Menor preço',
     value: 'MIN_TO_MAX',
@@ -50,7 +50,7 @@ const sortListItems = [
   },
 ];
 
-const crestListItems = [
+export const crestListItems = [
   {
     value: PoultryCrestEnum.Ball,
     label: 'Bola',
@@ -61,7 +61,7 @@ const crestListItems = [
   },
 ];
 
-const dewlapListItems = [
+export const dewlapListItems = [
   {
     value: PoultryDewlapEnum.DOUBLE,
     label: 'Dupla',
@@ -76,7 +76,7 @@ const dewlapListItems = [
   },
 ];
 
-const genderListItems = [
+export const genderListItems = [
   {
     value: PoultryGenderEnum.Female,
     label: 'Fêmea',
@@ -87,7 +87,7 @@ const genderListItems = [
   },
 ];
 
-const genderCategoryListItems = [
+export const genderCategoryListItems = [
   {
     value: PoultryGenderCategoryEnum.FemaleChicken,
     label: 'Franga',
@@ -106,7 +106,7 @@ const genderCategoryListItems = [
   },
 ];
 
-const tailListItems = [
+export const tailListItems = [
   {
     value: PoultryTailEnum.HIGH,
     label: 'Alto',
@@ -121,22 +121,22 @@ const tailListItems = [
   },
 ];
 
-const typeListItems = [
+export const typeListItems = [
   {
     value: PoultryTypeEnum.IndioGigante,
     label: 'Índio gigante',
   },
 ];
 
-const favoriteListItems = [
+export const favoriteListItems = [
   {
     value: 'true',
     label: 'Ativo'
   }
 ];
 
-const MAX_VALUE_PRICE_FILTER = 10000000;
-const MIN_VALUE_PRICE_FILTER = 100;
+export const MAX_VALUE_PRICE_FILTER = 10000000;
+export const MIN_VALUE_PRICE_FILTER = 100;
 
 export default function SearchContainer() {
   const advertisings = useSearchAdvertisngs();
@@ -326,7 +326,7 @@ export default function SearchContainer() {
       <ConfigModal
         isOpen={isOpenSortModal}
         onClose={closeSortModal}
-        title="Ordenar"
+        title="Ordenação"
       >
         <SelectedList
           onToggle={handleSetSortFilter}
@@ -338,7 +338,7 @@ export default function SearchContainer() {
       <ConfigModal
         isOpen={isOpenFilterModal}
         onClose={closeFilterModal}
-        title="Filtrar"
+        title="Filtros"
       >
         <StyledFilterModalContainer>
           <StyledFilterModalItem>

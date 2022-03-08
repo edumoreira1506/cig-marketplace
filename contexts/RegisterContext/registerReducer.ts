@@ -48,7 +48,7 @@ export const INITIAL_STATE: RegisterState = {
       province: '',
       street: '',
       zipcode: '',
-      number: undefined
+      number: undefined,
     }
   }
 };

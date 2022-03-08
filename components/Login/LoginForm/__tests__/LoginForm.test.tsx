@@ -12,7 +12,9 @@ const DEFAULT_PROPS = {
   onSubmit: jest.fn()
 };
 
-describe.skip('LoginForm', () => {
+jest.mock('react-facebook-login/dist/facebook-login-render-props');
+
+describe('LoginForm', () => {
   it('renders correctly', () => {
     const mockStore = {
       ...INITIAL_STATE,

@@ -16,7 +16,9 @@ jest.mock('@cig-platform/hooks', () => ({
   })
 }));
 
-describe.skip('LoginContainer', () => {
+jest.mock('react-facebook-login/dist/facebook-login-render-props');
+
+describe('LoginContainer', () => {
   it('renders correctly', () => {
     const render = createLoginContextRenderer();
 

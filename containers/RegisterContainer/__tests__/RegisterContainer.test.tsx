@@ -24,7 +24,9 @@ jest.mock('next/dynamic', () => () => {
   return DynamicComponent;
 });
 
-describe.skip('RegisterContainer', () => {
+jest.mock('react-facebook-login/dist/facebook-login-render-props');
+
+describe('RegisterContainer', () => {
   it('renders correctly', () => {
     const render = createRegisterContextRenderer();
 
@@ -59,7 +61,6 @@ describe.skip('RegisterContainer', () => {
     expect(screen.getByText(String(i18next.t('breeder.fields.description')))).toBeInTheDocument();
     expect(screen.getByText(String(i18next.t('breeder.fields.address.city')))).toBeInTheDocument();
     expect(screen.getByText(String(i18next.t('breeder.fields.address.province')))).toBeInTheDocument();
-    expect(screen.getByText(String(i18next.t('breeder.fields.address.state')))).toBeInTheDocument();
     expect(screen.getByText(String(i18next.t('breeder.fields.address.zipcode')))).toBeInTheDocument();
     expect(screen.getByText(String(i18next.t('breeder.fields.address.number')))).toBeInTheDocument();
   });
@@ -75,7 +76,6 @@ describe.skip('RegisterContainer', () => {
     expect(screen.queryByText(String(i18next.t('breeder.fields.description')))).not.toBeInTheDocument();
     expect(screen.queryByText(String(i18next.t('breeder.fields.address.city')))).not.toBeInTheDocument();
     expect(screen.queryByText(String(i18next.t('breeder.fields.address.province')))).not.toBeInTheDocument();
-    expect(screen.queryByText(String(i18next.t('breeder.fields.address.state')))).not.toBeInTheDocument();
     expect(screen.queryByText(String(i18next.t('breeder.fields.address.zipcode')))).not.toBeInTheDocument();
     expect(screen.queryByText(String(i18next.t('breeder.fields.address.number')))).not.toBeInTheDocument();
   });
