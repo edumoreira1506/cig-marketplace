@@ -44,6 +44,7 @@ export default function LoginField({ label, value, onChange, type }: LoginFieldP
           required
           type={type}
           autoComplete={autoComplete}
+          name={type === 'password' ? 'password' : 'email'}
         />
       </StyledInputWrapper>
     </StyledContainer>
