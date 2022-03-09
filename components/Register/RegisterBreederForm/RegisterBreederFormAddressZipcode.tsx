@@ -51,6 +51,7 @@ export default function RegisterBreederFormAddressZipcode() {
         onChange={handleChangeAdressZipcode}
         placeholder="00000-000"
         isLoading={isLoading}
+        name="breeder-address-zipcode"
         mask="#####-###"
       />
     </FormField>

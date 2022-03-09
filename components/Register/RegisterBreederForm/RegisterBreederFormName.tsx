@@ -32,6 +32,7 @@ export default function RegisterBreederFormName() {
         onChange={handleChangeName}
         required
         requiredMessage={t('common.required-field', { field: t('breeder.fields.name') })}
+        name="breeder-name"
         placeholder="Criatório Silva"
       />
     </FormField>

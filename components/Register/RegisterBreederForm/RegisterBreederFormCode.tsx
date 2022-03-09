@@ -28,6 +28,7 @@ export default function RegisterBreederFormCode() {
         requiredMessage={t('common.required-field', { field: t('breeder.fields.code') })}
         placeholder="ABCD"
         min={4}
+        name="breeder-code"
         max={4}
       />
     </FormField>

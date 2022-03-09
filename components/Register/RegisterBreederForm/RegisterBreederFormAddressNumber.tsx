@@ -24,6 +24,7 @@ export default function RegisterBreederFormAddressNumber() {
         type="number"
         value={number ?? ''}
         onChange={handleChangeAdressNumber}
+        name="breeder-address-number"
         placeholder="12345"
       />
     </FormField>

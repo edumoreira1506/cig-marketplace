@@ -24,6 +24,7 @@ export default function RegisterBreederFormAddressStreet() {
         type="text"
         value={street}
         onChange={handleChangeAdressStreet}
+        name="breeder-address-street"
         placeholder="Rua João de Camargo"
       />
     </FormField>
