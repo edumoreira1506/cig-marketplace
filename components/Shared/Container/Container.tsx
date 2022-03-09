@@ -4,7 +4,7 @@ import { Container as UiContainer } from '@cig-platform/ui';
 import { useRouter } from 'next/router';
 import { BiLogIn } from 'react-icons/bi';
 import { AiFillHome, AiOutlinePoweroff } from 'react-icons/ai';
-import { GiChicken, GiReceiveMoney } from 'react-icons/gi';
+import { GiReceiveMoney } from 'react-icons/gi';
 
 import { useAppSelector } from '@Contexts/AppContext/AppContext';
 import { selectError, selectIsLoading } from '@Contexts/AppContext/appSelectors';
