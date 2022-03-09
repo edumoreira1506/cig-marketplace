@@ -207,6 +207,10 @@ export default function SearchContainer() {
     (sort: string) => {
       closeSortModal();
       push(`/search?${new URLSearchParams({ ...query, sort }).toString()}`);
+      setLocalFilters(prevLocalFilters => ({
+        ...prevLocalFilters,
+        sortOptions: [sort]
+      }));
     },
     [push, query, closeSortModal]
   );
