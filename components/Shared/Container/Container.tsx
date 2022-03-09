@@ -4,7 +4,7 @@ import { Container as UiContainer } from '@cig-platform/ui';
 import { useRouter } from 'next/router';
 import { BiLogIn } from 'react-icons/bi';
 import { AiFillHome, AiOutlinePoweroff } from 'react-icons/ai';
-import { GiChicken, GiReceiveMoney } from 'react-icons/gi';
+import { GiReceiveMoney } from 'react-icons/gi';
 
 import { useAppSelector } from '@Contexts/AppContext/AppContext';
 import { selectError, selectIsLoading } from '@Contexts/AppContext/appSelectors';
@@ -22,7 +22,7 @@ const unauthorizedItems = [
 
 export const authorizedItems = [
   {
-    title: 'Home',
+    title: 'Meu plantel',
     icon: <AiFillHome />,
     route: `${BACKOFFICE_URL}`
   },
@@ -30,11 +30,6 @@ export const authorizedItems = [
     title: 'Meu criatório',
     icon: <AiFillHome />,
     route: `${BACKOFFICE_URL}criatorio`
-  },
-  {
-    title: 'Minhas aves',
-    icon: <GiChicken />,
-    route:  `${BACKOFFICE_URL}meu-plantel`
   },
   {
     title: 'Vendas',
