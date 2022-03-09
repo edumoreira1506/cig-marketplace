@@ -38,6 +38,7 @@ import {
   StyledPriceFilterArea,
   PriceFilterStyle
 } from './SearchContainer.styles';
+import useAuth from '@Hooks/useAuth';
 
 export const sortListItems = [
   {
@@ -142,6 +143,8 @@ export default function SearchContainer() {
   const advertisings = useSearchAdvertisngs();
 
   const { push, query } = useRouter();
+
+  const { isAuthenticated } = useAuth();
 
   const [isOpenFilterModal, setIsOpenFilterModal] = useState(false);
   const [isOpenSortModal, setIsOpenSortModal] = useState(false);
@@ -431,15 +434,17 @@ export default function SearchContainer() {
             </Expand>
           </StyledFilterModalItem>
 
-          <StyledFilterModalItem>
-            <Expand title="Favoritos" expand={Boolean(query?.favorites === 'true')}>
-              <SelectedList
-                onToggle={() => setIsFavoriteFilterActive(prevIsFavoriteFilterActive => !prevIsFavoriteFilterActive)}
-                selecteds={[isFavoritesFilterActive.toString()]}
-                items={favoriteListItems}
-              />
-            </Expand>
-          </StyledFilterModalItem>
+          {isAuthenticated && (
+            <StyledFilterModalItem>
+              <Expand title="Favoritos" expand={Boolean(query?.favorites === 'true')}>
+                <SelectedList
+                  onToggle={() => setIsFavoriteFilterActive(prevIsFavoriteFilterActive => !prevIsFavoriteFilterActive)}
+                  selecteds={[isFavoritesFilterActive.toString()]}
+                  items={favoriteListItems}
+                />
+              </Expand>
+            </StyledFilterModalItem>
+          )}
         </StyledFilterModalContainer>
 
         <StyledConfirmButton>
