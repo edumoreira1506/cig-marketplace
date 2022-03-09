@@ -53,12 +53,14 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
     email: string;
     userID: string;
   }) => {
-    onSubmit(email, '', UserRegisterTypeEnum.Facebook, userID);
+    if (email && userID) {
+      onSubmit(email, '', UserRegisterTypeEnum.Facebook, userID);
+    }
   }, [onSubmit]);
 
   const handleGoogleLogin = useCallback((response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
     if ((response as GoogleLoginResponse).profileObj) {
-      onSubmit((response as GoogleLoginResponse).profileObj.email, '', UserRegisterTypeEnum.Facebook, (response as GoogleLoginResponse).profileObj.googleId);
+      onSubmit((response as GoogleLoginResponse).profileObj.email, '', UserRegisterTypeEnum.Gmail, (response as GoogleLoginResponse).profileObj.googleId);
     }
   }, [dispatch, onSubmit]);
 
