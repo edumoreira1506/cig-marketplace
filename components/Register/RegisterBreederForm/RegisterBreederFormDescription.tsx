@@ -23,6 +23,7 @@ export default function RegisterBreederFormDescription() {
         label={t('breeder.fields.description')}
         value={description}
         onChange={handleChangeDescription}
+        name="breeder-description"
         placeholder="Aves de alto nível"
       />
     </FormField>

@@ -25,6 +25,7 @@ export default function RegisterBreederFormAddressCity() {
         value={city}
         onChange={handleChangeAdressCity}
         placeholder="São Paulo"
+        name="breeder-address-city"
       />
     </FormField>
   );

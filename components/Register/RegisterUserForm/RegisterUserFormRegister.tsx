@@ -28,6 +28,7 @@ export default function RegisterUserFormRegister() {
         value={register}
         onChange={handleChangeRegister}
         placeholder="977.566.300-84"
+        name='user-register'
         mask="###.###.###-##"
       />
     </FormField>

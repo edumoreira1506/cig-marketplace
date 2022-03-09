@@ -33,6 +33,7 @@ export default function RegisterBreederFormAddressProvince() {
         showEmptyOption
         inputTestId="register-form-breeder-address-province"
         emptyOptionText={t('common.select-the-province')}
+        name="breeder-address-province"
       />
     </FormField>
   );
