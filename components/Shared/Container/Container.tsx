@@ -22,7 +22,7 @@ const unauthorizedItems = [
 
 export const authorizedItems = [
   {
-    title: 'Home',
+    title: 'Meu plantel',
     icon: <AiFillHome />,
     route: `${BACKOFFICE_URL}`
   },
@@ -30,11 +30,6 @@ export const authorizedItems = [
     title: 'Meu criatório',
     icon: <AiFillHome />,
     route: `${BACKOFFICE_URL}criatorio`
-  },
-  {
-    title: 'Minhas aves',
-    icon: <GiChicken />,
-    route:  `${BACKOFFICE_URL}meu-plantel`
   },
   {
     title: 'Vendas',
