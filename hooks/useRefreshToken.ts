@@ -22,11 +22,11 @@ export default function useRefreshToken(token: string) {
       const newToken = await AuthBffService.refreshToken(token);
 
       if (newToken?.ok) {
-        const decodedToken = jwt.decode(newToken.token) as IDecodedToken;
+        const decodedToken = jwt.decode((newToken as any).token) as IDecodedToken;
 
         if (decodedToken.favorites.length !== favorites.length) dispatch(setFavorites(decodedToken.favorites));
 
-        set(newToken.token);
+        set((newToken as any).token);
       }
     } catch (error) {
       dispatch(setError(error));
