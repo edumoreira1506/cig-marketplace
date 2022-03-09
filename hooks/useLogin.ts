@@ -41,7 +41,7 @@ export default function useLogin({
     if (!authBffResponse?.ok) {
       appDispatch(setError((authBffResponse as any)?.error));
     } else {
-      onSuccess(authBffResponse.token);
+      onSuccess((authBffResponse as any).token);
     }
   }, [onSuccess, appDispatch, dispatch]);
 

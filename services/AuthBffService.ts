@@ -9,7 +9,7 @@ import { UserRegisterTypeEnum } from '@cig-platform/enums';
 const authBffClient = new AuthBffClient(AUTH_BFF_URL);
 
 export default class AuthBffService {
-  static registerUser({
+  static async registerUser({
     user,
     breeder,
     type = UserRegisterTypeEnum.Default,
@@ -18,15 +18,24 @@ export default class AuthBffService {
     breeder: Partial<RegisterState['breeder']>;
     type?: string;
   }) {
-    return authBffClient.registerUser(
-      removeNullProperties(user) as any,
-      removeNullProperties(breeder) as any,
-      type,
-      user?.externalId
-    );
+    try {
+      const data = await authBffClient.registerUser(
+        removeNullProperties(user) as any,
+        removeNullProperties(breeder) as any,
+        type,
+        user?.externalId
+      );
+
+      return data;
+    } catch (error) {
+      return {
+        ok: false,
+        error
+      };
+    }
   }
 
-  static login({
+  static async login({
     email,
     password,
     type = UserRegisterTypeEnum.Default,
@@ -37,14 +46,41 @@ export default class AuthBffService {
     type?: string;
     externalId?: string;
   }) {
-    return authBffClient.authUser(email, password, type, externalId);
+    try {
+      const data = await authBffClient.authUser(email, password, type, externalId);
+
+      return data;
+    } catch (error) {
+      return {
+        ok: false,
+        error
+      };
+    }
   }
 
-  static recoverPassword(email: string) {
-    return authBffClient.recoverPassword(email);
+  static async recoverPassword(email: string) {
+    try {
+      const data = await authBffClient.recoverPassword(email);
+
+      return data;
+    } catch (error) {
+      return {
+        ok: false,
+        error
+      };
+    }
   }
 
-  static refreshToken(token: string) {
-    return authBffClient.refreshToken(token);
+  static async refreshToken(token: string) {
+    try {
+      const data = await authBffClient.refreshToken(token);
+
+      return data;
+    } catch (error) {
+      return {
+        ok: false,
+        error
+      };
+    }
   }
 }
