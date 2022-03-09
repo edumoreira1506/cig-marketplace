@@ -17,11 +17,11 @@ export default function useAuth() {
 
   const { token, isAuthenticated } = useMemo(() => {
     try {
-      const localStorageToken = value || get();
+      const token = value || get();
 
       return {
-        token: localStorageToken,
-        isAuthenticated: Boolean(localStorageToken),
+        token,
+        isAuthenticated: Boolean(token),
       };
     } catch {
       return {

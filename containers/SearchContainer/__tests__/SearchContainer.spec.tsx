@@ -180,7 +180,9 @@ describe('<SearchContainer />', () => {
       advertisings: [advertisingItem]
     });
     const mockPush = jest.fn();
-    const query = {};
+    const query = {
+      token: 'fake-token'
+    };
     const mockUseRouter = jest.fn().mockReturnValue({
       push: mockPush,
       query
@@ -247,5 +249,28 @@ describe('<SearchContainer />', () => {
       favorites: 'true',
       prices: JSON.stringify({ min: MIN_VALUE_PRICE_FILTER, max: MAX_VALUE_PRICE_FILTER })
     }).toString()}`);
+  });
+
+  it('does not render favorites filter', async () => {
+    const pages = 1;
+    const mockGetSearch = jest.fn().mockResolvedValue({
+      pages,
+      advertisings: []
+    });
+    const mockPush = jest.fn();
+    const query = {};
+    const mockUseRouter = jest.fn().mockReturnValue({
+      push: mockPush,
+      query
+    });
+
+    jest.spyOn(MarketplaceBffService, 'getSearch').mockImplementation(mockGetSearch);
+    jest.spyOn(NextRouter, 'useRouter').mockImplementation(mockUseRouter);
+
+    render(<SearchContainer />);
+
+    userEvent.click(screen.getByText('Filtrar'));
+    
+    expect(screen.queryByText('Favoritos')).not.toBeInTheDocument();
   });
 });
