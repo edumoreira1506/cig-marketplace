@@ -24,6 +24,7 @@ export default function RegisterUserFormBirthDate() {
         type="date"
         value={birthDate}
         onChange={handleChangeBirthDate}
+        name='user-birth-data'
       />
     </FormField>
   );

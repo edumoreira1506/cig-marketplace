@@ -26,6 +26,7 @@ export default function RegisterUserFormName() {
         onChange={handleChangeName}
         required
         requiredMessage={t('common.required-field', { field: t('user.fields.name') })}
+        name='user-name'
         placeholder="João de Sá"
       />
     </FormField>

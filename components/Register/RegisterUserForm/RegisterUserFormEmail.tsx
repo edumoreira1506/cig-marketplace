@@ -28,6 +28,7 @@ export default function RegisterUserFormEmail() {
         requiredMessage={t('common.required-field', { field: t('user.fields.email') })}
         placeholder="exemplo@email.com"
         autoComplete="username"
+        name='user-email'
       />
     </FormField>
   );
