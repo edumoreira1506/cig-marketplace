@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 env:
-  NEXT_PUBLIC_MARKETPLACE_BFF_URL: https://cig-marketplace-bff.herokuapp.com/
+  NEXT_PUBLIC_CONTENT_SEARCH_URL: https://cig-content-search-service.herokuapp.com/
 
 jobs:
   tests:
