@@ -1,7 +1,7 @@
 import React from 'react';
 
 import HomeContainer, { HomeContainerProps } from '@Containers/HomeContainer/HomeContainer';
-import MarketplaceBffService from '@Services/MarketplaceBffService';
+import ContentSearchService from '@Services/ContentSearchService';
 
 type HomePageProps = {
   advertisings: HomeContainerProps['advertisings'];
@@ -12,7 +12,7 @@ const HomePage = ({ advertisings }: HomePageProps) => (
 );
 
 export async function getStaticProps() {
-  const advertisings = await MarketplaceBffService.getHome();
+  const advertisings = await ContentSearchService.getHome();
 
   return {
     props: {

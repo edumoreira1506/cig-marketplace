@@ -5,7 +5,7 @@ import { useDebouncedEffect } from '@cig-platform/hooks';
 
 import { useAppDispatch, useAppSelector } from '@Contexts/AppContext/AppContext';
 import { setError, setIsLoading } from '@Contexts/AppContext/appActions';
-import MarketplaceBffService from '@Services/MarketplaceBffService';
+import ContentSearchService from '@Services/ContentSearchService';
 import useUser from '@Hooks/useUser';
 import { selectIsLoading } from '@Contexts/AppContext/appSelectors';
 
@@ -82,7 +82,7 @@ export default function useSearchAdvertisngs() {
       try {
         dispatch(setIsLoading(true));
 
-        const { advertisings, pages } = await MarketplaceBffService.getSearch({
+        const { advertisings, pages } = await ContentSearchService.getSearch({
           crest,
           dewlap,
           gender,
