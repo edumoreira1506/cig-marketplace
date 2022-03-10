@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import * as NextRouter from 'next/router';
 import userEvent from '@testing-library/user-event';
 
-import MarketplaceBffService from '@Services/MarketplaceBffService';
+import ContentSearchService from '@Services/ContentSearchService';
 
 import SearchContainer, { crestListItems, dewlapListItems, genderCategoryListItems, genderListItems, MAX_VALUE_PRICE_FILTER, MIN_VALUE_PRICE_FILTER, sortListItems, tailListItems, typeListItems } from '../SearchContainer';
 import { createRouterWrapper } from '@Utils/tests/wrappers';
@@ -37,7 +37,7 @@ describe('<SearchContainer />', () => {
     });
     const RouterWrapper = createRouterWrapper('/', '/');
 
-    jest.spyOn(MarketplaceBffService, 'getSearch').mockImplementation(mockGetSearch);
+    jest.spyOn(ContentSearchService, 'getSearch').mockImplementation(mockGetSearch);
 
     render(
       <RouterWrapper>
@@ -75,7 +75,7 @@ describe('<SearchContainer />', () => {
     });
     const RouterWrapper = createRouterWrapper('/', '/');
 
-    jest.spyOn(MarketplaceBffService, 'getSearch').mockImplementation(mockGetSearch);
+    jest.spyOn(ContentSearchService, 'getSearch').mockImplementation(mockGetSearch);
 
     render(
       <RouterWrapper>
@@ -113,7 +113,7 @@ describe('<SearchContainer />', () => {
       query
     });
 
-    jest.spyOn(MarketplaceBffService, 'getSearch').mockImplementation(mockGetSearch);
+    jest.spyOn(ContentSearchService, 'getSearch').mockImplementation(mockGetSearch);
     jest.spyOn(NextRouter, 'useRouter').mockImplementation(mockUseRouter);
 
     render(<SearchContainer />);
@@ -148,7 +148,7 @@ describe('<SearchContainer />', () => {
     });
     const RouterWrapper = createRouterWrapper('/', '/');
 
-    jest.spyOn(MarketplaceBffService, 'getSearch').mockImplementation(mockGetSearch);
+    jest.spyOn(ContentSearchService, 'getSearch').mockImplementation(mockGetSearch);
 
     render(
       <RouterWrapper>
@@ -188,7 +188,7 @@ describe('<SearchContainer />', () => {
       query
     });
 
-    jest.spyOn(MarketplaceBffService, 'getSearch').mockImplementation(mockGetSearch);
+    jest.spyOn(ContentSearchService, 'getSearch').mockImplementation(mockGetSearch);
     jest.spyOn(NextRouter, 'useRouter').mockImplementation(mockUseRouter);
 
     render(<SearchContainer />);
@@ -264,7 +264,7 @@ describe('<SearchContainer />', () => {
       query
     });
 
-    jest.spyOn(MarketplaceBffService, 'getSearch').mockImplementation(mockGetSearch);
+    jest.spyOn(ContentSearchService, 'getSearch').mockImplementation(mockGetSearch);
     jest.spyOn(NextRouter, 'useRouter').mockImplementation(mockUseRouter);
 
     render(<SearchContainer />);
