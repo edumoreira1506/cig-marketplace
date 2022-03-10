@@ -2,6 +2,9 @@ name: CI
 
 on: [push]
 
+env:
+  NEXT_PUBLIC_MARKETPLACE_BFF_URL: https://cig-marketplace-bff.herokuapp.com/
+
 jobs:
   tests:
     runs-on: ubuntu-latest

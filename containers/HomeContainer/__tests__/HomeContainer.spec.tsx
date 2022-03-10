@@ -1,69 +1,76 @@
-import { PoultryGenderCategoryEnum, PoultryGenderEnum } from '@cig-platform/enums';
+import { PoultryGenderCategoryEnum, PoultryGenderEnum, RegisterTypeEnum } from '@cig-platform/enums';
 import { advertisingFactory, breederFactory, poultryFactory } from '@cig-platform/factories';
 import { render, screen, waitFor } from '@testing-library/react';
 
-import MarketplaceBffService from '@Services/MarketplaceBffService';
-
 import HomeContainer from '../HomeContainer';
+
+const breeder = breederFactory();
+const advertising = advertisingFactory();
+const femalePoultry = poultryFactory({
+  gender: PoultryGenderEnum.Female,
+  genderCategory: PoultryGenderCategoryEnum.FemaleChicken,
+});
+
+const matrixPoultry = poultryFactory({
+  gender: PoultryGenderEnum.Female,
+  genderCategory: PoultryGenderCategoryEnum.Matrix
+});
+
+const reproductivePoultry = poultryFactory({
+  gender: PoultryGenderEnum.Male,
+  genderCategory: PoultryGenderCategoryEnum.Reproductive
+});
+
+const malePoultry = poultryFactory({
+  gender: PoultryGenderEnum.Male,
+  genderCategory: PoultryGenderCategoryEnum.MaleChicken
+});
+
+const defaultRegister = {
+  metadata: {
+    measurement: '150',
+    weight: '150'
+  },
+  id: '',
+  poultryId: '',
+  description: '',
+  date: new Date(),
+  type: RegisterTypeEnum.MeasurementAndWeighing,
+  files: []
+};
+
+const DEFAULT_PROPS = {
+  advertisings: {
+    femaleChickens: [{
+      poultry: femalePoultry as any,
+      advertising,
+      breeder,
+      measurementAndWeight: defaultRegister
+    }],
+    maleChickens: [{
+      poultry: malePoultry  as any,
+      advertising,
+      breeder,
+      measurementAndWeight: defaultRegister
+    }],
+    matrixes: [{
+      poultry: matrixPoultry  as any,
+      advertising,
+      breeder,
+      measurementAndWeight: defaultRegister
+    }],
+    reproductives: [{
+      poultry: reproductivePoultry  as any,
+      advertising,
+      breeder,
+      measurementAndWeight: defaultRegister
+    }]
+  }
+};
 
 describe('<HomeContainer />', () => {
   it('renders correctly', async () => {
-    const breeder = breederFactory();
-    const advertising = advertisingFactory();
-    const femalePoultry = poultryFactory({
-      gender: PoultryGenderEnum.Female,
-      genderCategory: PoultryGenderCategoryEnum.FemaleChicken,
-    });
-    const matrixPoultry = poultryFactory({
-      gender: PoultryGenderEnum.Female,
-      genderCategory: PoultryGenderCategoryEnum.Matrix
-    });
-    const reproductivePoultry = poultryFactory({
-      gender: PoultryGenderEnum.Male,
-      genderCategory: PoultryGenderCategoryEnum.Reproductive
-    });
-    const malePoultry = poultryFactory({
-      gender: PoultryGenderEnum.Male,
-      genderCategory: PoultryGenderCategoryEnum.MaleChicken
-    });
-    const defaultRegister = {
-      metadata: {
-        measurement: 150,
-        weight: 150
-      }
-    };
-    const mockGetHome = jest.fn().mockResolvedValue({
-      femaleChickens: [{
-        poultry: femalePoultry,
-        advertising,
-        breeder,
-        measurementAndWeight: defaultRegister
-      }],
-      maleChickens: [{
-        poultry: malePoultry,
-        advertising,
-        breeder,
-        measurementAndWeight: defaultRegister
-      }],
-      matrixes: [{
-        poultry: matrixPoultry,
-        advertising,
-        breeder,
-        measurementAndWeight: defaultRegister
-      }],
-      reproductives: [{
-        poultry: reproductivePoultry,
-        advertising,
-        breeder,
-        measurementAndWeight: defaultRegister
-      }]
-    });
-
-    jest.spyOn(MarketplaceBffService, 'getHome').mockImplementation(mockGetHome);
-
-    render(<HomeContainer />);
-
-    expect(mockGetHome).toHaveBeenCalledTimes(1);
+    render(<HomeContainer {...DEFAULT_PROPS} />);
 
     await waitFor(() => expect(screen.getByText('Matrizes')).toBeInTheDocument());
 
