@@ -3,9 +3,6 @@ import { AdvertisingCarousel, AdvertisingCarouselItem } from '@cig-platform/ui';
 import { useRouter } from 'next/router';
 import { PoultryGenderCategoryEnum } from '@cig-platform/enums';
 
-import { useAppDispatch } from '@Contexts/AppContext/AppContext';
-import { setError, setIsLoading } from '@Contexts/AppContext/appActions';
-import MarketplaceBffService from '@Services/MarketplaceBffService';
 import { POULTRY_PLACEHOLDER_IMAGE_URL } from '@Constants/urls';
 import { PoultryData } from '@Hooks/useSearchAdvertisings';
 import useToggleFavorite from '@Hooks/useToggleFavorite';
@@ -27,17 +24,17 @@ type AdvertisingItem = {
   identifier: string;
 };
 
-export default function HomeContainer() {
+export type HomeContainerProps = {
+  advertisings: {
+    maleChickens: PoultryData[];
+    femaleChickens: PoultryData[];
+    matrixes: PoultryData[];
+    reproductives: PoultryData[];
+  }
+}
+
+export default function HomeContainer({ advertisings }: HomeContainerProps) {
   const toggleFavorite = useToggleFavorite();
-
-  const [rawAdvertisings, setRawAdvertisings] = useState({
-    maleChickens: [] as PoultryData[],
-    femaleChickens: [] as PoultryData[],
-    matrixes: [] as PoultryData[],
-    reproductives: [] as PoultryData[],
-  });
-
-  const dispatch = useAppDispatch();
 
   const { favorites } = useUser();
 
@@ -67,22 +64,6 @@ export default function HomeContainer() {
   );
 
   useEffect(() => {
-    (async () => {
-      try {
-        dispatch(setIsLoading(true));
-
-        const data = await MarketplaceBffService.getHome();
-
-        setRawAdvertisings(data);
-      } catch (error) {
-        dispatch(setError(error));
-      } finally {
-        dispatch(setIsLoading(false));
-      }
-    })();
-  }, [dispatch]);
-
-  useEffect(() => {
     const dataToAdvertisingItem = (
       d: PoultryData
     ): AdvertisingCarouselItem => ({
@@ -99,11 +80,11 @@ export default function HomeContainer() {
       ),
     });
 
-    setMatrixes(rawAdvertisings.matrixes.map(dataToAdvertisingItem));
-    setReproductives(rawAdvertisings.reproductives.map(dataToAdvertisingItem));
-    setFemaleChickens(rawAdvertisings.femaleChickens.map(dataToAdvertisingItem));
-    setMaleChickens(rawAdvertisings.maleChickens.map(dataToAdvertisingItem));
-  }, [favorites, rawAdvertisings]);
+    setMatrixes(advertisings.matrixes.map(dataToAdvertisingItem));
+    setReproductives(advertisings.reproductives.map(dataToAdvertisingItem));
+    setFemaleChickens(advertisings.femaleChickens.map(dataToAdvertisingItem));
+    setMaleChickens(advertisings.maleChickens.map(dataToAdvertisingItem));
+  }, [favorites, advertisings]);
 
   return (
     <StyledContainer>
