@@ -126,7 +126,7 @@ export default function useSearchAdvertisngs() {
     price: a.advertising.price,
     description: `${[
       a.poultry.birthDate ? new Intl.DateTimeFormat('pt-BR').format(new Date(a.poultry.birthDate)) : '',
-      a.measurementAndWeight.metadata.measurement ? `${a.measurementAndWeight.metadata.measurement} CM` : ''
+      a?.measurementAndWeight?.metadata?.measurement ? `${a.measurementAndWeight.metadata.measurement} CM` : ''
     ].filter(Boolean).join(' - ')}`,
     image: a.poultry.mainImage ? `https://cig-maketplace.s3.sa-east-1.amazonaws.com/poultries/images/${a.poultry.mainImage}` : undefined,
     id: a.advertising.id,

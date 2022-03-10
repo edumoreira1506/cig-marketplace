@@ -88,7 +88,7 @@ export default function HomeContainer() {
     ): AdvertisingCarouselItem => ({
       description: `${[
         d.poultry.birthDate ? new Intl.DateTimeFormat('pt-BR').format(new Date(d.poultry.birthDate)) : '',
-        d.measurementAndWeight.metadata.measurement ? `${d.measurementAndWeight.metadata.measurement} CM` : ''
+        d?.measurementAndWeight?.metadata?.measurement ? `${d.measurementAndWeight.metadata.measurement} CM` : ''
       ].filter(Boolean).join(' - ')}`,
       identifier: `${d.breeder.id}/${d.poultry.id}/${d.advertising.id}`,
       price: d.advertising.price,
