@@ -11,7 +11,7 @@ const HomePage = ({ advertisings }: HomePageProps) => (
   <HomeContainer advertisings={advertisings} />
 );
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const advertisings = await ContentSearchService.getHome();
 
   return {
