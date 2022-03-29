@@ -13,10 +13,6 @@ import useSaveDeal from '@Hooks/useSaveDeal';
 
 import { StyledContainer } from './[poultryId].styles';
 
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import 'react-image-gallery/styles/css/image-gallery.css';
-
 const MicroFrontend = dynamic(() => import('@cig-platform/microfrontend-helper'), {
   ssr: false
 });

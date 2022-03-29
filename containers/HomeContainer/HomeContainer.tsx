@@ -13,9 +13,6 @@ import {
   StyledCarouselContainer,
 } from './HomeContainer.styles';
 
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
 type AdvertisingItem = {
   price: number;
   description: string;
