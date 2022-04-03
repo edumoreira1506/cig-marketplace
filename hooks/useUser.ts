@@ -13,6 +13,7 @@ export interface IDecodedToken {
   id: IUser['id'];
   name: IUser['name'];
   favorites: IAdvertisingFavorite[];
+  registerType: IUser['registerType']
 }
 
 export default function useUser() {
@@ -43,6 +44,7 @@ export default function useUser() {
         name: '',
         breeders: [],
         favorites,
+        registerType: ''
       };
     }
   }, [get, favorites, dispatch]);

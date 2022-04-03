@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { BiLogIn } from 'react-icons/bi';
 import { AiFillHome, AiOutlinePoweroff } from 'react-icons/ai';
 import { GiReceiveMoney } from 'react-icons/gi';
+import { UserRegisterTypeEnum } from '@cig-platform/enums';
 
 import { useAppSelector } from '@Contexts/AppContext/AppContext';
 import { selectError, selectIsLoading } from '@Contexts/AppContext/appSelectors';
@@ -48,11 +49,14 @@ export const authorizedItems = [
   }
 ];
 
-const shortcuts = ['Sair', 'Editar senha'];
+enum Shortcuts {
+  LOGOUT = 'Sair',
+  EDIT_PASSWORD = 'Editar senha'
+}
 
 const shortcutLinks = {
-  [shortcuts[0]]: `${BACKOFFICE_URL}logout`,
-  [shortcuts[1]]: `${BACKOFFICE_URL}editar-senha`,
+  [Shortcuts.LOGOUT]: `${BACKOFFICE_URL}logout`,
+  [Shortcuts.EDIT_PASSWORD]: `${BACKOFFICE_URL}editar-senha`,
 };
 
 export interface ContainerProps {
@@ -75,7 +79,11 @@ export default function Container({ children }: ContainerProps) {
 
   const items = useMemo(() => isAuthenticated ? authorizedItems : unauthorizedItems, [isAuthenticated]);
 
-  const shurtcutItems = useMemo(() => isAuthenticated ? shortcuts : [], [isAuthenticated]);
+  const shurtcutItems = useMemo(() => {
+    if (!isAuthenticated) return [];
+    if (user?.registerType !== UserRegisterTypeEnum.Default) return [Shortcuts.LOGOUT];
+    return [Shortcuts.EDIT_PASSWORD, Shortcuts.LOGOUT];
+  }, [isAuthenticated, user?.registerType]);
 
   const handleMenuItemClick = useCallback((menuItemTitle: string) => {
     const itemRoute = [...unauthorizedItems, ...authorizedItems].find(i => i.title === menuItemTitle)?.route;
@@ -86,7 +94,7 @@ export default function Container({ children }: ContainerProps) {
   }, [push]);
 
   const handleShortcutClick = useCallback((shortcut: string) => {
-    push(shortcutLinks[shortcut]);
+    push(shortcutLinks[shortcut as Shortcuts]);
   }, [push]);
 
   const handleSearch = useCallback((keyword: string) => {
