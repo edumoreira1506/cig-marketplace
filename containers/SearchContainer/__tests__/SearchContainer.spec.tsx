@@ -30,10 +30,11 @@ describe('<SearchContainer />', () => {
         metadata: {}
       }
     };
+    const advertisings = [firstSearchItem, secondSearchItem] as any[];
     const pages = 1;
     const mockGetSearch = jest.fn().mockResolvedValue({
       pages,
-      advertisings: [firstSearchItem, secondSearchItem]
+      advertisings
     });
     const RouterWrapper = createRouterWrapper('/', '/');
 
@@ -41,7 +42,7 @@ describe('<SearchContainer />', () => {
 
     render(
       <RouterWrapper>
-        <SearchContainer />
+        <SearchContainer advertisings={advertisings} />
       </RouterWrapper>
     );
 

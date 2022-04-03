@@ -37,6 +37,9 @@
       "@Contexts/*": [
         "./contexts/*"
       ],
+      "@Formatters/*": [
+        "./formatters/*"
+      ],
       "@Components/*": [
         "./components/*"
       ],

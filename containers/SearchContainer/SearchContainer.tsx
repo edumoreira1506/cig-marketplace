@@ -19,7 +19,7 @@ import {
   PoultryTypeEnum,
 } from '@cig-platform/enums';
 
-import useSearchAdvertisngs from '@Hooks/useSearchAdvertisings';
+import useSearchAdvertisngs, { PoultryData } from '@Hooks/useSearchAdvertisings';
 import { POULTRY_PLACEHOLDER_IMAGE_URL } from '@Constants/urls';
 import useToggleFavorite from '@Hooks/useToggleFavorite';
 
@@ -139,8 +139,13 @@ export const favoriteListItems = [
 export const MAX_VALUE_PRICE_FILTER = 10000000;
 export const MIN_VALUE_PRICE_FILTER = 100;
 
-export default function SearchContainer() {
-  const advertisings = useSearchAdvertisngs();
+export type SearchContainerProps = {
+  advertisings?: PoultryData[];
+  pages?: number;
+}
+
+export default function SearchContainer({ advertisings: advertisingsProp = [], pages = 0 }: SearchContainerProps) {
+  const advertisings = useSearchAdvertisngs({ initialData: advertisingsProp, initialPages: pages });
 
   const { push, query } = useRouter();
 

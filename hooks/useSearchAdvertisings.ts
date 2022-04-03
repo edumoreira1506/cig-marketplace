@@ -8,6 +8,7 @@ import { setError, setIsLoading } from '@Contexts/AppContext/appActions';
 import ContentSearchService from '@Services/ContentSearchService';
 import useUser from '@Hooks/useUser';
 import { selectIsLoading } from '@Contexts/AppContext/appSelectors';
+import { poultryDataToSearchAdvertising } from '@Formatters/searchFormatters';
 
 export interface PoultryData {
   poultry: IPoultry & {
@@ -24,11 +25,15 @@ export interface PoultryData {
   }
 }
 
-export default function useSearchAdvertisngs() {
-  const [advertisingsData, setAdvertisingsData] = useState<PoultryData[]>([]);
+export default function useSearchAdvertisngs({ initialData = [], initialPages = 0 }: {
+  initialData?: PoultryData[],
+  initialPages?: number;
+}) {
+  const [advertisingsData, setAdvertisingsData] = useState<PoultryData[]>(initialData);
   const [filteredData, setFilteredData] = useState<PoultryData[]>([]);
   const [page, setPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
+  const [totalPages, setTotalPages] = useState(initialPages);
+  const [isFirstAccess, setIsFirstAccess] = useState(true);
 
   const isLoading = useAppSelector(selectIsLoading);
 
@@ -38,14 +43,14 @@ export default function useSearchAdvertisngs() {
 
   const { query } = useRouter();
 
-  const crest = useMemo(() => query?.crest?.toString().split(',') ?? [], [query?.crest]);
-  const dewlap = useMemo(() => query?.dewlap?.toString().split(',') ?? [], [query?.dewlap]);
-  const gender = useMemo(() => query?.gender?.toString().split(',') ?? [], [query?.gender]);
-  const genderCategory = useMemo(() => query?.genderCategory?.toString().split(',') ?? [], [query?.genderCategory]);
+  const crest = useMemo(() => query?.crest?.toString().split(','), [query?.crest]);
+  const dewlap = useMemo(() => query?.dewlap?.toString().split(','), [query?.dewlap]);
+  const gender = useMemo(() => query?.gender?.toString().split(','), [query?.gender]);
+  const genderCategory = useMemo(() => query?.genderCategory?.toString().split(','), [query?.genderCategory]);
   const keyword = useMemo(() => query?.keyword?.toString(), [query?.keyword]);
   const sort = useMemo(() => query?.sort?.toString(), [query?.sort]);
-  const tail = useMemo(() => query?.tail?.toString().split(',') ?? [], [query?.tail]);
-  const type = useMemo(() => query?.type?.toString().split(',') ?? [], [query?.type]);
+  const tail = useMemo(() => query?.tail?.toString().split(','), [query?.tail]);
+  const type = useMemo(() => query?.type?.toString().split(','), [query?.type]);
   const prices = useMemo(() => query?.prices ? JSON.parse(query.prices.toString()) : undefined, [query?.prices]);
   const isFavoritesFilterEnabled = useMemo(() => query?.favorites?.toString() === 'true', [query?.favorites]);
 
@@ -60,14 +65,19 @@ export default function useSearchAdvertisngs() {
     const modifier = 200; 
     
     if (currentScroll + modifier > documentHeight && page < totalPages - 1 && !isLoading) {
+      setIsFirstAccess(false);
       setPage(page + 1);
       dispatch(setIsLoading(true));
     }
   }, [page, totalPages, isLoading]);
 
   useEffect(() => {
-    if (sort || crest || dewlap || gender || genderCategory || tail || type || keyword || prices) {
+    const hasFilterOnQueryParams = Boolean(sort || crest || dewlap || gender || genderCategory || tail || type || keyword || prices);
+    const needsToClearResults = advertisingsData?.length && advertisingsData?.[0]?.advertising?.id !== initialData?.[0]?.advertising?.id;
+
+    if (hasFilterOnQueryParams && needsToClearResults) {
       handleClear();
+      setIsFirstAccess(false);
     }
   }, [sort, handleClear, crest, dewlap, gender, genderCategory, tail, type, keyword, prices]);
 
@@ -78,6 +88,8 @@ export default function useSearchAdvertisngs() {
   }, [handlePaginate]);
 
   useDebouncedEffect(() => {
+    if (isFirstAccess) return;
+
     (async () => {
       try {
         dispatch(setIsLoading(true));
@@ -105,6 +117,7 @@ export default function useSearchAdvertisngs() {
       }
     })();
   }, 1000, [
+    isFirstAccess,
     crest,
     dewlap,
     gender,
@@ -121,18 +134,7 @@ export default function useSearchAdvertisngs() {
     setFilteredData(advertisingsData.filter(a => favorites.some(favorite => favorite.advertisingId === a.advertising.id)));
   }, [favorites, advertisingsData]);
 
-  return useMemo(() => (isFavoritesFilterEnabled ? filteredData : advertisingsData)?.map((a: PoultryData) => ({
-    title: a.poultry.name,
-    price: a.advertising.price,
-    description: `${[
-      a.poultry.birthDate ? new Intl.DateTimeFormat('pt-BR').format(new Date(a.poultry.birthDate)) : '',
-      a?.measurementAndWeight?.metadata?.measurement ? `${a.measurementAndWeight.metadata.measurement} CM` : ''
-    ].filter(Boolean).join(' - ')}`,
-    image: a.poultry.mainImage ? `https://cig-maketplace.s3.sa-east-1.amazonaws.com/poultries/images/${a.poultry.mainImage}` : undefined,
-    id: a.advertising.id,
-    breederId: a.breeder.id,
-    poultryId: a.poultry.id,
-    favorited: favorites.some(f => f.advertisingId === a.advertising.id),
-    breederImage: a.breeder.profileImageUrl ? `https://cig-maketplace.s3.sa-east-1.amazonaws.com/breeders/profile/${a.breeder.profileImageUrl}` : undefined
-  })), [advertisingsData, favorites, isFavoritesFilterEnabled, filteredData]);
+  return useMemo(() => (isFavoritesFilterEnabled ? filteredData : advertisingsData)?.map((poultryData: PoultryData) =>
+    poultryDataToSearchAdvertising(poultryData, favorites)
+  ), [advertisingsData, favorites, isFavoritesFilterEnabled, filteredData]);
 }
