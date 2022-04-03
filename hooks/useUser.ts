@@ -1,6 +1,6 @@
 import { useLocalStorage } from '@cig-platform/hooks';
 import { IBreeder, IUser, IAdvertisingFavorite } from '@cig-platform/types';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import jwt from 'jsonwebtoken';
 
 import { useAppDispatch, useAppSelector } from '@Contexts/AppContext/AppContext';
@@ -16,8 +16,6 @@ export interface IDecodedToken {
 }
 
 export default function useUser() {
-  const [isFirstAccess, setIsFirstAccess] = useState(true);
-
   const { get } = useLocalStorage('token');
 
   const favorites = useAppSelector(selectFavorites);
@@ -30,9 +28,8 @@ export default function useUser() {
 
       const decodedToken = jwt.decode(localStorageToken) as IDecodedToken;
 
-      if (decodedToken.favorites.length !== favorites.length && isFirstAccess) {
+      if (decodedToken.favorites.length && !favorites.length) {
         dispatch(setFavorites(decodedToken.favorites));
-        setIsFirstAccess(false);
       }
   
       return {
@@ -48,5 +45,5 @@ export default function useUser() {
         favorites,
       };
     }
-  }, [get, favorites, dispatch, isFirstAccess]);
+  }, [get, favorites, dispatch]);
 }
