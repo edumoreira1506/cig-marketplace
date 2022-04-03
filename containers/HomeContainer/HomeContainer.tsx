@@ -146,7 +146,7 @@ export default function HomeContainer({ advertisings }: HomeContainerProps) {
             onViewAdvertising={handleViewAdvertising}
             onViewAll={() =>
               router.push(
-                `/search?genderCategory=${PoultryGenderCategoryEnum.MaleChicken}`
+                `/search?genderCategory=${PoultryGenderCategoryEnum.FemaleChicken}`
               )
             }
             title="Frangas"
