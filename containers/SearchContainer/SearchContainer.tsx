@@ -36,7 +36,8 @@ import {
   StyledPriceDot,
   StyledPrice,
   StyledPriceFilterArea,
-  PriceFilterStyle
+  PriceFilterStyle,
+  StyledPriceInput
 } from './SearchContainer.styles';
 import useAuth from '@Hooks/useAuth';
 
@@ -219,6 +220,18 @@ export default function SearchContainer({ advertisings: advertisingsProp = [], p
     },
     [push, query, closeSortModal]
   );
+
+  const handleChangeMinPriceFilter = useCallback((e) => {
+    const value = Number(e.target.value.replace(/[^0-9]/g,''));
+
+    setPricesFilter((prevPricesFilter) => ({ ...prevPricesFilter, min: value }));
+  }, []);
+
+  const handleChangeMaxPriceFilter = useCallback((e) => {
+    const value = Number(e.target.value.replace(/[^0-9]/g,''));
+
+    setPricesFilter((prevPricesFilter) => ({ ...prevPricesFilter, max: value }));
+  }, []);
   
   useEffect(() => {
     if (query.sort && query?.sort?.toString().split(',').length !== localFilters.sortOptions.length) {
@@ -362,10 +375,17 @@ export default function SearchContainer({ advertisings: advertisingsProp = [], p
 
               <StyledPriceFilterArea>
                 <StyledPrice>
-                  {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(pricesFilter.min / 100)}
+                  <StyledPriceInput
+                    value={new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(pricesFilter.min / 100)}
+                    onChange={handleChangeMinPriceFilter}
+                  />
                 </StyledPrice>
                 <StyledPrice>
-                  {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(pricesFilter.max / 100)}
+                  <StyledPriceInput
+                    textAlign='right'
+                    value={new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(pricesFilter.max / 100)}
+                    onChange={handleChangeMaxPriceFilter}
+                  />
                 </StyledPrice>
                 <StyledPriceFilter
                   value={[pricesFilter.min, pricesFilter.max]}
