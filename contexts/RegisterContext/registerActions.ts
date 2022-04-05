@@ -5,6 +5,11 @@ export const setIsLoading = (isLoading: boolean) => ({
   payload: { isLoading }
 } as const );
 
+export const setWhatsApp = (whatsApp: string) => ({
+  type: 'SET_WHATS_APP',
+  payload: { whatsApp }
+} as const);
+
 export const setUserField = (key: keyof RegisterState['user'], value: string) => ({
   type: 'SET_USER_FIELD',
   payload: { key, value },

@@ -44,7 +44,8 @@ describe('RegisterBreederForm', () => {
           street: 'street',
           number: 10
         }
-      }
+      },
+      whatsApp: '(15) 99644-2031'
     };
     const render = createRegisterContextRenderer(mockStore);
 
@@ -59,6 +60,7 @@ describe('RegisterBreederForm', () => {
     expect(screen.getByDisplayValue(mockStore.breeder.address.zipcode)).toBeInTheDocument();
     expect(screen.getByDisplayValue(mockStore.breeder.address.street)).toBeInTheDocument();
     expect(screen.getByDisplayValue(mockStore.breeder.address.number)).toBeInTheDocument();
+    expect(screen.getByDisplayValue(mockStore.whatsApp)).toBeInTheDocument();
   });
 
   it('calls onSubmit', () => {

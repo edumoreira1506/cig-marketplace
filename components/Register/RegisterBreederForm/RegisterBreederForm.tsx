@@ -13,6 +13,7 @@ import RegisterBreederFormAddressZipcode from './RegisterBreederFormAddressZipco
 import RegisterBreederFormSubmitButton from './RegisterBreederFormSubmitButton';
 import RegisterBreederFormAddressNumber from './RegisterBreederFormAddressNumber';
 import RegisterBreederFormCode from './RegisterBreederFormCode';
+import RegisterBreederFormWhatsApp from './RegisterBreederFormWhatsApp';
 
 import { StyledForm } from './RegisterBreederForm.styles';
 
@@ -21,6 +22,7 @@ export interface RegisterBreederFormProps {
     user: RegisterState['user'];
     breeder: RegisterState['breeder'];
     registerType: string;
+    whatsApp: string;
    }) => void;
   title: string;
 }
@@ -32,6 +34,7 @@ export default function RegisterBreederForm({ onSubmit, title }: RegisterBreeder
     <StyledForm onSubmit={preventDefaultHandler} title={title}>
       <RegisterBreederFormName />
       <RegisterBreederFormCode />
+      <RegisterBreederFormWhatsApp />
       <RegisterBreederFormDescription />
       <Subtitle text={t('breeder.fields.address')} />
       <RegisterBreederFormAddressZipcode />

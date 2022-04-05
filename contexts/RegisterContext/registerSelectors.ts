@@ -39,3 +39,5 @@ export const selectIsLoading = (state: RegisterState) => state.isLoading;
 export const selectUserExternalId = (state: RegisterState) => selectUser(state)?.externalId;
 
 export const selectRegisterType = (state: RegisterState) => state.type;
+
+export const selectWhatsApp = (state: RegisterState) => state.whatsApp;

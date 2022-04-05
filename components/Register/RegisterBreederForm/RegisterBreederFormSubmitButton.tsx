@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, FormField } from '@cig-platform/ui';
 
 import { useRegisterSelector } from '@Contexts/RegisterContext/RegisterContext';
-import { selectIsLoading, selectBreeder, selectUser, selectRegisterType } from '@Contexts/RegisterContext/registerSelectors';
+import { selectIsLoading, selectBreeder, selectUser, selectRegisterType, selectWhatsApp } from '@Contexts/RegisterContext/registerSelectors';
 import { RegisterBreederFormProps } from './RegisterBreederForm';
 
 export interface RegisterBreederFormSubmitButtonProps {
@@ -15,6 +15,7 @@ export default function RegisterBreederFormSubmitButton({ onSubmit }: RegisterBr
   const user = useRegisterSelector(selectUser);
   const isLoading = useRegisterSelector(selectIsLoading);
   const registerType = useRegisterSelector(selectRegisterType);
+  const whatsApp = useRegisterSelector(selectWhatsApp);
 
   const { t } = useTranslation();
   
@@ -25,8 +26,8 @@ export default function RegisterBreederFormSubmitButton({ onSubmit }: RegisterBr
 
     if (!isValidBreeder) return;
 
-    onSubmit({ user, breeder, registerType });
-  }, [isValidBreeder, user, breeder, registerType]);
+    onSubmit({ user, breeder, registerType, whatsApp });
+  }, [isValidBreeder, user, breeder, registerType, whatsApp]);
 
   return (
     <FormField>
