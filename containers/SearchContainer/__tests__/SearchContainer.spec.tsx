@@ -5,7 +5,15 @@ import userEvent from '@testing-library/user-event';
 
 import ContentSearchService from '@Services/ContentSearchService';
 
-import SearchContainer, { crestListItems, dewlapListItems, genderCategoryListItems, genderListItems, MAX_VALUE_PRICE_FILTER, MIN_VALUE_PRICE_FILTER, sortListItems, tailListItems, typeListItems } from '../SearchContainer';
+import SearchContainer, {
+  crestListItems,
+  dewlapListItems,
+  genderCategoryListItems,
+  genderListItems,
+  sortListItems,
+  tailListItems,
+  typeListItems,
+} from '../SearchContainer';
 import { createRouterWrapper } from '@Utils/tests/wrappers';
 
 describe('<SearchContainer />', () => {
@@ -233,7 +241,12 @@ describe('<SearchContainer />', () => {
 
     userEvent.click(screen.getByText('Favoritos'));
     userEvent.click(screen.getByText('Ativo'));
-    
+
+    userEvent.click(screen.getByText('Preços'));
+
+    userEvent.type(screen.getByDisplayValue('R$ 1,00'), '000');
+    userEvent.type(screen.getByDisplayValue('R$ 100.000,00'), '{backspace}'); 
+
     userEvent.click(screen.getByText('Confirmar'));
 
     await waitFor(async () => expect(screen.queryByText('Filtros')).not.toBeInTheDocument());
@@ -248,7 +261,7 @@ describe('<SearchContainer />', () => {
       tail: tailListItems.map(c => c.value).join(','),
       type: typeListItems.map(c => c.value).join(','),
       favorites: 'true',
-      prices: JSON.stringify({ min: MIN_VALUE_PRICE_FILTER, max: MAX_VALUE_PRICE_FILTER })
+      prices: JSON.stringify({ min: 100000, max: 1000000 })
     }).toString()}`);
   });
 

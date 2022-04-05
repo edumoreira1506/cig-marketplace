@@ -1,5 +1,5 @@
 import { Colors, MAIN_FONT } from '@cig-platform/ui';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, css } from 'styled-components';
 import ReactSlider from 'react-slider';
 
 export const StyledContainer = styled.section`
@@ -56,10 +56,6 @@ export const StyledConfirmButton = styled.div`
 `;
 
 export const PriceFilterStyle = createGlobalStyle`
-  .slider-thumb {
-
-  }
-
   .slider-track {
     background-color: ${Colors.DarkBlue};
     height: 4px;
@@ -75,10 +71,26 @@ export const StyledPriceFilterArea = styled.div`
   padding: 0 15px;
 `;
 
-export const StyledPrice = styled.p`
+export const StyledPrice = styled.div`
   margin: 0;
   font-weight: 600;
   font-family: ${MAIN_FONT};
+`;
+
+export const StyledPriceInput = styled.input`
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: solid 1px ${Colors.DarkBlue};
+  width: 100px;
+
+  ${({ textAlign = 'left' }: { textAlign?: string; }) => css`
+    text-align: ${textAlign};
+  `}
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const StyledPriceFilter = styled(ReactSlider)`
