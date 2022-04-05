@@ -13,7 +13,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@cig-platform/auth-bff-client": "^0.1.10",
+    "@cig-platform/auth-bff-client": "^0.1.12",
     "@cig-platform/content-search-client": "^0.0.18",
     "@cig-platform/context": "^0.1.7",
     "@cig-platform/enums": "^0.0.5",
