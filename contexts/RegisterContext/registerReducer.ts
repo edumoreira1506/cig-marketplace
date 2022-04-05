@@ -26,6 +26,7 @@ export interface RegisterState extends DefaultState {
     };
     code: string;
   }
+  whatsApp: string;
 }
 
 export const INITIAL_STATE: RegisterState = {
@@ -50,7 +51,8 @@ export const INITIAL_STATE: RegisterState = {
       zipcode: '',
       number: undefined,
     }
-  }
+  },
+  whatsApp: ''
 };
 
 export type RegisterActionTypes = ActionType<typeof actions>
@@ -60,6 +62,8 @@ export default function registerReducer(
   action: RegisterActionTypes
 ): RegisterState {
   switch (action.type) {
+  case 'SET_WHATS_APP':
+    return { ...state, whatsApp: action.payload.whatsApp };
   case 'SET_REGISTER_TYPE':
     return { ...state, type: action.payload.type };
   case 'SET_IS_LOADING':
