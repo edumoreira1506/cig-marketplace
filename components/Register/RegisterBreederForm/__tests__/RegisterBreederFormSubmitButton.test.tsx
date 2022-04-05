@@ -39,7 +39,8 @@ describe('RegisterBreederFormSubmitButton', () => {
     expect(onSubmit).toHaveBeenCalledWith({
       user: mockStore.user,
       breeder: mockStore.breeder,
-      registerType: mockStore.type
+      registerType: mockStore.type,
+      whatsApp: mockStore.whatsApp
     });
   });
 
