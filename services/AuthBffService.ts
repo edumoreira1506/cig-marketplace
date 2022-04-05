@@ -13,17 +13,20 @@ export default class AuthBffService {
     user,
     breeder,
     type = UserRegisterTypeEnum.Default,
+    whatsApp
   }: {
     user: Partial<RegisterState['user']>;
     breeder: Partial<RegisterState['breeder']>;
     type?: string;
+    whatsApp: string;
   }) {
     try {
       const data = await authBffClient.registerUser(
         removeNullProperties(user) as any,
         removeNullProperties(breeder) as any,
         type,
-        user?.externalId
+        user?.externalId,
+        whatsApp
       );
 
       return data;

@@ -17,10 +17,11 @@ export default function useSubmitRegister({
 
   const dispatch = useRegisterDispach();
 
-  const handleSubmitRegister = useCallback(async ({ breeder, user, registerType }: {
+  const handleSubmitRegister = useCallback(async ({ breeder, user, registerType, whatsApp }: {
     breeder: RegisterState['breeder'];
     user: RegisterState['user'];
     registerType: string;
+    whatsApp: string;
   }) => {
     dispatch(setIsLoading(true));
     appDispatch(setIsLoadingApp(true));
@@ -28,7 +29,8 @@ export default function useSubmitRegister({
     const authBffResponse = await AuthBffService.registerUser({
       user,
       breeder,
-      type: registerType
+      type: registerType,
+      whatsApp
     });
 
     dispatch(setIsLoading(false));

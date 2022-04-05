@@ -22,6 +22,7 @@ export interface RegisterBreederFormProps {
     user: RegisterState['user'];
     breeder: RegisterState['breeder'];
     registerType: string;
+    whatsApp: string;
    }) => void;
   title: string;
 }
