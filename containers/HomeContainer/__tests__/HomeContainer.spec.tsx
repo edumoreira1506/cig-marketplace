@@ -51,19 +51,37 @@ const DEFAULT_PROPS = {
       poultry: malePoultry  as any,
       advertising,
       breeder,
-      measurementAndWeight: defaultRegister
+      measurementAndWeight: {
+        ...defaultRegister,
+        metadata: {
+          measurement: '160',
+          weight: '160'
+        }
+      }
     }],
     matrixes: [{
       poultry: matrixPoultry  as any,
       advertising,
       breeder,
-      measurementAndWeight: defaultRegister
+      measurementAndWeight: {
+        ...defaultRegister,
+        metadata: {
+          measurement: '170',
+          weight: '170'
+        }
+      }
     }],
     reproductives: [{
       poultry: reproductivePoultry  as any,
       advertising,
       breeder,
-      measurementAndWeight: defaultRegister
+      measurementAndWeight: {
+        ...defaultRegister,
+        metadata: {
+          measurement: '180',
+          weight: '180'
+        }
+      }
     }]
   }
 };
@@ -77,9 +95,9 @@ describe('<HomeContainer />', () => {
     expect(screen.getByText('Reprodutores')).toBeInTheDocument();
     expect(screen.getByText('Frangos')).toBeInTheDocument();
     expect(screen.getByText('Frangas')).toBeInTheDocument();
-    expect(screen.getByText(`${new Intl.DateTimeFormat('pt-BR').format(new Date(femalePoultry.birthDate))} - ${defaultRegister.metadata.measurement} CM`)).toBeInTheDocument();
-    expect(screen.getByText(`${new Intl.DateTimeFormat('pt-BR').format(new Date(malePoultry.birthDate))} - ${defaultRegister.metadata.measurement} CM`)).toBeInTheDocument();
-    expect(screen.getByText(`${new Intl.DateTimeFormat('pt-BR').format(new Date(matrixPoultry.birthDate))} - ${defaultRegister.metadata.measurement} CM`)).toBeInTheDocument();
-    expect(screen.getByText(`${new Intl.DateTimeFormat('pt-BR').format(new Date(reproductivePoultry.birthDate))} - ${defaultRegister.metadata.measurement} CM`)).toBeInTheDocument();
+    expect(screen.getByText(`${new Intl.DateTimeFormat('pt-BR').format(new Date(femalePoultry.birthDate))} - ${DEFAULT_PROPS.advertisings.femaleChickens[0].measurementAndWeight.metadata.measurement} CM`)).toBeInTheDocument();
+    expect(screen.getByText(`${new Intl.DateTimeFormat('pt-BR').format(new Date(malePoultry.birthDate))} - ${DEFAULT_PROPS.advertisings.maleChickens[0].measurementAndWeight.metadata.measurement} CM`)).toBeInTheDocument();
+    expect(screen.getByText(`${new Intl.DateTimeFormat('pt-BR').format(new Date(matrixPoultry.birthDate))} - ${DEFAULT_PROPS.advertisings.matrixes[0].measurementAndWeight.metadata.measurement} CM`)).toBeInTheDocument();
+    expect(screen.getByText(`${new Intl.DateTimeFormat('pt-BR').format(new Date(reproductivePoultry.birthDate))} - ${DEFAULT_PROPS.advertisings.reproductives[0].measurementAndWeight.metadata.measurement} CM`)).toBeInTheDocument();
   });
 });
