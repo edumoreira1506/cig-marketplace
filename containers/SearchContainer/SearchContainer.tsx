@@ -50,6 +50,10 @@ export const sortListItems = [
     label: 'Maior preço',
     value: 'MAX_TO_MIN',
   },
+  {
+    label: 'Maior relevância',
+    value: 'FEATURED'
+  }
 ];
 
 export const crestListItems = [
