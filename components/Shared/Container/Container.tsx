@@ -6,6 +6,7 @@ import { BiLogIn } from 'react-icons/bi';
 import { AiFillHome, AiOutlinePoweroff } from 'react-icons/ai';
 import { GiReceiveMoney } from 'react-icons/gi';
 import { UserRegisterTypeEnum } from '@cig-platform/enums';
+import { FaHandsHelping } from 'react-icons/fa';
 
 import { useAppSelector } from '@Contexts/AppContext/AppContext';
 import { selectError, selectIsLoading } from '@Contexts/AppContext/appSelectors';
@@ -22,6 +23,11 @@ const unauthorizedItems = [
 ];
 
 export const authorizedItems = [
+  {
+    title: 'Mercado',
+    icon: <FaHandsHelping />,
+    route: '/'
+  },
   {
     title: 'Meu plantel',
     icon: <AiFillHome />,
