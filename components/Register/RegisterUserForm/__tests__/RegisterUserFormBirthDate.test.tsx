@@ -28,6 +28,6 @@ describe('RegisterUserFormBirthDate', () => {
 
     render(<RegisterUserFormBirthDate />);
 
-    expect(screen.getByDisplayValue('01/01/2001')).toBeInTheDocument();
+    expect(screen.getByDisplayValue(new Date(mockStore.user.birthDate).toLocaleDateString('pt-BR'))).toBeInTheDocument();
   });
 });
