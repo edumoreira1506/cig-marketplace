@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FormField, Input } from '@cig-platform/ui';
+import { FormField, Input, DatePicker } from '@cig-platform/ui';
 
 import { useRegisterDispach, useRegisterSelector } from '@Contexts/RegisterContext/RegisterContext';
 import { selectUserBirthDate } from '@Contexts/RegisterContext/registerSelectors';
@@ -13,17 +13,16 @@ export default function RegisterUserFormBirthDate() {
 
   const { t } = useTranslation();
 
-  const handleChangeBirthDate = useCallback((newBirthDate: string | number) => {
-    dispatch(setUserField('birthDate', String(newBirthDate)));
+  const handleChangeBirthDate = useCallback((newBirthDate: Date) => {
+    dispatch(setUserField('birthDate', newBirthDate?.toISOString?.()?.split?.('T')?.[0]));
   }, []);
 
   return (
     <FormField>
-      <Input
+      <DatePicker
         label={t('user.fields.birth-date')}
-        type="date"
-        value={birthDate}
-        onChange={handleChangeBirthDate}
+        value={birthDate ? new Date(birthDate) : undefined as any}
+        onChange={handleChangeBirthDate as any}
         name='user-birth-data'
       />
     </FormField>
