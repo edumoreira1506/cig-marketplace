@@ -54,7 +54,7 @@ describe('RegisterUserForm', () => {
     expect(screen.getByDisplayValue(mockStore.user.email)).toBeInTheDocument();
     expect(screen.getByDisplayValue(mockStore.user.name)).toBeInTheDocument();
     expect(screen.getByDisplayValue(mockStore.user.register)).toBeInTheDocument();
-    expect(screen.getByDisplayValue(new Date(mockStore.user.birthDate).toLocaleDateString())).toBeInTheDocument();
+    expect(screen.getByDisplayValue('01/01/2001')).toBeInTheDocument();
   });
 
   it('calls onSubmit', () => {
