@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FormField, Input, DatePicker } from '@cig-platform/ui';
+import { FormField, DatePicker } from '@cig-platform/ui';
 
 import { useRegisterDispach, useRegisterSelector } from '@Contexts/RegisterContext/RegisterContext';
 import { selectUserBirthDate } from '@Contexts/RegisterContext/registerSelectors';
