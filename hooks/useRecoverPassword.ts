@@ -30,8 +30,7 @@ export default function useRecoverPassword({
         } catch(error) {
           console.log(error);
         }
-      },
-      t
+      }
     );
   }, [t, onSuccess, dispatch]);
 
