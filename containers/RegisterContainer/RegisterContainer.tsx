@@ -1,25 +1,40 @@
 import { useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useRouter } from 'next/router';
+import { useLocalStorage } from '@cig-platform/hooks';
 import { Tabs } from '@cig-platform/ui';
+import { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 
 import RegisterUserForm from '@Components/Register/RegisterUserForm/RegisterUserForm';
 import RegisterBreederForm from '@Components/Register/RegisterBreederForm/RegisterBreederForm';
 import useSubmitRegister from '@Hooks/useSubmitRegister';
 import { success } from '@Utils/alert';
-import { Routes } from '@Constants/routes';
-import { useRegisterDispach } from '@Contexts/RegisterContext/RegisterContext';
+import { useRegisterDispach, useRegisterSelector } from '@Contexts/RegisterContext/RegisterContext';
 import { setRegisterType, setUserField } from '@Contexts/RegisterContext/registerActions';
-import { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
+import { BACKOFFICE_URL } from '@Constants/urls';
+import useLogin from '@Hooks/useLogin';
+import { selectRegisterType, selectUserEmail, selectUserExternalId, selectUserPassword } from '@Contexts/RegisterContext/registerSelectors';
 
 export default function RegisterContainer() {
   const [tab, setTab] = useState(0);
 
+  const { set } = useLocalStorage<string>('token');
+
   const dispatch = useRegisterDispach();
 
-  const router = useRouter();
-
   const { t } = useTranslation();
+
+  const userEmail = useRegisterSelector(selectUserEmail);
+  const userPassword = useRegisterSelector(selectUserPassword);
+  const registerType = useRegisterSelector(selectRegisterType);
+  const userExternalId = useRegisterSelector(selectUserExternalId);
+
+  const handleLoginSuccess = useCallback((token: string) => {
+    set(token);
+
+    window.location.assign(`${BACKOFFICE_URL}?token=${token}`);
+  }, [set]);
+
+  const handleLogin = useLogin({ onSuccess: handleLoginSuccess });
 
   const handleSubmitUserForm = useCallback(() => {
     setTab(1);
@@ -29,8 +44,8 @@ export default function RegisterContainer() {
     success(
       t('common.success-registered'),
       t,
-      () => router.push(Routes.Login)
-    ), [t]);
+      () => handleLogin(userEmail, userPassword, registerType, userExternalId)
+    ), [t, handleLogin, userEmail, userPassword, userExternalId, registerType]);
 
   const handleSubmitRegister = useSubmitRegister({ onSuccess: handleSuccessForm });
 
