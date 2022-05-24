@@ -71,11 +71,9 @@ export default function useSaveDeal({
             } finally {
               appDispatch(setIsLoading(false));
             }
-          },
-          t
+          }
         );
-      },
-      t
+      }
     );
 
     document.querySelector('.swal2-input')?.addEventListener('keyup', handleOnChangeInputAlert);
