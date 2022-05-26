@@ -38,7 +38,7 @@ export default function useSearchAdvertisngs({ initialData = [], initialPages = 
 
   const dispatch = useAppDispatch();
 
-  const { favorites, id } = useUser();
+  const { favorites } = useUser();
 
   const { query } = useRouter();
 
@@ -51,7 +51,7 @@ export default function useSearchAdvertisngs({ initialData = [], initialPages = 
   const tail = useMemo(() => query?.tail?.toString().split(','), [query?.tail]);
   const type = useMemo(() => query?.type?.toString().split(','), [query?.type]);
   const prices = useMemo(() => query?.prices ? JSON.parse(query.prices.toString()) : undefined, [query?.prices]);
-  const isFavoritesFilterEnabled = useMemo(() => query?.favorites?.toString() === 'true', [query?.favorites]);
+  const favoriteExternalId = useMemo(() => query?.favoriteExternalId?.toString() ?? '', [query?.favoriteExternalId]);
 
   const handleClear = useCallback(() => {
     setAdvertisingsData([]);
@@ -103,7 +103,7 @@ export default function useSearchAdvertisngs({ initialData = [], initialPages = 
           sort,
           tail,
           type,
-          favoriteExternalId: isFavoritesFilterEnabled ? id : '',
+          favoriteExternalId,
           page
         });
 
@@ -127,8 +127,7 @@ export default function useSearchAdvertisngs({ initialData = [], initialPages = 
     tail,
     type,
     page,
-    isFavoritesFilterEnabled,
-    id
+    favoriteExternalId,
   ]);
 
   return useMemo(() => (advertisingsData)?.map((poultryData: PoultryData) =>
