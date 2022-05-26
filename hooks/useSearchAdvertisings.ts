@@ -30,16 +30,15 @@ export default function useSearchAdvertisngs({ initialData = [], initialPages = 
   initialPages?: number;
 }) {
   const [advertisingsData, setAdvertisingsData] = useState<PoultryData[]>(initialData);
-  const [filteredData, setFilteredData] = useState<PoultryData[]>([]);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(initialPages);
-  const [isFirstAccess, setIsFirstAccess] = useState(true);
+  const [isFirstAccess, setIsFirstAccess] = useState(false);
 
   const isLoading = useAppSelector(selectIsLoading);
 
   const dispatch = useAppDispatch();
 
-  const { favorites } = useUser();
+  const { favorites, id } = useUser();
 
   const { query } = useRouter();
 
@@ -104,7 +103,7 @@ export default function useSearchAdvertisngs({ initialData = [], initialPages = 
           sort,
           tail,
           type,
-          favorites: [],
+          favoriteExternalId: isFavoritesFilterEnabled ? id : '',
           page
         });
 
@@ -127,14 +126,12 @@ export default function useSearchAdvertisngs({ initialData = [], initialPages = 
     sort,
     tail,
     type,
-    page
+    page,
+    isFavoritesFilterEnabled,
+    id
   ]);
 
-  useEffect(() => {
-    setFilteredData(advertisingsData.filter(a => favorites.some(favorite => favorite.advertisingId === a.advertising.id)));
-  }, [favorites, advertisingsData]);
-
-  return useMemo(() => (isFavoritesFilterEnabled ? filteredData : advertisingsData)?.map((poultryData: PoultryData) =>
+  return useMemo(() => (advertisingsData)?.map((poultryData: PoultryData) =>
     poultryDataToSearchAdvertising(poultryData, favorites)
-  ), [advertisingsData, favorites, isFavoritesFilterEnabled, filteredData]);
+  ), [advertisingsData, favorites]);
 }
