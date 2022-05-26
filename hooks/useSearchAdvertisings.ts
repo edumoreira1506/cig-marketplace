@@ -30,10 +30,9 @@ export default function useSearchAdvertisngs({ initialData = [], initialPages = 
   initialPages?: number;
 }) {
   const [advertisingsData, setAdvertisingsData] = useState<PoultryData[]>(initialData);
-  const [filteredData, setFilteredData] = useState<PoultryData[]>([]);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(initialPages);
-  const [isFirstAccess, setIsFirstAccess] = useState(true);
+  const [isFirstAccess, setIsFirstAccess] = useState(false);
 
   const isLoading = useAppSelector(selectIsLoading);
 
@@ -52,7 +51,7 @@ export default function useSearchAdvertisngs({ initialData = [], initialPages = 
   const tail = useMemo(() => query?.tail?.toString().split(','), [query?.tail]);
   const type = useMemo(() => query?.type?.toString().split(','), [query?.type]);
   const prices = useMemo(() => query?.prices ? JSON.parse(query.prices.toString()) : undefined, [query?.prices]);
-  const isFavoritesFilterEnabled = useMemo(() => query?.favorites?.toString() === 'true', [query?.favorites]);
+  const favoriteExternalId = useMemo(() => query?.favoriteExternalId?.toString() ?? '', [query?.favoriteExternalId]);
 
   const handleClear = useCallback(() => {
     setAdvertisingsData([]);
@@ -104,7 +103,7 @@ export default function useSearchAdvertisngs({ initialData = [], initialPages = 
           sort,
           tail,
           type,
-          favorites: [],
+          favoriteExternalId,
           page
         });
 
@@ -127,14 +126,11 @@ export default function useSearchAdvertisngs({ initialData = [], initialPages = 
     sort,
     tail,
     type,
-    page
+    page,
+    favoriteExternalId,
   ]);
 
-  useEffect(() => {
-    setFilteredData(advertisingsData.filter(a => favorites.some(favorite => favorite.advertisingId === a.advertising.id)));
-  }, [favorites, advertisingsData]);
-
-  return useMemo(() => (isFavoritesFilterEnabled ? filteredData : advertisingsData)?.map((poultryData: PoultryData) =>
+  return useMemo(() => (advertisingsData)?.map((poultryData: PoultryData) =>
     poultryDataToSearchAdvertising(poultryData, favorites)
-  ), [advertisingsData, favorites, isFavoritesFilterEnabled, filteredData]);
+  ), [advertisingsData, favorites]);
 }

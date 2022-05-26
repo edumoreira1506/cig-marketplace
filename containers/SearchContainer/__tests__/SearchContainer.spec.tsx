@@ -260,7 +260,7 @@ describe('<SearchContainer />', () => {
       sort:  '',
       tail: tailListItems.map(c => c.value).join(','),
       type: typeListItems.map(c => c.value).join(','),
-      favorites: 'true',
+      favoriteExternalId: '',
       prices: JSON.stringify({ min: 100000, max: 1000000 })
     }).toString()}`);
   });

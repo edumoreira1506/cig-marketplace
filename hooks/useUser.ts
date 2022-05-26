@@ -44,7 +44,8 @@ export default function useUser() {
         name: '',
         breeders: [],
         favorites,
-        registerType: ''
+        registerType: '',
+        id: ''
       };
     }
   }, [get, favorites, dispatch]);

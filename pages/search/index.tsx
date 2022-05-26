@@ -9,6 +9,7 @@ export async function getServerSideProps({ query }: { query: Record<string, stri
   const gender = query?.gender?.toString().split(',')  ?? [];
   const genderCategory = query?.genderCategory?.toString().split(',')  ?? [];
   const keyword = query?.keyword?.toString();
+  const favoriteExternalId = query?.favoriteExternalId?.toString() ?? '';
   const sort = query?.sort?.toString();
   const tail = query?.tail?.toString().split(',') ?? [];
   const type = query?.type?.toString().split(',') ?? [];
@@ -24,7 +25,7 @@ export async function getServerSideProps({ query }: { query: Record<string, stri
     tail,
     type,
     prices,
-    favorites: []
+    favoriteExternalId,
   });
 
   return {

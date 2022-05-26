@@ -154,7 +154,7 @@ export default function SearchContainer({ advertisings: advertisingsProp = [], p
 
   const { push, query } = useRouter();
 
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
 
   const [isOpenFilterModal, setIsOpenFilterModal] = useState(false);
   const [isOpenSortModal, setIsOpenSortModal] = useState(false);
@@ -191,11 +191,11 @@ export default function SearchContainer({ advertisings: advertisingsProp = [], p
         sort: localFilters.sortOptions.length ? localFilters.sortOptions.join(',') : '',
         tail: localFilters.tailOptions.length ? localFilters.tailOptions.join(',') : '',
         type: localFilters.typeOptions.length ? localFilters.typeOptions.join(',') : '',
-        favorites: isFavoritesFilterActive.toString(),
+        favoriteExternalId: isFavoritesFilterActive ? user?.id : undefined,
         prices: JSON.stringify(pricesFilter)
       }).toString()}`
     );
-  }, [push, closeFilterModal, localFilters, isFavoritesFilterActive, pricesFilter]);
+  }, [push, closeFilterModal, localFilters, isFavoritesFilterActive, pricesFilter, user?.id]);
 
   const handleChangeFilter = (filterName: string, filterValue: string, toggleFilter = true) => {
     setLocalFilters((prevLocalFilters) => {
@@ -294,7 +294,7 @@ export default function SearchContainer({ advertisings: advertisingsProp = [], p
       });
     }
 
-    if (query?.favorites === 'true') {
+    if (query?.favoriteExternalId) {
       setIsFavoriteFilterActive(true);
     }
 
