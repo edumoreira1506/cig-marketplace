@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { AdvertisingCarousel, AdvertisingCarouselItem } from '@cig-platform/ui';
 import { useRouter } from 'next/router';
 
@@ -11,6 +11,8 @@ import {
   StyledContainer,
   StyledCarouselContainer,
 } from './HomeContainer.styles';
+import { useQuery } from 'react-query';
+import ContentSearchService from '@Services/ContentSearchService';
 
 export type HomeContainerProps = {
   carousels: {
@@ -20,10 +22,21 @@ export type HomeContainerProps = {
   }[]
 }
 
-export default function HomeContainer({ carousels = [] }: HomeContainerProps) {
-  const toggleFavorite = useToggleFavorite();
-
+export default function HomeContainer({ carousels: carouselsProps = [] }: HomeContainerProps) {
   const { favorites, id: userId } = useUser();
+
+  const getHome = useCallback(() => ContentSearchService.getHome(userId), [userId]);
+
+  const { data } = useQuery('home', getHome, {
+    initialData: {
+      carousels: carouselsProps,
+      ok: true
+    }
+  });
+
+  const carousels = useMemo(() => data?.carousels ?? [], [data?.carousels]);
+  
+  const toggleFavorite = useToggleFavorite();
 
   const router = useRouter();
 
