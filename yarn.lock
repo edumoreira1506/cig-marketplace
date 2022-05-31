@@ -1080,10 +1080,10 @@
     "@cig-platform/types" "0.0.34"
     axios "^0.26.0"
 
-"@cig-platform/content-search-client@^0.0.21":
-  version "0.0.21"
-  resolved "https://registry.yarnpkg.com/@cig-platform/content-search-client/-/content-search-client-0.0.21.tgz#ea1eb040eac7fe73bbb33ed53487044bb4790a2b"
-  integrity sha512-YsqXYB+08Qh3xCT4E1WFwYY6mmk9cZk81OoF1PxpiYnIeSgUdWFoSGdPjkh8RxnfUE54fTnLud2m1aBQZ4BiTQ==
+"@cig-platform/content-search-client@^0.0.22":
+  version "0.0.22"
+  resolved "https://registry.yarnpkg.com/@cig-platform/content-search-client/-/content-search-client-0.0.22.tgz#70f8b5fbb12d39450a2639ecf9120d169a3d734c"
+  integrity sha512-wG2VMxX1Z6SLGPvr0lIjf5NJdbyXWff6DUjwH3+Hxq7rzI6CW+MEHQIcekFNVJFw5fY0x+WjBOqUYQ533D/ncQ==
   dependencies:
     "@babel/plugin-proposal-decorators" "^7.17.2"
     "@cig-platform/decorators" "^0.0.2"
