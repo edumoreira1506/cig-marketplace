@@ -76,10 +76,10 @@ export default function HomeContainer({ carousels: carouselsProps = [] }: HomeCo
 
   return (
     <StyledContainer>
-      {carousels.map(carouselItem => (
+      {carousels?.map(carouselItem => (
         <StyledCarouselContainer key={carouselItem.identifier}>
           <AdvertisingCarousel
-            advertisings={carouselItem.advertisings?.map(dataToAdvertisingItem) ?? []}
+            advertisings={carouselItem?.advertisings?.map(dataToAdvertisingItem) ?? []}
             onViewAdvertising={handleViewAdvertising}
             onViewAll={() => {
               if (carouselItem.identifier === 'favorites') {
