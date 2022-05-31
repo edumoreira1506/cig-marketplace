@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { AdvertisingCarousel, AdvertisingCarouselItem } from '@cig-platform/ui';
 import { useRouter } from 'next/router';
-import { PoultryGenderCategoryEnum } from '@cig-platform/enums';
 
 import { POULTRY_PLACEHOLDER_IMAGE_URL } from '@Constants/urls';
 import { PoultryData } from '@Hooks/useSearchAdvertisings';
@@ -12,35 +11,50 @@ import {
   StyledContainer,
   StyledCarouselContainer,
 } from './HomeContainer.styles';
-
-type AdvertisingItem = {
-  price: number;
-  description: string;
-  breederImage?: string;
-  image?: string;
-  identifier: string;
-};
+import { useQuery } from 'react-query';
+import ContentSearchService from '@Services/ContentSearchService';
 
 export type HomeContainerProps = {
-  advertisings: {
-    maleChickens: PoultryData[];
-    femaleChickens: PoultryData[];
-    matrixes: PoultryData[];
-    reproductives: PoultryData[];
-  }
+  carousels: {
+    title: string;
+    identifier: string;
+    advertisings?: PoultryData[]
+  }[]
 }
 
-export default function HomeContainer({ advertisings }: HomeContainerProps) {
-  const toggleFavorite = useToggleFavorite();
+export default function HomeContainer({ carousels: carouselsProps = [] }: HomeContainerProps) {
+  const { favorites, id: userId } = useUser();
 
-  const { favorites } = useUser();
+  const getHome = useCallback(() => ContentSearchService.getHome(userId), [userId]);
+
+  const { data } = useQuery('home', getHome, {
+    initialData: {
+      carousels: carouselsProps,
+      ok: true
+    }
+  });
+
+  const carousels = useMemo(() => data?.carousels ?? [], [data?.carousels]);
+  
+  const toggleFavorite = useToggleFavorite();
 
   const router = useRouter();
 
-  const [matrixes, setMatrixes] = useState<AdvertisingItem[]>([]);
-  const [reproductives, setReproductives] = useState<AdvertisingItem[]>([]);
-  const [maleChickens, setMaleChickens] = useState<AdvertisingItem[]>([]);
-  const [femaleChickens, setFemaleChickens] = useState<AdvertisingItem[]>([]);
+  const dataToAdvertisingItem = useCallback((
+    d: PoultryData
+  ): AdvertisingCarouselItem => ({
+    description: `${[
+      d.poultry.birthDate ? new Intl.DateTimeFormat('pt-BR').format(new Date(d.poultry.birthDate)) : '',
+      d?.measurementAndWeight?.metadata?.measurement ? `${d.measurementAndWeight.metadata.measurement} CM` : ''
+    ].filter(Boolean).join(' - ')}`,
+    identifier: `${d.breeder.id}/${d.poultry.id}/${d.advertising.id}`,
+    price: d.advertising.price,
+    breederImage: d.breeder.profileImageUrl ? `https://cig-maketplace.s3.sa-east-1.amazonaws.com/breeders/profile/${d.breeder.profileImageUrl}` : undefined,
+    image: d.poultry.mainImage ? `https://cig-maketplace.s3.sa-east-1.amazonaws.com/poultries/images/${d.poultry.mainImage}` : undefined,
+    favorited: favorites.some(
+      (f) => f.advertisingId === d.advertising.id
+    ),
+  }), [favorites]);
 
   const handleViewAdvertising = useCallback(
     (identifier: string) => {
@@ -60,102 +74,29 @@ export default function HomeContainer({ advertisings }: HomeContainerProps) {
     [router]
   );
 
-  useEffect(() => {
-    const dataToAdvertisingItem = (
-      d: PoultryData
-    ): AdvertisingCarouselItem => ({
-      description: `${[
-        d.poultry.birthDate ? new Intl.DateTimeFormat('pt-BR').format(new Date(d.poultry.birthDate)) : '',
-        d?.measurementAndWeight?.metadata?.measurement ? `${d.measurementAndWeight.metadata.measurement} CM` : ''
-      ].filter(Boolean).join(' - ')}`,
-      identifier: `${d.breeder.id}/${d.poultry.id}/${d.advertising.id}`,
-      price: d.advertising.price,
-      breederImage: d.breeder.profileImageUrl ? `https://cig-maketplace.s3.sa-east-1.amazonaws.com/breeders/profile/${d.breeder.profileImageUrl}` : undefined,
-      image: d.poultry.mainImage ? `https://cig-maketplace.s3.sa-east-1.amazonaws.com/poultries/images/${d.poultry.mainImage}` : undefined,
-      favorited: favorites.some(
-        (f) => f.advertisingId === d.advertising.id
-      ),
-    });
-
-    setMatrixes(advertisings.matrixes.map(dataToAdvertisingItem));
-    setReproductives(advertisings.reproductives.map(dataToAdvertisingItem));
-    setFemaleChickens(advertisings.femaleChickens.map(dataToAdvertisingItem));
-    setMaleChickens(advertisings.maleChickens.map(dataToAdvertisingItem));
-  }, [favorites, advertisings]);
-
   return (
     <StyledContainer>
-      {Boolean(matrixes.length) && (
-        <StyledCarouselContainer>
+      {carousels.map(carouselItem => (
+        <StyledCarouselContainer key={carouselItem.identifier}>
           <AdvertisingCarousel
-            advertisings={matrixes}
+            advertisings={carouselItem.advertisings?.map(dataToAdvertisingItem) ?? []}
             onViewAdvertising={handleViewAdvertising}
-            onViewAll={() =>
-              router.push(
-                `/search?genderCategory=${PoultryGenderCategoryEnum.Matrix}`
-              )
-            }
-            title="Matrizes"
+            onViewAll={() => {
+              if (carouselItem.identifier === 'favorites') {
+                `/search?favoriteExternalId=${userId}`;
+              } else {
+                router.push(
+                  `/search?genderCategory=${carouselItem.identifier}`
+                );
+              }
+            }}
+            title={carouselItem.title}
             placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
             onFavorite={toggleFavorite}
             onViewBreeder={handleViewBreeder}
           />
         </StyledCarouselContainer>
-      )}
-
-      {Boolean(reproductives.length) && (
-        <StyledCarouselContainer>
-          <AdvertisingCarousel
-            advertisings={reproductives}
-            onViewAdvertising={handleViewAdvertising}
-            onViewAll={() =>
-              router.push(
-                `/search?genderCategory=${PoultryGenderCategoryEnum.Reproductive}`
-              )
-            }
-            title="Reprodutores"
-            placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
-            onViewBreeder={handleViewBreeder}
-            onFavorite={toggleFavorite}
-          />
-        </StyledCarouselContainer>
-      )}
-
-      {Boolean(maleChickens.length) && (
-        <StyledCarouselContainer>
-          <AdvertisingCarousel
-            advertisings={maleChickens}
-            onViewAdvertising={handleViewAdvertising}
-            onViewAll={() =>
-              router.push(
-                `/search?genderCategory=${PoultryGenderCategoryEnum.MaleChicken}`
-              )
-            }
-            title="Frangos"
-            placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
-            onViewBreeder={handleViewBreeder}
-            onFavorite={toggleFavorite}
-          />
-        </StyledCarouselContainer>
-      )}
-
-      {Boolean(femaleChickens.length) && (
-        <StyledCarouselContainer>
-          <AdvertisingCarousel
-            advertisings={femaleChickens}
-            onViewAdvertising={handleViewAdvertising}
-            onViewAll={() =>
-              router.push(
-                `/search?genderCategory=${PoultryGenderCategoryEnum.FemaleChicken}`
-              )
-            }
-            title="Frangas"
-            placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
-            onViewBreeder={handleViewBreeder}
-            onFavorite={toggleFavorite}
-          />
-        </StyledCarouselContainer>
-      )}
+      ))}
     </StyledContainer>
   );
 }

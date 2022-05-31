@@ -4,19 +4,19 @@ import HomeContainer, { HomeContainerProps } from '@Containers/HomeContainer/Hom
 import ContentSearchService from '@Services/ContentSearchService';
 
 type HomePageProps = {
-  advertisings: HomeContainerProps['advertisings'];
+  carousels: HomeContainerProps['carousels'];
 }
 
-const HomePage = ({ advertisings }: HomePageProps) => (
-  <HomeContainer advertisings={advertisings} />
+const HomePage = ({ carousels }: HomePageProps) => (
+  <HomeContainer carousels={carousels} />
 );
 
 export async function getServerSideProps() {
-  const advertisings = await ContentSearchService.getHome();
+  const homeResponse = await ContentSearchService.getHome();
 
   return {
     props: {
-      advertisings
+      carousels: homeResponse?.carousels
     },
   };
 }
