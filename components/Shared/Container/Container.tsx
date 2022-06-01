@@ -57,12 +57,14 @@ export const authorizedItems = [
 
 enum Shortcuts {
   LOGOUT = 'Sair',
-  EDIT_PASSWORD = 'Editar senha'
+  EDIT_PASSWORD = 'Editar senha',
+  EDIT_PROFILE = 'Editar perfil'
 }
 
 const shortcutLinks = {
   [Shortcuts.LOGOUT]: `${BACKOFFICE_URL}logout`,
   [Shortcuts.EDIT_PASSWORD]: `${BACKOFFICE_URL}editar-senha`,
+  [Shortcuts.EDIT_PROFILE]: `${BACKOFFICE_URL}editar-perfil`,
 };
 
 export interface ContainerProps {
@@ -87,8 +89,8 @@ export default function Container({ children }: ContainerProps) {
 
   const shurtcutItems = useMemo(() => {
     if (!isAuthenticated) return [];
-    if (user?.registerType !== UserRegisterTypeEnum.Default) return [Shortcuts.LOGOUT];
-    return [Shortcuts.EDIT_PASSWORD, Shortcuts.LOGOUT];
+    if (user?.registerType !== UserRegisterTypeEnum.Default) return [Shortcuts.EDIT_PROFILE, Shortcuts.LOGOUT];
+    return [Shortcuts.EDIT_PROFILE, Shortcuts.EDIT_PASSWORD, Shortcuts.LOGOUT];
   }, [isAuthenticated, user?.registerType]);
 
   const handleMenuItemClick = useCallback((menuItemTitle: string) => {
