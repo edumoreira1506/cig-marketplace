@@ -1,6 +1,7 @@
 import { PoultryGenderCategoryEnum, PoultryGenderEnum, RegisterTypeEnum } from '@cig-platform/enums';
 import { advertisingFactory, breederFactory, poultryFactory } from '@cig-platform/factories';
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
+import { render } from '@Utils/tests/rtl';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import HomeContainer from '../HomeContainer';

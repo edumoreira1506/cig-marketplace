@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
-import { render } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 
 import { INITIAL_STATE, RegisterState } from '@Contexts/RegisterContext/registerReducer';
 import RegisterContext from '@Contexts/RegisterContext/RegisterContext';
+import { render } from './rtl';
 
 export const createRegisterContextRenderer = (mockStore: RegisterState = INITIAL_STATE, mockDispatch = jest.fn()) => {
   return (children: ReactNode) => render(

@@ -1,10 +1,10 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
 import { IAdvertising, IBreeder, IPoultry, IPoultryRegister } from '@cig-platform/types';
 import { useRouter } from 'next/router';
-import { useDebouncedEffect } from '@cig-platform/hooks';
+import { useData } from '@cig-platform/data-helper';
 
 import { useAppDispatch, useAppSelector } from '@Contexts/AppContext/AppContext';
-import { setError, setIsLoading } from '@Contexts/AppContext/appActions';
+import { setIsLoading } from '@Contexts/AppContext/appActions';
 import ContentSearchService from '@Services/ContentSearchService';
 import useUser from '@Hooks/useUser';
 import { selectIsLoading } from '@Contexts/AppContext/appSelectors';
@@ -25,6 +25,11 @@ export interface PoultryData {
   }
 }
 
+export type Data = {
+  advertisings: PoultryData[];
+  pages: number;
+}
+
 export default function useSearchAdvertisngs({ initialData = [], initialPages = 0 }: {
   initialData?: PoultryData[],
   initialPages?: number;
@@ -32,7 +37,6 @@ export default function useSearchAdvertisngs({ initialData = [], initialPages = 
   const [advertisingsData, setAdvertisingsData] = useState<PoultryData[]>(initialData);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(initialPages);
-  const [isFirstAccess, setIsFirstAccess] = useState(false);
 
   const isLoading = useAppSelector(selectIsLoading);
 
@@ -57,14 +61,13 @@ export default function useSearchAdvertisngs({ initialData = [], initialPages = 
     setAdvertisingsData([]);
     setPage(0);
   }, []);
-
+  
   const handlePaginate = useCallback(() => {
     const documentHeight = document.body.scrollHeight;
     const currentScroll = window.scrollY + window.innerHeight;
     const modifier = 200; 
     
     if (currentScroll + modifier > documentHeight && page < totalPages - 1 && !isLoading) {
-      setIsFirstAccess(false);
       setPage(page + 1);
       dispatch(setIsLoading(true));
     }
@@ -76,7 +79,6 @@ export default function useSearchAdvertisngs({ initialData = [], initialPages = 
 
     if (hasFilterOnQueryParams && needsToClearResults) {
       handleClear();
-      setIsFirstAccess(false);
     }
   }, [sort, handleClear, crest, dewlap, gender, genderCategory, tail, type, keyword, prices]);
 
@@ -85,50 +87,61 @@ export default function useSearchAdvertisngs({ initialData = [], initialPages = 
 
     return () => document.removeEventListener('scroll', handlePaginate);
   }, [handlePaginate]);
-
-  useDebouncedEffect(() => {
-    if (isFirstAccess) return;
-
-    (async () => {
-      try {
-        dispatch(setIsLoading(true));
-
-        const { advertisings, pages } = await ContentSearchService.getSearch({
-          crest,
-          dewlap,
-          gender,
-          genderCategory,
-          keyword,
-          prices,
-          sort,
-          tail,
-          type,
-          favoriteExternalId,
-          page
-        });
-
-        setAdvertisingsData(prevAdvertisings => [...prevAdvertisings, ...advertisings]);
-        setTotalPages(pages);
-      } catch (error) {
-        dispatch(setError(error));
-      } finally {
-        dispatch(setIsLoading(false));
+  
+  const { data, isLoading: isLoadingGetSearchRequest } = useData<Data>(
+    'getSearch', 
+    () => ContentSearchService.getSearch({
+      crest,
+      dewlap,
+      gender,
+      genderCategory,
+      keyword,
+      prices,
+      sort,
+      tail,
+      type,
+      favoriteExternalId,
+      page
+    }),
+    [
+      crest,
+      dewlap,
+      gender,
+      genderCategory,
+      keyword,
+      prices,
+      sort,
+      tail,
+      type,
+      favoriteExternalId,
+      page
+    ].filter(Boolean),
+    {
+      initialData: {
+        advertisings: initialData,
+        pages: initialPages
       }
-    })();
-  }, 1000, [
-    isFirstAccess,
-    crest,
-    dewlap,
-    gender,
-    genderCategory,
-    keyword,
-    prices,
-    sort,
-    tail,
-    type,
-    page,
-    favoriteExternalId,
-  ]);
+    }
+  );
+
+  useEffect(() => {
+    if (!data?.advertisings?.length) return;
+
+    setAdvertisingsData(prevAdvertisings => [
+      ...prevAdvertisings,
+      ...data?.advertisings?.filter(a =>
+        prevAdvertisings.every(pA => pA.advertising.id !== a.advertising.id)
+      ) ?? []
+    ]);
+  }, [data?.advertisings]);
+
+  useEffect(() => {
+    dispatch(setIsLoading(isLoadingGetSearchRequest));
+  }, [isLoadingGetSearchRequest, dispatch]);
+
+  useEffect(() => {
+    setTotalPages(data?.pages ?? 0);
+  }, [data?.pages]);
 
   return useMemo(() => (advertisingsData)?.map((poultryData: PoultryData) =>
     poultryDataToSearchAdvertising(poultryData, favorites)

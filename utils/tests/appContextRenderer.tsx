@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
-import { render } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 
 import AppContext from '@Contexts/AppContext/AppContext';
 import { AppState, INITIAL_STATE } from '@Contexts/AppContext/appReducer';
+import { render } from './rtl';
 
 export const createAppContextRenderer = (mockStore: AppState = INITIAL_STATE, mockDispatch = jest.fn()) => {
   return (children: ReactNode) => render(

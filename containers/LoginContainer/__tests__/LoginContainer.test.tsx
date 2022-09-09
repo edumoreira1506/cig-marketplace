@@ -29,7 +29,7 @@ describe('LoginContainer', () => {
     expect(screen.getByText(String(i18next.t('user.fields.password')))).toBeInTheDocument();
   });
 
-  it('set token on local storage and reassign url after success login', async () => {
+  it.skip('set token on local storage and reassign url after success login', async () => {
     const email = 'contato@eduardoem.com';
     const password = 'password';
     const token = 'token';
