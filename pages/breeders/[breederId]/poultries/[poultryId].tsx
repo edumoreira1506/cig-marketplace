@@ -12,6 +12,7 @@ import useAuth from '@Hooks/useAuth';
 import useSaveDeal from '@Hooks/useSaveDeal';
 
 import { StyledContainer } from './[poultryId].styles';
+import { useRefetch } from '@cig-platform/hooks';
 
 const MicroFrontend = dynamic(() => import('@cig-platform/microfrontend-helper'), {
   ssr: false
@@ -19,6 +20,8 @@ const MicroFrontend = dynamic(() => import('@cig-platform/microfrontend-helper')
 
 const PoultryPage = () => {
   const router = useRouter();
+
+  const { refetch: refetchMicroFrontEndData, setRefetch: setRefetchMicroFrontEndData } = useRefetch();
 
   const { t } = useTranslation();
 
@@ -31,10 +34,13 @@ const PoultryPage = () => {
   const microFrontendParams = useMemo(() => ({
     poultryId: poultryId?.toString() ?? '',
     breederId: breederId?.toString() ?? '',
-  }), [breederId, poultryId]);
+    refetch: refetchMicroFrontEndData
+  }), [breederId, poultryId, refetchMicroFrontEndData]);
 
   const handleSaveSuccess = useCallback(() => {
-    success(t('common.success'), t, () => window.location.reload());
+    success(t('common.success'), t, () => {
+      setRefetchMicroFrontEndData(true);
+    });
   }, [t]);
 
   const handleBuySuccess = useCallback((deal) => {

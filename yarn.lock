@@ -1126,10 +1126,10 @@
     "@cig-platform/types" "^0.0.33"
     faker "^5.5.3"
 
-"@cig-platform/hooks@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@cig-platform/hooks/-/hooks-0.0.3.tgz#78374db9d2b7bf8b08421cac7ef2cfd9c40d288e"
-  integrity sha512-2k4XA5G0ysyJekVf62/+5yY+fEEqr+G19v6t+bu8qAAN6hws/zjTiiuiifmjyJn24pOxAPchpjPihsWbJooSWg==
+"@cig-platform/hooks@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@cig-platform/hooks/-/hooks-0.0.5.tgz#1df6955dce7c4de1c21494bb08cbcb2ba4b7b188"
+  integrity sha512-F415ovO6GfIyuPcfp2gLuqpbz3eKyPVKGLzrBtSdrKDhb4LM/zuH1wRk6WQyl3AhoGDsHqf/P7RLqLb5mZu8jw==
   dependencies:
     react "^17.0.2"
     react-dom "^17.0.2"
@@ -1143,10 +1143,10 @@
     "@cig-platform/types" "^0.0.33"
     axios "^0.26.0"
 
-"@cig-platform/microfrontend-helper@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@cig-platform/microfrontend-helper/-/microfrontend-helper-0.0.3.tgz#15e5dc994cbcbbaa02f07a204a42be39693f2eb6"
-  integrity sha512-cNzbHB4gf3i/D80GrRx98QDHi/GYtiCnk64okWRSc2d437+Xrktm7QedY6eXZk8YvJ5qDxGUkvGZUBaQ8lvAVA==
+"@cig-platform/microfrontend-helper@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@cig-platform/microfrontend-helper/-/microfrontend-helper-0.0.6.tgz#8799a40e021e0eb24f4f9d8e138477338d90ac80"
+  integrity sha512-Q5vR3PyI17eiLU+PEk4n9dmOUCG8TAGAttTAYSthWhZl79gtNUUxE6iogLAMYvfWTb5bHwvgvP65x3hw63bLQA==
   dependencies:
     react "^17.0.2"
     react-scripts "^5.0.0"
