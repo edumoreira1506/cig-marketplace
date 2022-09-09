@@ -1,5 +1,5 @@
 import { advertisingFactory, breederFactory, poultryFactory } from '@cig-platform/factories';
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import * as NextRouter from 'next/router';
 import userEvent from '@testing-library/user-event';
 
@@ -14,7 +14,7 @@ import SearchContainer, {
   tailListItems,
   typeListItems,
 } from '../SearchContainer';
-import { createRouterWrapper } from '@Utils/tests/wrappers';
+import { render } from '@Utils/tests/rtl';
 
 describe('<SearchContainer />', () => {
   it('renders correctly', async () => {
@@ -44,14 +44,11 @@ describe('<SearchContainer />', () => {
       pages,
       advertisings
     });
-    const RouterWrapper = createRouterWrapper('/', '/');
 
     jest.spyOn(ContentSearchService, 'getSearch').mockImplementation(mockGetSearch);
 
     render(
-      <RouterWrapper>
-        <SearchContainer advertisings={advertisings} />
-      </RouterWrapper>
+      <SearchContainer advertisings={advertisings} />
     );
 
     expect(screen.getByText('Ordenar')).toBeInTheDocument();
@@ -82,14 +79,11 @@ describe('<SearchContainer />', () => {
       pages,
       advertisings: [advertisingItem]
     });
-    const RouterWrapper = createRouterWrapper('/', '/');
 
     jest.spyOn(ContentSearchService, 'getSearch').mockImplementation(mockGetSearch);
 
     render(
-      <RouterWrapper>
-        <SearchContainer />
-      </RouterWrapper>
+      <SearchContainer />
     );
 
     userEvent.click(screen.getByText('Ordenar'));
@@ -155,14 +149,11 @@ describe('<SearchContainer />', () => {
       pages,
       advertisings: [advertisingItem]
     });
-    const RouterWrapper = createRouterWrapper('/', '/');
 
     jest.spyOn(ContentSearchService, 'getSearch').mockImplementation(mockGetSearch);
 
     render(
-      <RouterWrapper>
-        <SearchContainer />
-      </RouterWrapper>
+      <SearchContainer />
     );
 
     userEvent.click(screen.getByText('Filtrar'));

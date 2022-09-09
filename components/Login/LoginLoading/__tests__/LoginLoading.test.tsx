@@ -1,4 +1,5 @@
-import { screen, render } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { render } from '@Utils/tests/rtl';
 
 import LoginLoading from '../LoginLoading';
 

@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
-import { render } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 
 import { INITIAL_STATE, LoginState } from '@Contexts/LoginContext/loginReducer';
 import LoginContext from '@Contexts/LoginContext/LoginContext';
+import { render } from './rtl';
 
 export const createLoginContextRenderer = (mockStore: LoginState = INITIAL_STATE, mockDispatch = jest.fn()) => {
   return (children: ReactNode) => render(
