@@ -116,7 +116,12 @@ export default function useSearchAdvertisngs({ initialData = [], initialPages = 
       favoriteExternalId,
       page
     ].filter(Boolean),
-    {}
+    {
+      initialData: {
+        advertisings: initialData,
+        pages: initialPages
+      }
+    }
   );
 
   useEffect(() => {
