@@ -11,15 +11,24 @@ import {
   StyledContainer,
   StyledCarouselContainer,
 } from './HomeContainer.styles';
-import { useQuery } from 'react-query';
 import ContentSearchService from '@Services/ContentSearchService';
+import { useData } from '@cig-platform/data-helper';
 
 export type HomeContainerProps = {
   carousels: {
     title: string;
     identifier: string;
-    advertisings?: PoultryData[]
+    advertisings: PoultryData[]
   }[]
+}
+
+type HomeData = {
+  ok: true;
+  carousels: {
+    title: string;
+    identifier: string;
+    advertisings: PoultryData[];
+  }[];
 }
 
 export default function HomeContainer({ carousels: carouselsProps = [] }: HomeContainerProps) {
@@ -27,7 +36,7 @@ export default function HomeContainer({ carousels: carouselsProps = [] }: HomeCo
 
   const getHome = useCallback(() => ContentSearchService.getHome(userId), [userId]);
 
-  const { data } = useQuery('home', getHome, {
+  const { data } = useData<HomeData>('home', getHome, [], {
     initialData: {
       carousels: carouselsProps,
       ok: true
