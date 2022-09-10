@@ -1131,6 +1131,13 @@
     "@cig-platform/types" "^0.0.33"
     faker "^5.5.3"
 
+"@cig-platform/factories@^0.0.22":
+  version "0.0.22"
+  resolved "https://registry.yarnpkg.com/@cig-platform/factories/-/factories-0.0.22.tgz#1b764e8a7b2fc9f0efbcfdb128a264f8866192ae"
+  integrity sha512-Yid5VYq/tUdj3dcM64twOt5ykCFocWatitBO6fR2D81mtBpwa/yNINe+Sks7lePQY39jvETdOquk9Iu2ta8UUg==
+  dependencies:
+    "@cig-platform/types" "^0.0.41"
+
 "@cig-platform/hooks@^0.0.5":
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/@cig-platform/hooks/-/hooks-0.0.5.tgz#1df6955dce7c4de1c21494bb08cbcb2ba4b7b188"
@@ -1182,14 +1189,28 @@
   dependencies:
     express "^4.17.3"
 
-"@cig-platform/ui@^0.1.148":
-  version "0.1.148"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.1.148.tgz#84ef7aa23de46876da20ac1a6c74874ef51d6a64"
-  integrity sha512-IzfD4XD/sQ2pYyWgYWT++0mcZDW9d/d1tokyuwrCgyeR2v+kVbPUnsPsm6eiVOxRtdewYNFUWzmYUaYXB1FChA==
+"@cig-platform/types@^0.0.41":
+  version "0.0.41"
+  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.41.tgz#36f18829b17adc914f6d840a5551a9c660d05b31"
+  integrity sha512-IVUOZQvuoSKa+zHHnQTn9kxvnLTEdwts4qhKP+Mu13wZ2xgEboWrfXs4ohTscMHOYj3xabahwT2VUox1Gv29bQ==
+  dependencies:
+    express "^4.17.3"
+
+"@cig-platform/types@^0.0.43":
+  version "0.0.43"
+  resolved "https://registry.yarnpkg.com/@cig-platform/types/-/types-0.0.43.tgz#5893eb718d738b374e42cb2cbee330c65e38b3b1"
+  integrity sha512-ftq7SaUTgVApmWtbowrgWcrEaqU0a5VspnJs8KKbONat+NvWcFt+Bq91VKJvnq9qlh5qr6pwC+vi+i6EzQ1OKA==
+  dependencies:
+    express "^4.17.3"
+
+"@cig-platform/ui@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.2.3.tgz#a972fe9b86a624dd61478d7813f241ea3e835d35"
+  integrity sha512-cP0bti+X3xO6g8C7XbEH9na40ruPOq26yS6EOLl7ZCDROXeHaZHnor8xsra/1SffP7GfLe7UcieSCyb/3aVLeg==
   dependencies:
     "@cig-platform/enums" "^0.0.5"
-    "@cig-platform/factories" "^0.0.20"
-    "@cig-platform/types" "^0.0.33"
+    "@cig-platform/factories" "^0.0.22"
+    "@cig-platform/types" "^0.0.43"
     "@testing-library/jest-dom" "^5.16.2"
     "@testing-library/react" "^12.1.3"
     "@testing-library/user-event" "^13.5.0"
@@ -1198,10 +1219,9 @@
     "@types/react" "^17.0.39"
     "@types/react-dom" "^17.0.13"
     postcss-normalize "^10.0.1"
-    react "^17.0.2"
     react-datepicker "^4.8.0"
     react-device-detect "^2.1.2"
-    react-dom "^17.0.2"
+    react-family-tree "^3.2.0"
     react-icons "^4.3.1"
     react-image-gallery "^1.2.7"
     react-modal "^3.14.4"
@@ -1210,7 +1230,6 @@
     react-scripts "5.0.0"
     react-slick "^0.28.1"
     slick-carousel "^1.8.1"
-    styled-components "^5.3.3"
     web-vitals "^2.1.4"
 
 "@cspotcode/source-map-consumer@0.8.0":
@@ -7752,6 +7771,13 @@ react-facebook-login@^4.1.1:
   resolved "https://registry.yarnpkg.com/react-facebook-login/-/react-facebook-login-4.1.1.tgz#005121236a6ac0dee02099976fb1a3265f9d633e"
   integrity sha512-COnHEHlYGTKipz4963safFAK9PaNTcCiXfPXMS/yxo8El+/AJL5ye8kMJf23lKSSGGPgqFQuInskIHVqGqTvSw==
 
+react-family-tree@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/react-family-tree/-/react-family-tree-3.2.0.tgz#60be2e4edd3fc166f4fb7e2285f922a9457cec6a"
+  integrity sha512-TCoLWPSLoP89CpfzK7vTxA2Ss0Qu6PuusdwjuLHeSrYiQfW6PLYCc8wTidRfKTjH+4FueF5OLMolj7rhh+c3MA==
+  dependencies:
+    relatives-tree "3.2.x"
+
 react-fast-compare@^3.0.1:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
@@ -8061,6 +8087,11 @@ relateurl@^0.2.7:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
+
+relatives-tree@3.2.x:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/relatives-tree/-/relatives-tree-3.2.0.tgz#9c309ac6250f487c39007dabbf61eaf52f2c5fcc"
+  integrity sha512-orxhI+jECes1VTfF7TLUVlDW7uWFGKyrmYtbUyrQNOYry+Jt+WZeYhrq5q7Axl2l0o1vABEew6xaKNMZEnzdQw==
 
 remove-accents@0.4.2:
   version "0.4.2"
