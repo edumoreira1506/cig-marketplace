@@ -1203,10 +1203,10 @@
   dependencies:
     express "^4.17.3"
 
-"@cig-platform/ui@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.2.3.tgz#a972fe9b86a624dd61478d7813f241ea3e835d35"
-  integrity sha512-cP0bti+X3xO6g8C7XbEH9na40ruPOq26yS6EOLl7ZCDROXeHaZHnor8xsra/1SffP7GfLe7UcieSCyb/3aVLeg==
+"@cig-platform/ui@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@cig-platform/ui/-/ui-0.2.4.tgz#e4c644e3f8554351426bf223f462cf101ab9cfdc"
+  integrity sha512-Fhaz5Ou1nFjcll/Ruq5QZDgzyb09cjhHvFOYni5SLhLmecgvW/DZ+A4imjUvf/nL9ObIhqxQp9d6zkplq+vSFg==
   dependencies:
     "@cig-platform/enums" "^0.0.5"
     "@cig-platform/factories" "^0.0.22"
