@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import { useMemo, useCallback } from 'react';
+import { useMemo, useCallback, Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { BACKOFFICE_URL, POULTRY_PAGE_URL } from '@Constants/urls';
@@ -34,7 +34,8 @@ const PoultryPage = () => {
   const microFrontendParams = useMemo(() => ({
     poultryId: poultryId?.toString() ?? '',
     breederId: breederId?.toString() ?? '',
-    refetch: refetchMicroFrontEndData
+    refetch: refetchMicroFrontEndData,
+    linkComponent: Fragment
   }), [breederId, poultryId, refetchMicroFrontEndData]);
 
   const handleSaveSuccess = useCallback(() => {
