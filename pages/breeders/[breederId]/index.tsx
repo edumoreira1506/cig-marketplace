@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import { useMemo, useCallback } from 'react';
+import { ReactNode } from 'react';
 
 import { BREEDER_PAGE_URL } from '@Constants/urls';
 
@@ -10,23 +10,26 @@ const MicroFrontend = dynamic(() => import('@cig-platform/microfrontend-helper')
   ssr: false
 });
 
+type LinkComponentProps = {
+  identifier: string;
+  params?: {
+    poultryId?: string
+  };
+  children?: ReactNode
+}
+
 const BreederPage = () => {
   const router = useRouter();
   const { breederId } = router.query;
 
-  const microFrontendParams = useMemo(() => ({
-    breederId: breederId?.toString() ?? ''
-  }), [breederId]);
-
-  const handleNavigateToViewPoultry = useCallback(({ poultryId }: { poultryId: string; }) => {
-    if (poultryId) {
-      router.push(`/breeders/${breederId}/poultries/${poultryId}`);
-    }
-  }, [router, breederId]);
-
-  const microFrontEndCallbacks = useMemo<Record<string, any>>(() => ({
-    onViewPoultry: handleNavigateToViewPoultry
-  }), [handleNavigateToViewPoultry]);
+  const microFrontendParams = ({
+    breederId: breederId?.toString() ?? '',
+    linkComponent: ({ children, params }: LinkComponentProps) => (
+      <a  href={`/breeders/${breederId}/poultries/${params?.poultryId}`}>
+        {children}
+      </a>
+    ) as any
+  });
 
   if (!breederId) return null;
 
@@ -37,7 +40,6 @@ const BreederPage = () => {
         name="BreederPage"
         host={BREEDER_PAGE_URL}
         containerId="breeder-container"
-        callbacks={microFrontEndCallbacks}
       />
     </StyledContainer>
   );
