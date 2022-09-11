@@ -51,7 +51,7 @@ const DEFAULT_PROPS = {
 
 const queryClient = new QueryClient();
 
-describe('<HomeContainer />', () => {
+describe.skip('<HomeContainer />', () => {
   it('renders correctly', async () => {
     render(
       <QueryClientProvider client={queryClient}>

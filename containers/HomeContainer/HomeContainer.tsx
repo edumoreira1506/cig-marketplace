@@ -1,6 +1,6 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { FC, useCallback, useMemo } from 'react';
 import { AdvertisingCarousel, AdvertisingCarouselItem } from '@cig-platform/ui';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 import { POULTRY_PLACEHOLDER_IMAGE_URL } from '@Constants/urls';
 import { PoultryData } from '@Hooks/useSearchAdvertisings';
@@ -31,6 +31,11 @@ type HomeData = {
   }[];
 }
 
+type LinkComponentProps = {
+  identifier: 'breeder-link' | 'view-all' | 'view-advertising';
+  params?: { identifier?: string }
+};
+
 export default function HomeContainer({ carousels: carouselsProps = [] }: HomeContainerProps) {
   const { favorites, id: userId } = useUser();
 
@@ -44,10 +49,8 @@ export default function HomeContainer({ carousels: carouselsProps = [] }: HomeCo
   });
 
   const carousels = useMemo(() => data?.carousels ?? [], [data?.carousels]);
-  
-  const toggleFavorite = useToggleFavorite();
 
-  const router = useRouter();
+  const toggleFavorite = useToggleFavorite();
 
   const dataToAdvertisingItem = useCallback((
     d: PoultryData
@@ -65,47 +68,56 @@ export default function HomeContainer({ carousels: carouselsProps = [] }: HomeCo
     ),
   }), [favorites]);
 
-  const handleViewAdvertising = useCallback(
-    (identifier: string) => {
-      const [breederId, poultryId] = identifier.split('/');
-
-      router.push(`/breeders/${breederId}/poultries/${poultryId}`);
-    },
-    [router]
-  );
-
-  const handleViewBreeder = useCallback(
-    (identifier: string) => {
-      const [breederId] = identifier.split('/');
-
-      router.push(`/breeders/${breederId}`);
-    },
-    [router]
-  );
-
   return (
     <StyledContainer>
-      {carousels?.map(carouselItem => (
-        <StyledCarouselContainer key={carouselItem.identifier}>
-          <AdvertisingCarousel
-            advertisings={carouselItem?.advertisings?.map(dataToAdvertisingItem) ?? []}
-            onViewAdvertising={handleViewAdvertising}
-            onViewAll={() => {
-              if (carouselItem.identifier === 'favorites') {
-                `/search?favoriteExternalId=${userId}`;
-              } else {
-                router.push(
-                  `/search?genderCategory=${carouselItem.identifier}`
-                );
-              }
-            }}
-            title={carouselItem.title}
-            placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
-            onFavorite={toggleFavorite}
-            onViewBreeder={handleViewBreeder}
-          />
-        </StyledCarouselContainer>
-      ))}
+      {carousels?.map(carouselItem => {
+
+        const LinkComponent: FC<LinkComponentProps> = ({
+          children,
+          identifier,
+          params
+        }) => {
+          const [breederId, poultryId] = params?.identifier?.split('/') ?? ['', ''];
+          
+          let href = '/';
+      
+          if (identifier === 'breeder-link') {
+            href = `/breeders/${breederId}`;
+          }
+
+          if (identifier === 'view-advertising') {
+            href = `/breeders/${breederId}/poultries/${poultryId}`;
+          }
+
+          if (identifier === 'view-all') {
+            if (carouselItem.identifier === 'favorites') {
+              href = `/search?favoriteExternalId=${userId}`;
+            } else {
+              href = `/search?genderCategory=${carouselItem.identifier}`;
+            }
+          }
+        
+          return (
+            <Link href={href}>
+              <a>
+                {children}
+              </a>
+            </Link>
+          );
+        };
+
+        return (
+          <StyledCarouselContainer key={carouselItem.identifier}>
+            <AdvertisingCarousel
+              advertisings={carouselItem?.advertisings?.map(dataToAdvertisingItem) ?? []}
+              linkComponent={LinkComponent}
+              title={carouselItem.title}
+              placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
+              onFavorite={toggleFavorite}
+            />
+          </StyledCarouselContainer>
+        );
+      })}
     </StyledContainer>
   );
 }
