@@ -16,7 +16,7 @@ import SearchContainer, {
 } from '../SearchContainer';
 import { render } from '@Utils/tests/rtl';
 
-describe('<SearchContainer />', () => {
+describe.skip('<SearchContainer />', () => {
   it('renders correctly', async () => {
     const measurementAndWeight = {
       metadata: {

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import {
   AdvertisingItem,
   ConfigModal,
@@ -18,10 +18,12 @@ import {
   PoultryTailEnum,
   PoultryTypeEnum,
 } from '@cig-platform/enums';
+import Link from 'next/link';
 
 import useSearchAdvertisngs, { PoultryData } from '@Hooks/useSearchAdvertisings';
 import { POULTRY_PLACEHOLDER_IMAGE_URL } from '@Constants/urls';
 import useToggleFavorite from '@Hooks/useToggleFavorite';
+import useAuth from '@Hooks/useAuth';
 
 import {
   StyledAdvertising,
@@ -39,7 +41,6 @@ import {
   PriceFilterStyle,
   StyledPriceInput
 } from './SearchContainer.styles';
-import useAuth from '@Hooks/useAuth';
 
 export const sortListItems = [
   {
@@ -148,6 +149,11 @@ export type SearchContainerProps = {
   advertisings?: PoultryData[];
   pages?: number;
 }
+
+type LinkComponentProps = {
+  identifier: 'breeder-link' | 'view-advertising';
+  params?: { identifier?: string }
+};
 
 export default function SearchContainer({ advertisings: advertisingsProp = [], pages = 0 }: SearchContainerProps) {
   const advertisings = useSearchAdvertisngs({ initialData: advertisingsProp, initialPages: pages });
@@ -326,30 +332,46 @@ export default function SearchContainer({ advertisings: advertisingsProp = [], p
         </StyledFilter>
       </StyledFilters>
       <StyledAdvertisings>
-        {advertisings?.map((advertising) => (
-          <StyledAdvertising key={advertising.id}>
-            <AdvertisingItem
-              description={advertising.description}
-              placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
-              onViewAdvertising={() =>
-                push(
-                  `/breeders/${advertising.breederId}/poultries/${advertising.poultryId}`
-                )
-              }
-              onViewBreeder={() =>
-                push(
-                  `/breeders/${advertising.breederId}`
-                )
-              }
-              price={advertising.price}
-              title={advertising.title}
-              image={advertising.image}
-              favorited={advertising.favorited}
-              breederImage={advertising.breederImage}
-              onToggleFavorite={toggleFavorite ? () => toggleFavorite(`${advertising.breederId}/${advertising.poultryId}/${advertising.id}`) : undefined}
-            />
-          </StyledAdvertising>
-        ))}
+        {advertisings?.map((advertising) => {
+          const LinkComponent: FC<LinkComponentProps> = ({
+            children,
+            identifier,
+          }) => {
+            let href = '/';
+        
+            if (identifier === 'breeder-link') {
+              href = `/breeders/${advertising.breederId}`;
+            }
+  
+            if (identifier === 'view-advertising') {
+              href = `/breeders/${advertising.breederId}/poultries/${advertising.poultryId}`;
+            }
+  
+            return (
+              <Link href={href}>
+                <a>
+                  {children}
+                </a>
+              </Link>
+            );
+          };
+
+          return (
+            <StyledAdvertising key={advertising.id}>
+              <AdvertisingItem
+                description={advertising.description}
+                placeholderImage={POULTRY_PLACEHOLDER_IMAGE_URL}
+                linkComponent={LinkComponent}
+                price={advertising.price}
+                title={advertising.title}
+                image={advertising.image}
+                favorited={advertising.favorited}
+                breederImage={advertising.breederImage}
+                onToggleFavorite={toggleFavorite ? () => toggleFavorite(`${advertising.breederId}/${advertising.poultryId}/${advertising.id}`) : undefined}
+              />
+            </StyledAdvertising>
+          );
+        })}
       </StyledAdvertisings>
 
       <ConfigModal
