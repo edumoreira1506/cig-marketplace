@@ -4,6 +4,11 @@ import ReactSlider from 'react-slider';
 
 export const StyledContainer = styled.section`
   width: 100%;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `;
 
 export const StyledFilters = styled.div`
@@ -36,6 +41,14 @@ export const StyledAdvertising = styled.li`
 
   @media (min-width: 768px) {
     width: 33%;
+  }
+
+  button > a {
+    width: calc(35% - 5px);
+
+    figure {
+      width: 100%;
+    }
   }
 `;
 
