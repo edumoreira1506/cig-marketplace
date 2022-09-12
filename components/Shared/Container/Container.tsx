@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useMemo } from 'react';
+import { FC, ReactNode, useCallback, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Container as UiContainer } from '@cig-platform/ui';
 import { useRouter } from 'next/router';
@@ -71,6 +71,14 @@ export interface ContainerProps {
   children: ReactNode | ReactNode[]
 }
 
+type LinkComponentProps = {
+  identifier: 'view-menu-link';
+  params?: {
+    title?: string
+  };
+  children?: ReactNode;
+}
+
 export default function Container({ children }: ContainerProps) {
   const error = useAppSelector(selectError);
   const isLoading = useAppSelector(selectIsLoading);
@@ -100,6 +108,20 @@ export default function Container({ children }: ContainerProps) {
       push(itemRoute);
     }
   }, [push]);
+
+  const LinkComponent: FC<LinkComponentProps> = ({
+    children,
+    params
+  }: LinkComponentProps) => {
+    const title = params?.title;
+    const item = items.find((i) => i.title === title);
+  
+    return (
+      <a href={item?.route ?? ''}>
+        {children}
+      </a>
+    );
+  };
 
   const handleShortcutClick = useCallback((shortcut: string) => {
     push(shortcutLinks[shortcut as Shortcuts]);
@@ -136,6 +158,7 @@ export default function Container({ children }: ContainerProps) {
       isLoading={isLoading}
       onSearch={handleSearch}
       onClickTitle={handleNavigateToMainPage}
+      linkComponent={LinkComponent}
     >
       {children}
     </UiContainer>
