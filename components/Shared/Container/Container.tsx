@@ -101,14 +101,6 @@ export default function Container({ children }: ContainerProps) {
     return [Shortcuts.EDIT_PROFILE, Shortcuts.EDIT_PASSWORD, Shortcuts.LOGOUT];
   }, [isAuthenticated, user?.registerType]);
 
-  const handleMenuItemClick = useCallback((menuItemTitle: string) => {
-    const itemRoute = [...unauthorizedItems, ...authorizedItems].find(i => i.title === menuItemTitle)?.route;
-
-    if (itemRoute) {
-      push(itemRoute);
-    }
-  }, [push]);
-
   const LinkComponent: FC<LinkComponentProps> = ({
     children,
     params
@@ -149,7 +141,7 @@ export default function Container({ children }: ContainerProps) {
   return (
     <UiContainer
       items={items}
-      onMenuClick={handleMenuItemClick}
+      onMenuClick={() => null}
       onShortcutClick={handleShortcutClick}
       shortcuts={shurtcutItems}
       title='CIG Marketplace'
