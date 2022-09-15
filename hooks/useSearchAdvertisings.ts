@@ -87,8 +87,8 @@ export default function useSearchAdvertisngs({ initialData = [], initialPages = 
 
     return () => document.removeEventListener('scroll', handlePaginate);
   }, [handlePaginate]);
-  
-  const { data, isLoading: isLoadingGetSearchRequest } = useData<Data>(
+
+  const { data, isLoading: isLoadingGetSearchRequest, refetch } = useData<Data>(
     'getSearch', 
     () => ContentSearchService.getSearch({
       crest,
@@ -125,6 +125,16 @@ export default function useSearchAdvertisngs({ initialData = [], initialPages = 
   );
 
   useEffect(() => {
+    if (!page) return;
+
+    (async() => {
+      await refetch();
+
+      dispatch(setIsLoading(false));
+    })();
+  }, [page, refetch, dispatch]);
+
+  useEffect(() => {
     if (!data?.advertisings?.length) return;
 
     setAdvertisingsData(prevAdvertisings => [
@@ -134,7 +144,7 @@ export default function useSearchAdvertisngs({ initialData = [], initialPages = 
       ) ?? []
     ]);
   }, [data?.advertisings]);
-
+  
   useEffect(() => {
     dispatch(setIsLoading(isLoadingGetSearchRequest));
   }, [isLoadingGetSearchRequest, dispatch]);
